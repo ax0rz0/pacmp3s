@@ -1,0 +1,449 @@
+{
+  "name": "michiru pin",
+  "slug": "michiru_pin",
+  "hash": "9e7dc6",
+  "diameter": 2.25,
+  "image_url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/michiru.png",
+  "source_image": "C:/Users/poopy/OneDrive/Documents/GitHub/pacmp3s/img/pins/michiru.png",
+  "res": 80,
+  "colors": 24,
+  "mode": "texture",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_michiru_pin_9e7dc6_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_body.obj",
+      "color": [
+        0.7843,
+        0.7843,
+        0.7843
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_michiru_pin_9e7dc6_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/michiru.png",
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #c8c8c8",
+      "file": "pin_michiru_pin_9e7dc6_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c01.obj",
+      "color": [
+        0.7843,
+        0.7843,
+        0.7843
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 2670,
+      "verts": 3264,
+      "tris": 5756,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #7284b2",
+      "file": "pin_michiru_pin_9e7dc6_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c02.obj",
+      "color": [
+        0.4471,
+        0.5176,
+        0.698
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 592,
+      "verts": 805,
+      "tris": 1184,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #cd9c91",
+      "file": "pin_michiru_pin_9e7dc6_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c03.obj",
+      "color": [
+        0.8039,
+        0.6118,
+        0.5686
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 223,
+      "verts": 379,
+      "tris": 446,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #ff1e03",
+      "file": "pin_michiru_pin_9e7dc6_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c04.obj",
+      "color": [
+        1.0,
+        0.1176,
+        0.0118
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 221,
+      "verts": 278,
+      "tris": 442,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #563e41",
+      "file": "pin_michiru_pin_9e7dc6_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c05.obj",
+      "color": [
+        0.3373,
+        0.2431,
+        0.2549
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 197,
+      "verts": 463,
+      "tris": 394,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #0c0e25",
+      "file": "pin_michiru_pin_9e7dc6_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c06.obj",
+      "color": [
+        0.0471,
+        0.0549,
+        0.1451
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 178,
+      "verts": 253,
+      "tris": 356,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #596687",
+      "file": "pin_michiru_pin_9e7dc6_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c07.obj",
+      "color": [
+        0.349,
+        0.4,
+        0.5294
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 123,
+      "verts": 317,
+      "tris": 246,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #a66564",
+      "file": "pin_michiru_pin_9e7dc6_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c08.obj",
+      "color": [
+        0.651,
+        0.3961,
+        0.3922
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 119,
+      "verts": 359,
+      "tris": 238,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c08.obj"
+    },
+    {
+      "key": "c09",
+      "role": "image",
+      "label": "mosaic #ae948d",
+      "file": "pin_michiru_pin_9e7dc6_c09.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c09.obj",
+      "color": [
+        0.6824,
+        0.5804,
+        0.5529
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 118,
+      "verts": 401,
+      "tris": 236,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c09.obj"
+    },
+    {
+      "key": "c10",
+      "role": "image",
+      "label": "mosaic #401d28",
+      "file": "pin_michiru_pin_9e7dc6_c10.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c10.obj",
+      "color": [
+        0.251,
+        0.1137,
+        0.1569
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 115,
+      "verts": 289,
+      "tris": 230,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c10.obj"
+    },
+    {
+      "key": "c11",
+      "role": "image",
+      "label": "mosaic #775c58",
+      "file": "pin_michiru_pin_9e7dc6_c11.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c11.obj",
+      "color": [
+        0.4667,
+        0.3608,
+        0.3451
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 110,
+      "verts": 368,
+      "tris": 220,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c11.obj"
+    },
+    {
+      "key": "c12",
+      "role": "image",
+      "label": "mosaic #cfd1d1",
+      "file": "pin_michiru_pin_9e7dc6_c12.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c12.obj",
+      "color": [
+        0.8118,
+        0.8196,
+        0.8196
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 95,
+      "verts": 284,
+      "tris": 190,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c12.obj"
+    },
+    {
+      "key": "c13",
+      "role": "image",
+      "label": "mosaic #7893b2",
+      "file": "pin_michiru_pin_9e7dc6_c13.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c13.obj",
+      "color": [
+        0.4706,
+        0.5765,
+        0.698
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 78,
+      "verts": 246,
+      "tris": 156,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c13.obj"
+    },
+    {
+      "key": "c14",
+      "role": "image",
+      "label": "mosaic #b9bcc2",
+      "file": "pin_michiru_pin_9e7dc6_c14.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c14.obj",
+      "color": [
+        0.7255,
+        0.7373,
+        0.7608
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 69,
+      "verts": 226,
+      "tris": 138,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c14.obj"
+    },
+    {
+      "key": "c15",
+      "role": "image",
+      "label": "mosaic #c91b10",
+      "file": "pin_michiru_pin_9e7dc6_c15.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c15.obj",
+      "color": [
+        0.7882,
+        0.1059,
+        0.0627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 64,
+      "verts": 150,
+      "tris": 128,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c15.obj"
+    },
+    {
+      "key": "c16",
+      "role": "image",
+      "label": "mosaic #b0cccc",
+      "file": "pin_michiru_pin_9e7dc6_c16.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c16.obj",
+      "color": [
+        0.6902,
+        0.8,
+        0.8
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 29,
+      "verts": 93,
+      "tris": 58,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c16.obj"
+    },
+    {
+      "key": "c17",
+      "role": "image",
+      "label": "mosaic #cac0bb",
+      "file": "pin_michiru_pin_9e7dc6_c17.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_c17.obj",
+      "color": [
+        0.7922,
+        0.7529,
+        0.7333
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 23,
+      "verts": 79,
+      "tris": 46,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_c17.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_michiru_pin_9e7dc6_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_michiru_pin_9e7dc6_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_michiru_pin_9e7dc6_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\michiru_pin\\pin_michiru_pin_9e7dc6_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/michiru_pin/pin_michiru_pin_9e7dc6_rim.obj"
+    }
+  ]
+}
