@@ -29,7 +29,7 @@ import pin_image as pi
 import pin_pac as pp
 import pin_render as pr
 
-DEFAULT_IMAGE_URL = pc.RAW_BASE + 'img/pins/isd_badge.png'
+DEFAULT_IMAGE_URL = 'https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/img/pins/isd_badge.png'  # direct raw host; image loaders may not follow github.com redirects
 PREVIEW = 384
 
 
