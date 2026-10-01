@@ -1,0 +1,429 @@
+{
+  "name": "rb gray",
+  "slug": "rb_gray",
+  "hash": "fc4a75",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "out/robust/gray.jpg",
+  "res": 64,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_gray_fc4a75_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_body.obj",
+      "color": [
+        0.7765,
+        0.7765,
+        0.7765
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_gray_fc4a75_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #c6c6c6",
+      "file": "pin_rb_gray_fc4a75_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c01.obj",
+      "color": [
+        0.7765,
+        0.7765,
+        0.7765
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 280,
+      "verts": 368,
+      "tris": 588,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #b5b5b5",
+      "file": "pin_rb_gray_fc4a75_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c02.obj",
+      "color": [
+        0.7098,
+        0.7098,
+        0.7098
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 273,
+      "verts": 366,
+      "tris": 562,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #515151",
+      "file": "pin_rb_gray_fc4a75_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c03.obj",
+      "color": [
+        0.3176,
+        0.3176,
+        0.3176
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 268,
+      "verts": 371,
+      "tris": 556,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #9c9c9c",
+      "file": "pin_rb_gray_fc4a75_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c04.obj",
+      "color": [
+        0.6118,
+        0.6118,
+        0.6118
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 257,
+      "verts": 362,
+      "tris": 532,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #424242",
+      "file": "pin_rb_gray_fc4a75_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c05.obj",
+      "color": [
+        0.2588,
+        0.2588,
+        0.2588
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 257,
+      "verts": 349,
+      "tris": 526,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #a8a8a8",
+      "file": "pin_rb_gray_fc4a75_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c06.obj",
+      "color": [
+        0.6588,
+        0.6588,
+        0.6588
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 243,
+      "verts": 340,
+      "tris": 500,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #676767",
+      "file": "pin_rb_gray_fc4a75_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c07.obj",
+      "color": [
+        0.4039,
+        0.4039,
+        0.4039
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 218,
+      "verts": 321,
+      "tris": 450,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #5d5d5d",
+      "file": "pin_rb_gray_fc4a75_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c08.obj",
+      "color": [
+        0.3647,
+        0.3647,
+        0.3647
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 209,
+      "verts": 310,
+      "tris": 434,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c08.obj"
+    },
+    {
+      "key": "c09",
+      "role": "image",
+      "label": "mosaic #7a7a7a",
+      "file": "pin_rb_gray_fc4a75_c09.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c09.obj",
+      "color": [
+        0.4784,
+        0.4784,
+        0.4784
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 205,
+      "verts": 310,
+      "tris": 422,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c09.obj"
+    },
+    {
+      "key": "c10",
+      "role": "image",
+      "label": "mosaic #898989",
+      "file": "pin_rb_gray_fc4a75_c10.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c10.obj",
+      "color": [
+        0.5373,
+        0.5373,
+        0.5373
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 202,
+      "verts": 305,
+      "tris": 414,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c10.obj"
+    },
+    {
+      "key": "c11",
+      "role": "image",
+      "label": "mosaic #717171",
+      "file": "pin_rb_gray_fc4a75_c11.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c11.obj",
+      "color": [
+        0.4431,
+        0.4431,
+        0.4431
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 200,
+      "verts": 303,
+      "tris": 412,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c11.obj"
+    },
+    {
+      "key": "c12",
+      "role": "image",
+      "label": "mosaic #929292",
+      "file": "pin_rb_gray_fc4a75_c12.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c12.obj",
+      "color": [
+        0.5725,
+        0.5725,
+        0.5725
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 199,
+      "verts": 304,
+      "tris": 414,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c12.obj"
+    },
+    {
+      "key": "c13",
+      "role": "image",
+      "label": "mosaic #020202",
+      "file": "pin_rb_gray_fc4a75_c13.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c13.obj",
+      "color": [
+        0.0078,
+        0.0078,
+        0.0078
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 160,
+      "verts": 209,
+      "tris": 346,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c13.obj"
+    },
+    {
+      "key": "c14",
+      "role": "image",
+      "label": "mosaic #818181",
+      "file": "pin_rb_gray_fc4a75_c14.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c14.obj",
+      "color": [
+        0.5059,
+        0.5059,
+        0.5059
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 137,
+      "verts": 240,
+      "tris": 284,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c14.obj"
+    },
+    {
+      "key": "c15",
+      "role": "image",
+      "label": "mosaic #272727",
+      "file": "pin_rb_gray_fc4a75_c15.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c15.obj",
+      "color": [
+        0.1529,
+        0.1529,
+        0.1529
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 74,
+      "verts": 165,
+      "tris": 198,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c15.obj"
+    },
+    {
+      "key": "c16",
+      "role": "image",
+      "label": "mosaic #e0e0e0",
+      "file": "pin_rb_gray_fc4a75_c16.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_c16.obj",
+      "color": [
+        0.8784,
+        0.8784,
+        0.8784
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 46,
+      "verts": 123,
+      "tris": 146,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_c16.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_gray_fc4a75_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_gray_fc4a75_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_gray_fc4a75_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_gray\\pin_rb_gray_fc4a75_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_gray/pin_rb_gray_fc4a75_rim.obj"
+    }
+  ]
+}

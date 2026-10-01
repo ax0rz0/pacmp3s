@@ -1,0 +1,269 @@
+{
+  "name": "rb r24",
+  "slug": "rb_r24",
+  "hash": "ee2f7b",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "../../img/pins/isd_badge.png",
+  "res": 24,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_r24_ee2f7b_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_body.obj",
+      "color": [
+        0.3412,
+        0.3216,
+        0.2863
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_r24_ee2f7b_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #0c1e49",
+      "file": "pin_rb_r24_ee2f7b_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c01.obj",
+      "color": [
+        0.0471,
+        0.1176,
+        0.2863
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 159,
+      "verts": 318,
+      "tris": 342,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #061643",
+      "file": "pin_rb_r24_ee2f7b_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c02.obj",
+      "color": [
+        0.0235,
+        0.0863,
+        0.2627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 54,
+      "verts": 345,
+      "tris": 252,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #1c2848",
+      "file": "pin_rb_r24_ee2f7b_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c03.obj",
+      "color": [
+        0.1098,
+        0.1569,
+        0.2824
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 50,
+      "verts": 194,
+      "tris": 124,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #758096",
+      "file": "pin_rb_r24_ee2f7b_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c04.obj",
+      "color": [
+        0.4588,
+        0.502,
+        0.5882
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 45,
+      "verts": 103,
+      "tris": 90,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #575249",
+      "file": "pin_rb_r24_ee2f7b_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c05.obj",
+      "color": [
+        0.3412,
+        0.3216,
+        0.2863
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 43,
+      "verts": 145,
+      "tris": 86,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #323845",
+      "file": "pin_rb_r24_ee2f7b_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c06.obj",
+      "color": [
+        0.1961,
+        0.2196,
+        0.2706
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 38,
+      "verts": 116,
+      "tris": 76,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #d9dde5",
+      "file": "pin_rb_r24_ee2f7b_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c07.obj",
+      "color": [
+        0.851,
+        0.8667,
+        0.898
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 33,
+      "verts": 81,
+      "tris": 66,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #494642",
+      "file": "pin_rb_r24_ee2f7b_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_c08.obj",
+      "color": [
+        0.2863,
+        0.2745,
+        0.2588
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 26,
+      "verts": 96,
+      "tris": 52,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_c08.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_r24_ee2f7b_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_r24_ee2f7b_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_r24_ee2f7b_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r24\\pin_rb_r24_ee2f7b_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r24/pin_rb_r24_ee2f7b_rim.obj"
+    }
+  ]
+}

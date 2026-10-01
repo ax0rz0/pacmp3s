@@ -1,0 +1,109 @@
+{
+  "name": "rb symisd tex",
+  "slug": "rb_symisd_tex",
+  "hash": "9cbfcd",
+  "diameter": 2.25,
+  "image_url": "https://files.catbox.moe/abcdef.png",
+  "source_image": "out/robust/sym_isd.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "texture",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_symisd_tex_9cbfcd_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd_tex\\pin_rb_symisd_tex_9cbfcd_body.obj",
+      "color": [
+        0.047058823529411764,
+        0.11372549019607843,
+        0.27450980392156865
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd_tex/pin_rb_symisd_tex_9cbfcd_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_symisd_tex_9cbfcd_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd_tex\\pin_rb_symisd_tex_9cbfcd_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": "https://files.catbox.moe/abcdef.png",
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd_tex/pin_rb_symisd_tex_9cbfcd_face_uv.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_symisd_tex_9cbfcd_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd_tex\\pin_rb_symisd_tex_9cbfcd_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd_tex/pin_rb_symisd_tex_9cbfcd_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_symisd_tex_9cbfcd_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd_tex\\pin_rb_symisd_tex_9cbfcd_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd_tex/pin_rb_symisd_tex_9cbfcd_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_symisd_tex_9cbfcd_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd_tex\\pin_rb_symisd_tex_9cbfcd_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd_tex/pin_rb_symisd_tex_9cbfcd_rim.obj"
+    }
+  ]
+}

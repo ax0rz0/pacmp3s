@@ -1,0 +1,109 @@
+{
+  "name": "pin badge",
+  "slug": "pin_badge",
+  "hash": "base",
+  "diameter": 2.25,
+  "image_url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/isd_badge.png",
+  "source_image": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/isd_badge.png",
+  "res": null,
+  "colors": null,
+  "mode": "texture",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_base_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\base\\pin_base_body.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/base/pin_base_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_base_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\base\\pin_base_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/isd_badge.png",
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/base/pin_base_face_uv.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_base_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\base\\pin_base_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/base/pin_base_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_base_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\base\\pin_base_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/base/pin_base_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_base_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\base\\pin_base_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/base/pin_base_rim.obj"
+    }
+  ]
+}

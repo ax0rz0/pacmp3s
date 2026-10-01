@@ -1,0 +1,269 @@
+{
+  "name": "rb wide",
+  "slug": "rb_wide",
+  "hash": "edb882",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "out/robust/wide.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_wide_edb882_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_body.obj",
+      "color": [
+        0.0,
+        0.7843,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_wide_edb882_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #00c8ff",
+      "file": "pin_rb_wide_edb882_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c01.obj",
+      "color": [
+        0.0,
+        0.7843,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1553,
+      "verts": 1762,
+      "tris": 3270,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #ff7d00",
+      "file": "pin_rb_wide_edb882_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c02.obj",
+      "color": [
+        1.0,
+        0.4902,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 775,
+      "verts": 895,
+      "tris": 1632,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #ffffff",
+      "file": "pin_rb_wide_edb882_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c03.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 713,
+      "verts": 830,
+      "tris": 1507,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #18120f",
+      "file": "pin_rb_wide_edb882_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c04.obj",
+      "color": [
+        0.0941,
+        0.0706,
+        0.0588
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 64,
+      "verts": 100,
+      "tris": 129,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #f68009",
+      "file": "pin_rb_wide_edb882_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c05.obj",
+      "color": [
+        0.9647,
+        0.502,
+        0.0353
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 32,
+      "verts": 66,
+      "tris": 64,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #18c1e7",
+      "file": "pin_rb_wide_edb882_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c06.obj",
+      "color": [
+        0.0941,
+        0.7569,
+        0.9059
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 32,
+      "verts": 66,
+      "tris": 64,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #eefbff",
+      "file": "pin_rb_wide_edb882_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c07.obj",
+      "color": [
+        0.9333,
+        0.9843,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 30,
+      "verts": 62,
+      "tris": 60,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #1fcfff",
+      "file": "pin_rb_wide_edb882_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_c08.obj",
+      "color": [
+        0.1216,
+        0.8118,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 29,
+      "verts": 60,
+      "tris": 58,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_c08.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_wide_edb882_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_wide_edb882_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_wide_edb882_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide\\pin_rb_wide_edb882_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide/pin_rb_wide_edb882_rim.obj"
+    }
+  ]
+}

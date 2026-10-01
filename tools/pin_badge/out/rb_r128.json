@@ -1,0 +1,269 @@
+{
+  "name": "rb r128",
+  "slug": "rb_r128",
+  "hash": "774f69",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "../../img/pins/isd_badge.png",
+  "res": 128,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_r128_774f69_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_body.obj",
+      "color": [
+        0.0392,
+        0.0941,
+        0.251
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_r128_774f69_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #0a1840",
+      "file": "pin_rb_r128_774f69_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c01.obj",
+      "color": [
+        0.0392,
+        0.0941,
+        0.251
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 3296,
+      "verts": 4848,
+      "tris": 7136,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #0d1e49",
+      "file": "pin_rb_r128_774f69_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c02.obj",
+      "color": [
+        0.051,
+        0.1176,
+        0.2863
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 3020,
+      "verts": 4095,
+      "tris": 6040,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #102451",
+      "file": "pin_rb_r128_774f69_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c03.obj",
+      "color": [
+        0.0627,
+        0.1412,
+        0.3176
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1391,
+      "verts": 2035,
+      "tris": 2782,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #fefefe",
+      "file": "pin_rb_r128_774f69_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c04.obj",
+      "color": [
+        0.9961,
+        0.9961,
+        0.9961
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1255,
+      "verts": 1508,
+      "tris": 2510,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #172c56",
+      "file": "pin_rb_r128_774f69_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c05.obj",
+      "color": [
+        0.0902,
+        0.1725,
+        0.3373
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1227,
+      "verts": 2410,
+      "tris": 2454,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #53504b",
+      "file": "pin_rb_r128_774f69_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c06.obj",
+      "color": [
+        0.3255,
+        0.3137,
+        0.2941
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1041,
+      "verts": 2641,
+      "tris": 2082,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #021043",
+      "file": "pin_rb_r128_774f69_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c07.obj",
+      "color": [
+        0.0078,
+        0.0627,
+        0.2627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 841,
+      "verts": 2283,
+      "tris": 1682,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #bfa462",
+      "file": "pin_rb_r128_774f69_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_c08.obj",
+      "color": [
+        0.749,
+        0.6431,
+        0.3843
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 821,
+      "verts": 1712,
+      "tris": 1642,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_c08.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_r128_774f69_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_r128_774f69_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_r128_774f69_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_r128\\pin_rb_r128_774f69_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_r128/pin_rb_r128_774f69_rim.obj"
+    }
+  ]
+}

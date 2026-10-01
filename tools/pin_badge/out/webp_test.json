@@ -1,0 +1,249 @@
+{
+  "name": "webp test",
+  "slug": "webp_test",
+  "hash": "d8d441",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "C:/Users/poopy/AppData/Local/Temp/claude/C--Program-Files--x86--Steam-steamapps-common-GarrysMod-garrysmod-data-pac3/843b2943-dc7d-435f-83ad-aa8be27e1c19/images/1.webp",
+  "res": 72,
+  "colors": 20,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_webp_test_d8d441_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_body.obj",
+      "color": [
+        0.2039,
+        0.2392,
+        0.2902
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_webp_test_d8d441_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #343d4a",
+      "file": "pin_webp_test_d8d441_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c01.obj",
+      "color": [
+        0.2039,
+        0.2392,
+        0.2902
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1485,
+      "verts": 2239,
+      "tris": 3126,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #3e4756",
+      "file": "pin_webp_test_d8d441_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c02.obj",
+      "color": [
+        0.2431,
+        0.2784,
+        0.3373
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 770,
+      "verts": 1393,
+      "tris": 1694,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #050709",
+      "file": "pin_webp_test_d8d441_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c03.obj",
+      "color": [
+        0.0196,
+        0.0275,
+        0.0353
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 750,
+      "verts": 1247,
+      "tris": 1543,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #0b0c10",
+      "file": "pin_webp_test_d8d441_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c04.obj",
+      "color": [
+        0.0431,
+        0.0471,
+        0.0627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 346,
+      "verts": 779,
+      "tris": 700,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #222b37",
+      "file": "pin_webp_test_d8d441_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c05.obj",
+      "color": [
+        0.1333,
+        0.1686,
+        0.2157
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 279,
+      "verts": 665,
+      "tris": 561,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #141b23",
+      "file": "pin_webp_test_d8d441_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c06.obj",
+      "color": [
+        0.0784,
+        0.1059,
+        0.1373
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 278,
+      "verts": 613,
+      "tris": 559,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #010101",
+      "file": "pin_webp_test_d8d441_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_c07.obj",
+      "color": [
+        0.0039,
+        0.0039,
+        0.0039
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 152,
+      "verts": 417,
+      "tris": 321,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_c07.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_webp_test_d8d441_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_webp_test_d8d441_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_webp_test_d8d441_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\webp_test\\pin_webp_test_d8d441_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/webp_test/pin_webp_test_d8d441_rim.obj"
+    }
+  ]
+}

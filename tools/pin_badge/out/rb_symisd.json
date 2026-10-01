@@ -1,0 +1,269 @@
+{
+  "name": "rb symisd",
+  "slug": "rb_symisd",
+  "hash": "c55b4e",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "out/robust/sym_isd.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_symisd_c55b4e_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_body.obj",
+      "color": [
+        0.0471,
+        0.1137,
+        0.2745
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_symisd_c55b4e_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #0c1d46",
+      "file": "pin_rb_symisd_c55b4e_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c01.obj",
+      "color": [
+        0.0471,
+        0.1137,
+        0.2745
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 1202,
+      "verts": 2111,
+      "tris": 2732,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #0d2150",
+      "file": "pin_rb_symisd_c55b4e_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c02.obj",
+      "color": [
+        0.051,
+        0.1294,
+        0.3137
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 472,
+      "verts": 843,
+      "tris": 944,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #323748",
+      "file": "pin_rb_symisd_c55b4e_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c03.obj",
+      "color": [
+        0.1961,
+        0.2157,
+        0.2824
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 350,
+      "verts": 864,
+      "tris": 700,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #fdfdfe",
+      "file": "pin_rb_symisd_c55b4e_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c04.obj",
+      "color": [
+        0.9922,
+        0.9922,
+        0.9961
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 316,
+      "verts": 452,
+      "tris": 632,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #031342",
+      "file": "pin_rb_symisd_c55b4e_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c05.obj",
+      "color": [
+        0.0118,
+        0.0745,
+        0.2588
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 260,
+      "verts": 730,
+      "tris": 520,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #a99870",
+      "file": "pin_rb_symisd_c55b4e_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c06.obj",
+      "color": [
+        0.6627,
+        0.5961,
+        0.4392
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 236,
+      "verts": 637,
+      "tris": 472,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #595959",
+      "file": "pin_rb_symisd_c55b4e_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c07.obj",
+      "color": [
+        0.349,
+        0.349,
+        0.349
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 210,
+      "verts": 634,
+      "tris": 420,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #1a2a4e",
+      "file": "pin_rb_symisd_c55b4e_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_c08.obj",
+      "color": [
+        0.102,
+        0.1647,
+        0.3059
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 182,
+      "verts": 590,
+      "tris": 364,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_c08.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_symisd_c55b4e_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_symisd_c55b4e_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_symisd_c55b4e_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_symisd\\pin_rb_symisd_c55b4e_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_symisd/pin_rb_symisd_c55b4e_rim.obj"
+    }
+  ]
+}

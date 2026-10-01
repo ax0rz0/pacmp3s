@@ -1,0 +1,269 @@
+{
+  "name": "isd badge",
+  "slug": "isd_badge",
+  "hash": "5895a8",
+  "diameter": 2.25,
+  "image_url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/isd_badge.png",
+  "source_image": "C:/Users/poopy/OneDrive/Documents/GitHub/pacmp3s/img/pins/isd_badge.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "texture",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_isd_badge_5895a8_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_body.obj",
+      "color": [
+        0.0471,
+        0.1137,
+        0.2745
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_isd_badge_5895a8_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/img/pins/isd_badge.png",
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #0c1d46",
+      "file": "pin_isd_badge_5895a8_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c01.obj",
+      "color": [
+        0.0471,
+        0.1137,
+        0.2745
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 1269,
+      "verts": 2248,
+      "tris": 2866,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #112655",
+      "file": "pin_isd_badge_5895a8_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c02.obj",
+      "color": [
+        0.0667,
+        0.149,
+        0.3333
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 505,
+      "verts": 772,
+      "tris": 1010,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #2c3348",
+      "file": "pin_isd_badge_5895a8_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c03.obj",
+      "color": [
+        0.1725,
+        0.2,
+        0.2824
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 302,
+      "verts": 687,
+      "tris": 604,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #f7f8f9",
+      "file": "pin_isd_badge_5895a8_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c04.obj",
+      "color": [
+        0.9686,
+        0.9725,
+        0.9765
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 291,
+      "verts": 418,
+      "tris": 582,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #031343",
+      "file": "pin_isd_badge_5895a8_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c05.obj",
+      "color": [
+        0.0118,
+        0.0745,
+        0.2627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 281,
+      "verts": 774,
+      "tris": 562,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #9c8a61",
+      "file": "pin_isd_badge_5895a8_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c06.obj",
+      "color": [
+        0.6118,
+        0.5412,
+        0.3804
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 278,
+      "verts": 706,
+      "tris": 556,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #505052",
+      "file": "pin_isd_badge_5895a8_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c07.obj",
+      "color": [
+        0.3137,
+        0.3137,
+        0.3216
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 216,
+      "verts": 653,
+      "tris": 432,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #1b2a4c",
+      "file": "pin_isd_badge_5895a8_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_c08.obj",
+      "color": [
+        0.1059,
+        0.1647,
+        0.298
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 86,
+      "verts": 324,
+      "tris": 172,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_c08.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_isd_badge_5895a8_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_isd_badge_5895a8_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_isd_badge_5895a8_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\isd_badge\\pin_isd_badge_5895a8_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/isd_badge/pin_isd_badge_5895a8_rim.obj"
+    }
+  ]
+}

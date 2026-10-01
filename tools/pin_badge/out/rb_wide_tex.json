@@ -1,0 +1,309 @@
+{
+  "name": "rb wide tex",
+  "slug": "rb_wide_tex",
+  "hash": "01f749",
+  "diameter": 2.25,
+  "image_url": "https://files.catbox.moe/abcdef.png",
+  "source_image": "out/robust/wide.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "texture",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_rb_wide_tex_01f749_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_body.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_rb_wide_tex_01f749_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": "https://files.catbox.moe/abcdef.png",
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #ffffff",
+      "file": "pin_rb_wide_tex_01f749_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c01.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 2854,
+      "verts": 3266,
+      "tris": 6032,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #000000",
+      "file": "pin_rb_wide_tex_01f749_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c02.obj",
+      "color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 140,
+      "verts": 236,
+      "tris": 283,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #9f9a90",
+      "file": "pin_rb_wide_tex_01f749_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c03.obj",
+      "color": [
+        0.6235,
+        0.6039,
+        0.5647
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 85,
+      "verts": 194,
+      "tris": 170,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #ae5b14",
+      "file": "pin_rb_wide_tex_01f749_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c04.obj",
+      "color": [
+        0.6824,
+        0.3569,
+        0.0784
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 50,
+      "verts": 107,
+      "tris": 101,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #fec46f",
+      "file": "pin_rb_wide_tex_01f749_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c05.obj",
+      "color": [
+        0.9961,
+        0.7686,
+        0.4353
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 31,
+      "verts": 77,
+      "tris": 62,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #250604",
+      "file": "pin_rb_wide_tex_01f749_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c06.obj",
+      "color": [
+        0.1451,
+        0.0235,
+        0.0157
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 30,
+      "verts": 85,
+      "tris": 60,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #d2c389",
+      "file": "pin_rb_wide_tex_01f749_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c07.obj",
+      "color": [
+        0.8235,
+        0.7647,
+        0.5373
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 15,
+      "verts": 58,
+      "tris": 30,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #85a1a7",
+      "file": "pin_rb_wide_tex_01f749_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c08.obj",
+      "color": [
+        0.5216,
+        0.6314,
+        0.6549
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 10,
+      "verts": 21,
+      "tris": 20,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c08.obj"
+    },
+    {
+      "key": "c09",
+      "role": "image",
+      "label": "mosaic #631703",
+      "file": "pin_rb_wide_tex_01f749_c09.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c09.obj",
+      "color": [
+        0.3882,
+        0.0902,
+        0.0118
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 9,
+      "verts": 28,
+      "tris": 18,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c09.obj"
+    },
+    {
+      "key": "c10",
+      "role": "image",
+      "label": "mosaic #800000",
+      "file": "pin_rb_wide_tex_01f749_c10.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_c10.obj",
+      "color": [
+        0.502,
+        0.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "pixels": 4,
+      "verts": 12,
+      "tris": 8,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_c10.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_rb_wide_tex_01f749_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_rb_wide_tex_01f749_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_rb_wide_tex_01f749_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\rb_wide_tex\\pin_rb_wide_tex_01f749_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/rb_wide_tex/pin_rb_wide_tex_01f749_rim.obj"
+    }
+  ]
+}

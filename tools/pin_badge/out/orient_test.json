@@ -1,0 +1,329 @@
+{
+  "name": "orient test",
+  "slug": "orient_test",
+  "hash": "a0e1de",
+  "diameter": 2.25,
+  "image_url": null,
+  "source_image": "out/test_orient.png",
+  "res": 64,
+  "colors": 16,
+  "mode": "mosaic",
+  "bone": "spine 2",
+  "parts": [
+    {
+      "key": "body",
+      "role": "body",
+      "label": "pin badge (MOVE ME)",
+      "file": "pin_orient_test_a0e1de_body.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_body.obj",
+      "color": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 258,
+      "tris": 512,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_body.obj"
+    },
+    {
+      "key": "face_uv",
+      "role": "texture",
+      "label": "image (paste URL into material)",
+      "file": "pin_orient_test_a0e1de_face_uv.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_face_uv.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 2049,
+      "tris": 3968,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_face_uv.obj"
+    },
+    {
+      "key": "c01",
+      "role": "image",
+      "label": "mosaic #ffff00",
+      "file": "pin_orient_test_a0e1de_c01.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c01.obj",
+      "color": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 660,
+      "verts": 804,
+      "tris": 1402,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c01.obj"
+    },
+    {
+      "key": "c02",
+      "role": "image",
+      "label": "mosaic #0000ff",
+      "file": "pin_orient_test_a0e1de_c02.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c02.obj",
+      "color": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 651,
+      "verts": 788,
+      "tris": 1384,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c02.obj"
+    },
+    {
+      "key": "c03",
+      "role": "image",
+      "label": "mosaic #00ff00",
+      "file": "pin_orient_test_a0e1de_c03.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c03.obj",
+      "color": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 638,
+      "verts": 778,
+      "tris": 1358,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c03.obj"
+    },
+    {
+      "key": "c04",
+      "role": "image",
+      "label": "mosaic #ff0000",
+      "file": "pin_orient_test_a0e1de_c04.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c04.obj",
+      "color": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 599,
+      "verts": 736,
+      "tris": 1280,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c04.obj"
+    },
+    {
+      "key": "c05",
+      "role": "image",
+      "label": "mosaic #000000",
+      "file": "pin_orient_test_a0e1de_c05.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c05.obj",
+      "color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 574,
+      "verts": 684,
+      "tris": 1148,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c05.obj"
+    },
+    {
+      "key": "c06",
+      "role": "image",
+      "label": "mosaic #680f37",
+      "file": "pin_orient_test_a0e1de_c06.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c06.obj",
+      "color": [
+        0.4078,
+        0.0588,
+        0.2157
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 27,
+      "verts": 72,
+      "tris": 54,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c06.obj"
+    },
+    {
+      "key": "c07",
+      "role": "image",
+      "label": "mosaic #67c504",
+      "file": "pin_orient_test_a0e1de_c07.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c07.obj",
+      "color": [
+        0.4039,
+        0.7725,
+        0.0157
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 22,
+      "verts": 67,
+      "tris": 44,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c07.obj"
+    },
+    {
+      "key": "c08",
+      "role": "image",
+      "label": "mosaic #0000dc",
+      "file": "pin_orient_test_a0e1de_c08.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c08.obj",
+      "color": [
+        0.0,
+        0.0,
+        0.8627
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 20,
+      "verts": 48,
+      "tris": 40,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c08.obj"
+    },
+    {
+      "key": "c09",
+      "role": "image",
+      "label": "mosaic #00063e",
+      "file": "pin_orient_test_a0e1de_c09.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c09.obj",
+      "color": [
+        0.0,
+        0.0235,
+        0.2431
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 16,
+      "verts": 34,
+      "tris": 32,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c09.obj"
+    },
+    {
+      "key": "c10",
+      "role": "image",
+      "label": "mosaic #cc0003",
+      "file": "pin_orient_test_a0e1de_c10.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c10.obj",
+      "color": [
+        0.8,
+        0.0,
+        0.0118
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 13,
+      "verts": 32,
+      "tris": 26,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c10.obj"
+    },
+    {
+      "key": "c11",
+      "role": "image",
+      "label": "mosaic #060059",
+      "file": "pin_orient_test_a0e1de_c11.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_c11.obj",
+      "color": [
+        0.0235,
+        0.0,
+        0.349
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "pixels": 8,
+      "verts": 22,
+      "tris": 16,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_c11.obj"
+    },
+    {
+      "key": "gloss",
+      "role": "gloss",
+      "label": "gloss (hide to remove)",
+      "file": "pin_orient_test_a0e1de_gloss.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_gloss.obj",
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alpha": 0.22,
+      "translucent": true,
+      "hidden": false,
+      "material": null,
+      "verts": 237,
+      "tris": 376,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_gloss.obj"
+    },
+    {
+      "key": "back",
+      "role": "back",
+      "label": "metal back + pin",
+      "file": "pin_orient_test_a0e1de_back.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_back.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": false,
+      "material": null,
+      "verts": 311,
+      "tris": 618,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_back.obj"
+    },
+    {
+      "key": "rim",
+      "role": "rim",
+      "label": "metal rim (unhide for framed look)",
+      "file": "pin_orient_test_a0e1de_rim.obj",
+      "local_path": "C:\\Users\\poopy\\OneDrive\\Documents\\GitHub\\pacmp3s\\obj\\pins\\orient_test\\pin_orient_test_a0e1de_rim.obj",
+      "color": [
+        0.72,
+        0.73,
+        0.76
+      ],
+      "alpha": 1.0,
+      "translucent": false,
+      "hidden": true,
+      "material": null,
+      "verts": 768,
+      "tris": 1536,
+      "url": "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/pins/orient_test/pin_orient_test_a0e1de_rim.obj"
+    }
+  ]
+}
