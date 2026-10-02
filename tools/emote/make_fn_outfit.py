@@ -4,7 +4,7 @@ Main outfit  emote_fortnite.txt        -> 33 emotes, D-class base-pose files (al
              emote_fortnite_isd.txt    -> exact for ISD / GOC / tech expert
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
-Jabba Switchway, Get Griddy, Default Dance and Electro Shuffle also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
+Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle and Hip Hop also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -34,7 +34,9 @@ class Raw(object):
 # (`sound2`) part. StopOnHide stops it with the emote, PlayCount is how often the file plays (0 = loop forever), Radius 500 and Bone head are the user's choices.
 RAW_URL = 'https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/%s'
 MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51),     # command -> (file in the repo root, PlayCount); jabba and griddy are the user's own values
-         'dance': ('default_dance.mp3', 50), 'electro': ('electro_shuffle.mp3', 50)}   # dance and electro: 50 plays is about six minutes, 0 would loop forever
+         'dance': ('default_dance.mp3', 50), 'electro': ('electro_shuffle.mp3', 50),   # dance and electro: 50 plays is about six minutes, 0 would loop forever
+         'hiphop': ('hip_hop.mp3', 25)}                                                # 25 plays of the 14.5 s track (two animation loops) is about six minutes
+VOLUME = {'hiphop': 0.6}      # ActMod's Hip Hop track is mastered at -7.3 LUFS (the others sit at -11 to -13), so the part plays it quieter and the mp3 stays untouched
 
 
 def sound_part(slug, key):
@@ -43,7 +45,7 @@ def sound_part(slug, key):
             'Doppler': False, 'DrawOrder': 0, 'Echo': False, 'EchoDelay': 0.5, 'EchoFeedback': 0.75, 'EditorExpand': False, 'EyeAngles': False, 'FilterFraction': 1,
             'FilterType': 0, 'Hide': False, 'IsDisturbing': False, 'MaxPitch': 0, 'MinPitch': 0, 'Name': '', 'Overlapping': False, 'Path': RAW_URL % f,
             'PauseOnHide': False, 'Pitch': 1, 'PitchLFOAmount': 0, 'PitchLFOTime': 0, 'PlayCount': plays, 'PlayOnFootstep': False, 'Position': Raw('Vector(0, 0, 0)'),
-            'PositionOffset': Raw('Vector(0, 0, 0)'), 'Radius': 500, 'StopOnHide': True, 'TargetEntityUID': '', 'UniqueID': uid(slug, 'sound_' + key), 'Volume': 1,
+            'PositionOffset': Raw('Vector(0, 0, 0)'), 'Radius': 500, 'StopOnHide': True, 'TargetEntityUID': '', 'UniqueID': uid(slug, 'sound_' + key), 'Volume': VOLUME.get(key, 1),
             'VolumeLFOAmount': 0, 'VolumeLFOTime': 0}
 
 

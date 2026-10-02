@@ -41,7 +41,7 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 
 Emotes marked ActMod come from the ActMod addon (`anim/am/` for floss, dance, electro and hiphop; `anim/fn/` for jabba and griddy); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance` and `electro` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro` and `hiphop` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -51,6 +51,7 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `get_griddy.mp3` | `griddy` | tempo-fitted to four animation loops (24.27 s, +0.55 %), rotated 0.25 s, -1.8 dB |
 | `default_dance.mp3` | `dance` | trimmed to the 6.8 s animation loop (the 0.4 s tail is mixed onto the start), -2 dB |
 | `electro_shuffle.mp3` | `electro` | none, byte-identical to ActMod's `emote_electroshuffle_01.mp3` (7.56 s) |
+| `hip_hop.mp3` | `hiphop` | none, byte-identical to ActMod's `S5_HipHop_B_Loop.mp3` (14.5 s, two animation loops); it is mastered loud (-7.3 LUFS), so its part plays it at `Volume 0.6` |
 
 Example binds (paste into the console):
 
