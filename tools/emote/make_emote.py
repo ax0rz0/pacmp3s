@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from mdl_anim import Mdl, Gma, SCP_GMA, load_model, angle_between
 from fbx_anim import Scene, KTIME
-from retarget import (Retargeter, Valve, angles_matrix, source_angles, norm, GAME_FROM_MIX)
+from retarget import (Retargeter, Valve, MixamoSource, angles_matrix, source_angles, norm, GAME_FROM_MIX, continuous)
 
 DEFAULT_MODEL = 'models/frostbyte/ia/internalsecurity_erdim.mdl'
 
@@ -17,7 +17,7 @@ def sample(rt, times, root_motion):
     frames = []
     prev = None
     for t in times:
-        ang, trans, ach, want = rt.frame_angles(int(round(t * KTIME)), prev)
+        ang, trans, ach, want = rt.frame_angles(t, prev)
         prev = ang
         frames.append((ang, trans))
     return frames
@@ -71,7 +71,7 @@ def simulate_pac(rt, js, fps, ease_in, probe_steps=4):
                 p = v.parent[b]
                 PR = WR[p] if p >= 0 else np.eye(3)
                 WR[b] = PR @ v.Lr[b] @ M.get(b, np.eye(3))
-            _, _, (XR, XP), want = rt.solve(int(round(tt * KTIME)))
+            _, _, (XR, XP), want = rt.solve(tt)
             for b in bones:
                 err = angle_between(WR[b], XR[b])
                 allerr.append(err)
@@ -91,7 +91,7 @@ def preview(rt, js, times, path, fps):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    v = rt.v; sc = rt.sc
+    v = rt.v; sc = rt.src.sc
     chains_v = [['Pelvis', 'Spine', 'Spine1', 'Spine2', 'Spine4', 'Neck1', 'Head1'],
                 ['Spine4', 'R_Clavicle', 'R_UpperArm', 'R_Forearm', 'R_Hand', 'R_Finger2'],
                 ['Spine4', 'L_Clavicle', 'L_UpperArm', 'L_Forearm', 'L_Hand', 'L_Finger2'],
@@ -104,7 +104,7 @@ def preview(rt, js, times, path, fps):
     fig, axes = plt.subplots(nrow, 2, figsize=(7.2, 3.4 * nrow))
     axes = np.atleast_2d(axes)
     for r, t in enumerate(times):
-        _, _, (WR, WP), want = rt.solve(int(round(t * KTIME)))
+        _, _, (WR, WP), want = rt.solve(t)
         W = sc.world_matrices(int(round(t * KTIME)))
         cur = {}
         for ch in chains_m:
@@ -152,13 +152,13 @@ def main():
     end = min(a.end if a.end else dur, dur)
     mdl = load_model(a.model)
     v = Valve(mdl)
-    rt = Retargeter(sc, v, root_motion=a.root_motion, root_frame=a.root_frame)
+    rt = Retargeter(MixamoSource(sc), v, root_motion=a.root_motion, root_frame=a.root_frame)
     n = int(round((end - a.start) * a.fps)) + 1
     times = [a.start + i / a.fps for i in range(n)]
     print('clip %.2fs-%.2fs -> %d frames @ %g fps | base seq0 = %s | model %s' % (a.start, end, n, a.fps, v.seq0, a.model))
     frames = sample(rt, times, a.root_motion)
     # loop closure: how far is the last pose from the first (world rotation of mapped bones)?
-    A = rt.solve(int(round(times[0] * KTIME)))[3]; B = rt.solve(int(round(times[-1] * KTIME)))[3]
+    A = rt.solve(times[0])[3]; B = rt.solve(times[-1])[3]
     closure = max(angle_between(A[b], B[b]) for b in A)
     print('loop closure: worst bone differs %.2f deg between first and last frame' % closure)
     restart = None if a.no_loop else 2

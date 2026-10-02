@@ -89,43 +89,69 @@ class Mdl:
         a0 = struct.unpack_from('<h', b, q + i32(q + 60))[0]
         return label, a0
 
-    def anim_frame(self, anim, frame=0):
-        """Local (rot 3x3, pos) per bone for one frame of local anim; bones without data keep their default local transform."""
+    def _anim_ptr(self, ad, frame, ani):
+        """Resolve (buffer, absolute offset of the first per-bone record, section-local frame) for one frame,
+        handling sections (fast-lookup chunks of `sectionframes` frames) and external .ani animation blocks."""
+        b, i32 = self.b, self.i32
+        nframes, sectionframes = i32(ad + 16), i32(ad + 84)
+        if sectionframes != 0:
+            sidx = i32(ad + 80)
+            if nframes > sectionframes and frame == nframes - 1:
+                index, lf = nframes // sectionframes + 1, 0
+            else:
+                index = frame // sectionframes
+                lf = frame - index * sectionframes
+            blk, off = struct.unpack_from('<ii', b, ad + sidx + index * 8)
+        else:
+            blk, off, lf = i32(ad + 52), i32(ad + 56), frame
+        if blk == 0:
+            return b, ad + off, lf
+        if ani is None:
+            raise ValueError('animation lives in an external .ani block: pass its bytes')
+        datastart = struct.unpack_from('<ii', b, i32(356) + 8 * blk)[0]
+        return ani, datastart + off, lf
+
+    def anim_info(self, anim):
+        ad = self.i32(184) + anim * 100
+        return {'name': cstr(self.b, ad + self.i32(ad + 4))[0], 'fps': struct.unpack_from('<f', self.b, ad + 8)[0],
+                'frames': self.i32(ad + 16), 'flags': self.i32(ad + 12)}
+
+    def anim_frame(self, anim, frame=0, ani=None):
+        """Local (rot 3x3, pos) per bone for one frame of local anim; bones without a record keep their default local transform."""
         b, i32 = self.b, self.i32
         ad = i32(184) + anim * 100
-        nframes, aflags, animindex = i32(ad + 16), i32(ad + 12), i32(ad + 56)
-        assert i32(ad + 52) == 0, 'anim stored in block file (.ani): not supported'
+        nframes, aflags = i32(ad + 16), i32(ad + 12)
+        buf, o, lf = self._anim_ptr(ad, frame, ani)
         res = [(quat_to_mat(self.quat[i]), self.pos[i].copy()) for i in range(self.n)]
         touched = set()
 
         def rle(off):
-            f = frame
+            f = lf
             while True:
-                valid, total = b[off], b[off + 1]
+                valid, total = buf[off], buf[off + 1]
                 if f < total:
                     k = min(f, valid - 1)
-                    return struct.unpack_from('<h', b, off + 2 + 2 * k)[0]
+                    return struct.unpack_from('<h', buf, off + 2 + 2 * k)[0]
                 f -= total
                 off += 2 + 2 * valid
 
-        o = ad + animindex
         while True:
-            bone, flags, nxt = b[o], b[o + 1], struct.unpack_from('<h', b, o + 2)[0]
+            bone, flags, nxt = buf[o], buf[o + 1], struct.unpack_from('<h', buf, o + 2)[0]
             p = o + 4
             rotm = None
             posv = None
             if flags & 0x20:
-                rotm = quat_to_mat(unpack_q64(b, p)); p += 8
+                rotm = quat_to_mat(unpack_q64(buf, p)); p += 8
             elif flags & 0x02:
-                rotm = quat_to_mat(unpack_q48(b, p)); p += 6
+                rotm = quat_to_mat(unpack_q48(buf, p)); p += 6
             elif flags & 0x08:
-                offs = struct.unpack_from('<3h', b, p)
+                offs = struct.unpack_from('<3h', buf, p)
                 e = [self.rot[bone][k] + (rle(p + offs[k]) * self.rotscale[bone][k] if offs[k] else 0) for k in range(3)]
                 rotm = euler_to_mat(*e); p += 6
             if flags & 0x01:
-                posv = np.array([half(h) for h in struct.unpack_from('<3H', b, p)]); p += 6
+                posv = np.array([half(h) for h in struct.unpack_from('<3H', buf, p)]); p += 6
             elif flags & 0x04:
-                offs = struct.unpack_from('<3h', b, p)
+                offs = struct.unpack_from('<3h', buf, p)
                 posv = np.array([self.pos[bone][k] + (rle(p + offs[k]) * self.posscale[bone][k] if offs[k] else 0) for k in range(3)]); p += 6
             R0, P0 = res[bone]
             res[bone] = (rotm if rotm is not None else R0, posv if posv is not None else P0)

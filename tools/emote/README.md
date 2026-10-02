@@ -38,3 +38,29 @@ Each Valve bone gets a desired world rotation from the Mixamo pose, solved top-d
 relative to the already-posed parent. Spine, neck, head, clavicles, feet and toes copy Mixamo's world delta; upper arms,
 forearms, thighs and calves aim along the Mixamo limb direction with minimal twist; hands aim and then spin so the palm
 normals agree. Full write-up: the pac3 skill, references/emotes-custom-animation.md.
+
+## Fortnite emotes (from the wOS "Custom Taunt" addon, workshop 2274808442)
+
+Those addons ship ~550 Fortnite emotes already on the Valve skeleton (`models/player/custom_taunt/fortnite1..3.mdl` + `.ani`, 60 fps,
+sectioned). `make_fn_pack.py` decodes them straight from the GMA (`mdl_anim.py` handles sections and external `.ani` blocks), retargets
+them onto each model family with the same solver (rest poses differ by ~13 deg, so rotations are not copied blindly), picks a key rate
+(30/40/60 fps) by replaying the JSON the way pac interpolates it, drops static finger chains, and appends a short blend when an emote
+does not loop cleanly. `make_fn_outfit.py` writes `emote_fortnite*.txt`; `fn_preview.py` renders a blue/red skeleton overlay.
+
+```
+python make_fn_pack.py --out ..\..\anim\fn         # all emotes, families isd / medic / classd
+python make_fn_pack.py --only floss --families classd --out %TEMP%\fn_test
+python make_fn_outfit.py
+```
+Add an emote: append `(command, title, model file, sequence label)` to `SPECS` in `make_fn_pack.py` (`taunt_catalog.txt`-style listing:
+every sequence label is in the three models; `f_` twins are the female-skeleton set and run at twice the length).
+
+### Second pack (20 more) and the screening run
+
+`make_fn_pack2.py` holds a 40-emote candidate pool (`POOL`) and the chosen 20 (`FINAL`); `screen_pool.py <family> <outdir> [keys]` builds
+emotes with the same auto-key-rate pipeline as pack one (`finger_min` 60) and prints a quality row per emote. Emotes were rejected when they end far from
+where they start (Pop Lock 113 deg, Disco Fever 171, Sprinkler 167, Facepalm 139, Skeleton Dance 177: the 0.35 s loop blend would look violent), work on the
+floor (The Worm, Break Dance, high replay error), need a prop (Mic Drop) or are huge (Robot 1.4 MB, Treadmill 1.6 MB, Jazz 1.1 MB, Dream Feet 1 MB).
+`fn_thin.py` is an adaptive keyframe-thinning experiment: it did not help (mocap-grade curvature means dropping any 60 fps frame costs about 1.2 deg), so the
+shipped files use plain 30/40/60 fps selection. `EMOTES.md` lists every command with its length and example binds.
+
