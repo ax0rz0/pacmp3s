@@ -84,7 +84,10 @@ automatically: it scores every start/end frame pair by world-rotation closure pl
 python make_actmod_replace.py --out am_out                    # all four, families isd / medic / classd
 python make_actmod_replace.py --out am_out --only floss --families classd
 ```
-Emotes that exist only in the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307) can be added the same way once that addon is extracted next to the main one.
+The "[ActMod] More Emotes Fortnite" extension (workshop 3567487307, 60.6 MB) adds `anim_m_04` / `anim_m_05` to the same `add_fortnite` folder: extract it and point `ACTMOD_EXT_DIR` (environment variable, see `make_fn_pack.py`) at its `models/player/ani_am4`.
+It is what `fresh` (a replacement, `make_actmod_replace.py`) and `pockets` (Empty Out Your Pockets, a new emote in `make_actmod_emotes.py`) are built from. Its `lua/actmod/am_animc/am4_fortniteme.lua` lists every emote with `Config.Name`, `Custom.Anim = { Time2 = loop seconds, Cycle = loop start as a fraction of the clip }`, `Custom.Sound = { Time1, Time2 }` (sound restart timers) and `Sounds = { Start, StartExtra (with a Delay), Repeat }`. `pockets` is `Amod_Fortnite_KelpLinen_C`: a 0.367 s intro (frame 11), then a 10.433 s loop, matching `Cycle 0.03395` and `Time2 10.43333`.
+Workshop items can be fetched without a Steam login: Valve's `steamcmd` (signed by Valve, from steamcdn-a.akamaihd.net) with `+login anonymous +workshop_download_item 4000 <id> +quit` writes `<id>_via_crowbar.gma`.
+The extension also holds Take The L (`DanceLoser`), Infinite Dab, Wiggle, Crabby (`CrabDance`), Electro Swing, Twist, Fancy Feet and One Arm Floss ("No Sweat"), which are not converted yet.
 
 ### Emote music (`prep_audio.py`)
 

@@ -11,7 +11,7 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `deepdab` | Deep Dab | 1.6s |
 | `infinidab` | Infinite Dab | 2.2s |
 | `electro` | Electro Shuffle (ActMod) | 8.4s loop |
-| `fresh` | Fresh | 5.1s |
+| `fresh` | Fresh (ActMod) | 5.1s loop |
 | `wiggle` | Wiggle | 3.2s |
 | `moonwalk` | Moonwalk | 2.1s |
 | `ragequit` | Rage Quit | 3.9s |
@@ -38,10 +38,11 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `showstopper` | Showstopper | 3.7s |
 | `jabba` | Jabba Switchway (ActMod) | 10.2s (intro once, then loops) |
 | `griddy` | Get Griddy (ActMod) | 6.1s loop |
+| `pockets` | Empty Out Your Pockets (ActMod extension) | 10.8s (0.4s intro once, then a 10.4s loop) |
 
-Emotes marked ActMod come from the ActMod addon (`anim/am/` for floss, dance, electro and hiphop; `anim/fn/` for jabba and griddy); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy and pockets); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro` and `hiphop` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh` and `pockets` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -52,6 +53,8 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `default_dance.mp3` | `dance` | trimmed to the 6.8 s animation loop (the 0.4 s tail is mixed onto the start), -2 dB |
 | `electro_shuffle.mp3` | `electro` | none, byte-identical to ActMod's `emote_electroshuffle_01.mp3` (7.56 s) |
 | `hip_hop.mp3` | `hiphop` | none, byte-identical to ActMod's `S5_HipHop_B_Loop.mp3` (14.5 s, two animation loops); it is mastered loud (-7.3 LUFS), so its part plays it at `Volume 0.6` |
+| `fresh.mp3` | `fresh` | none, byte-identical to the extension's `emote_fresh_music01.mp3` (5.05 s, one animation loop); its part plays it at `Volume 0.85` |
+| `empty_out_your_pockets.mp3` | `pockets` | none, byte-identical to the extension's `Emote_KelpLinen_C_Loop.mp3` (20.87 s, exactly two animation loops); `Volume 0.7`. ActMod also plays a 0.4 s intro sting (`Emote_KelpLinen_C_Intro.mp3`) before it, which is left out |
 
 Example binds (paste into the console):
 

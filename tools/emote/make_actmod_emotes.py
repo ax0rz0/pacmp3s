@@ -19,6 +19,9 @@ SPECS = [
     ('jabba', 'Jabba Switchway', M01, 'Amod_Fortnite_JanuaryBop', 77 / 30, 10.2),   # 2.567 s intro, then a 7.6 s loop (frame 77 == last frame: closure 0.0 deg)
     ('griddy', 'Get Griddy', M01, 'Amod_Fortnite_Griddle', None, 10.0),         # loops cleanly over its whole 6.07 s
     ('pockets', 'Empty Out Your Pockets', M04, 'Amod_Fortnite_KelpLinen_C', 11 / 30, 10.8),   # 0.367 s intro, then a 10.433 s loop (ActMod Cycle 0.03395, Time2 10.43333; frame 11 == last frame, closure 0.14 deg)
+    ('outwest', 'Out West', M01, 'Amod_Fortnite_JulyBooks', None, 6.9),         # loops over its whole 6.83 s (closure 0.06 deg); ActMod's music is exactly four loops (27.33 s)
+    ('mufasa', 'Go Mufasa', M01, 'Amod_Fortnite_SandwichBop', None, 7.6),       # loops over its whole 7.567 s (closure 0.01 deg); the _walk twin is the moving version
+    ('maskoff', 'Mask Off', M04, 'Amod_Fortnite_Reveal', 23 / 30, 13.6),        # 0.767 s intro (frame 23), then a 12.8 s loop (ActMod Cycle 0.0565, Time2 12.8; closure 0.10 deg); extension addon
 ]
 
 
