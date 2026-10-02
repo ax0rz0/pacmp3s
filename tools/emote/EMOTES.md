@@ -39,10 +39,13 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `jabba` | Jabba Switchway (ActMod) | 10.2s (intro once, then loops) |
 | `griddy` | Get Griddy (ActMod) | 6.1s loop |
 | `pockets` | Empty Out Your Pockets (ActMod extension) | 10.8s (0.4s intro once, then a 10.4s loop) |
+| `outwest` | Out West (ActMod) | 6.8s loop |
+| `mufasa` | Go Mufasa (ActMod) | 7.6s loop |
+| `maskoff` | Mask Off (ActMod extension) | 13.6s (0.8s intro once, then a 12.8s loop) |
 
-Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy and pockets); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa and maskoff); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh` and `pockets` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa` and `maskoff` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -55,6 +58,9 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `hip_hop.mp3` | `hiphop` | none, byte-identical to ActMod's `S5_HipHop_B_Loop.mp3` (14.5 s, two animation loops); it is mastered loud (-7.3 LUFS), so its part plays it at `Volume 0.6` |
 | `fresh.mp3` | `fresh` | none, byte-identical to the extension's `emote_fresh_music01.mp3` (5.05 s, one animation loop); its part plays it at `Volume 0.85` |
 | `empty_out_your_pockets.mp3` | `pockets` | none, byte-identical to the extension's `Emote_KelpLinen_C_Loop.mp3` (20.87 s, exactly two animation loops); `Volume 0.7`. ActMod also plays a 0.4 s intro sting (`Emote_KelpLinen_C_Intro.mp3`) before it, which is left out |
+| `out_west.mp3` | `outwest` | none, byte-identical to ActMod's `amod_fortnite_julybooks.mp3` (27.33 s, exactly four animation loops); `Volume 0.6` (mastered at -7.7 LUFS, +1.7 dBTP) |
+| `go_mufasa.mp3` | `mufasa` | none, byte-identical to ActMod's `amod_fortnite_sandwichbop.mp3` (7.57 s, one animation loop); `Volume 0.6` (-7.7 LUFS, +2.3 dBTP) |
+| `mask_off.mp3` | `maskoff` | none, byte-identical to the extension's `Emote_Reveal_2.mp3` (6.4 s loop, half an animation loop); `Volume 0.6` (-8.3 LUFS, +3.7 dBTP). The 0.8 s intro `Emote_Reveal_1.mp3` is left out |
 
 Example binds (paste into the console):
 
