@@ -123,7 +123,7 @@ def mapping():
 
 
 class Retargeter:
-    def __init__(self, scene: Scene, valve: Valve, root_motion=False, root_scale=None):
+    def __init__(self, scene: Scene, valve: Valve, root_motion=False, root_scale=None, root_frame='parent'):
         self.sc, self.v = scene, valve
         self.rows = mapping()
         self.mx = {}
@@ -133,6 +133,7 @@ class Retargeter:
                 raise KeyError('mixamo bone missing: ' + nm)
         self.rest_W = scene.world_matrices(None)
         self.root_motion = root_motion
+        self.root_frame = root_frame   # 'parent' = vector added to the bone's local position in parent (game) space; 'bone' = rotated by the bone's base frame
         hips_rest = self.rest_W[scene.by_name['mixamorig:Hips']['id']][:3, 3]
         self.hips_rest = GAME_FROM_MIX @ hips_rest
         self.root_scale = root_scale if root_scale is not None else valve.Wp[valve.bone('Pelvis')][2] / self.hips_rest[2]
@@ -201,7 +202,7 @@ class Retargeter:
         if self.root_motion:
             pel = v.bone('Pelvis')
             dp = (cur['Hips'][1] - self.hips_rest) * self.root_scale
-            trans = v.Lr[pel].T @ dp
+            trans = dp if self.root_frame == 'parent' else v.Lr[pel].T @ dp
         return M, trans, (Wa_R, Wa_P), want
 
     def frame_angles(self, t_ticks, prev=None):

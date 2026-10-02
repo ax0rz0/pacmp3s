@@ -74,18 +74,16 @@ def verify(text):
 
 
 def test_data():
-    """Tiny inline clip: both arms straight forward + hips pushed 10 forward and 6 down (game-world). Tells us in one look
-    whether custom_animation works on the server AND which way ManipulateBonePosition moves the pelvis."""
-    import numpy as np
-    from mdl_anim import load_model
-    from retarget import Valve
-    v = Valve(load_model('models/frostbyte/ia/internalsecurity_erdim.mdl'))
-    pel = v.bone('Pelvis')
-    t = v.Lr[pel].T @ np.array([10.0, 0.0, -6.0])
-    bi = {'ValveBiped.Bip01_R_UpperArm': {'RR': 0, 'RU': -90, 'RF': 0}, 'ValveBiped.Bip01_L_UpperArm': {'RR': 0, 'RU': -90, 'RF': 0},
-          'ValveBiped.Bip01_Pelvis': {'RR': 0, 'RU': 0, 'RF': 0, 'MF': round(float(t[0]), 2), 'MR': round(float(-t[1]), 2), 'MU': round(float(t[2]), 2)}}
-    js = {'Type': 'sequence', 'Interpolation': 'linear', 'RestartFrame': 2,
-          'FrameData': [{'FrameRate': 2, 'BoneInfo': bi}, {'FrameRate': 1, 'BoneInfo': bi}]}
+    """Cycling probe, arms forward the whole time. Hips (game-world units, applied as a parent-space offset):
+    rest -> 20 forward -> 20 up -> 20 to the character's left -> rest, 2 s per leg. Tells us in one watch whether custom_animation works
+    AND exactly how the pelvis position offset maps to game axes (describe the order of movements you see)."""
+    def fr(rate, dp):
+        MF, MR, MU = dp[0], -dp[1], dp[2]     # (x, y, z) = (MF, -MR, MU)
+        bi = {'ValveBiped.Bip01_R_UpperArm': {'RR': 0, 'RU': -90, 'RF': 0}, 'ValveBiped.Bip01_L_UpperArm': {'RR': 0, 'RU': -90, 'RF': 0},
+              'ValveBiped.Bip01_Pelvis': {'RR': 0, 'RU': 0, 'RF': 0, 'MF': MF, 'MR': MR, 'MU': MU}}
+        return {'FrameRate': rate, 'BoneInfo': bi}
+    js = {'Type': 'sequence', 'Interpolation': 'linear', 'RestartFrame': 1,
+          'FrameData': [fr(2, (0, 0, 0)), fr(0.5, (20, 0, 0)), fr(0.5, (0, 0, 20)), fr(0.5, (0, 20, 0)), fr(0.5, (0, 0, 0))]}
     return json.dumps(js, separators=(',', ':'))
 
 
@@ -95,13 +93,13 @@ def build_all(out_dir=PAC_DIR):
         ('emote_samba', 'emote: samba (ISD / GOC / tech expert)', [
             ('samba', 'samba (with hip travel)', anim_part('emote_samba', 'a_samba', 'samba.json', url=ANIM_URL + 'samba.json')),
             ('sambastill', 'samba (no hip travel, fallback)', anim_part('emote_samba', 'a_still', 'samba_still.json', url=ANIM_URL + 'samba_still.json')),
-            ('animtest', 'readiness test: arms forward, hips forward+down', anim_part('emote_samba', 'a_test', 'animtest (inline data)', data=data))]),
+            ('animtest', 'readiness test: arms forward, hips cycle forward / up / left', anim_part('emote_samba', 'a_test', 'animtest (inline data)', data=data))]),
         ('emote_samba_medic', 'emote: samba (combat medic)', [
             ('samba', 'samba (with hip travel)', anim_part('emote_samba_medic', 'a_samba', 'samba_medic.json', url=ANIM_URL + 'samba_medic.json')),
-            ('animtest', 'readiness test: arms forward, hips forward+down', anim_part('emote_samba_medic', 'a_test', 'animtest (inline data)', data=data))]),
+            ('animtest', 'readiness test: arms forward, hips cycle forward / up / left', anim_part('emote_samba_medic', 'a_test', 'animtest (inline data)', data=data))]),
         ('emote_samba_classd', 'emote: samba (D-class)', [
             ('samba', 'samba (with hip travel)', anim_part('emote_samba_classd', 'a_samba', 'samba_classd.json', url=ANIM_URL + 'samba_classd.json')),
-            ('animtest', 'readiness test: arms forward, hips forward+down', anim_part('emote_samba_classd', 'a_test', 'animtest (inline data)', data=data))]),
+            ('animtest', 'readiness test: arms forward, hips cycle forward / up / left', anim_part('emote_samba_classd', 'a_test', 'animtest (inline data)', data=data))]),
     ]
     for slug, title, emotes in sets:
         text = outfit(slug, title, emotes)

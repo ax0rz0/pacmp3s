@@ -144,6 +144,7 @@ def main():
     ap.add_argument('--preview', action='store_true')
     ap.add_argument('--no-loop', action='store_true')
     ap.add_argument('--decimals', type=int, default=1)
+    ap.add_argument('--root-frame', default='parent', choices=['parent', 'bone'])
     a = ap.parse_args()
     name = a.name or os.path.splitext(os.path.basename(a.fbx))[0].lower().replace(' ', '_')
     sc = Scene(a.fbx)
@@ -151,7 +152,7 @@ def main():
     end = min(a.end if a.end else dur, dur)
     mdl = load_model(a.model)
     v = Valve(mdl)
-    rt = Retargeter(sc, v, root_motion=a.root_motion)
+    rt = Retargeter(sc, v, root_motion=a.root_motion, root_frame=a.root_frame)
     n = int(round((end - a.start) * a.fps)) + 1
     times = [a.start + i / a.fps for i in range(n)]
     print('clip %.2fs-%.2fs -> %d frames @ %g fps | base seq0 = %s | model %s' % (a.start, end, n, a.fps, v.seq0, a.model))
