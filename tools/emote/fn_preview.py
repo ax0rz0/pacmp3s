@@ -18,11 +18,11 @@ def run(keys, path, family='classd', per=4):
     valve = Valve(load_model(fp.FAMILIES[family]))
     fig, axes = plt.subplots(len(keys) * 2, per, figsize=(2.6 * per, 3.3 * len(keys) * 2))
     for r, key in enumerate(keys):
-        spec = [s for s in fp.SPECS if s[0] == key][0]
+        spec = key if isinstance(key, tuple) else [s for s in fp.SPECS if s[0] == key][0]
         m, ani, seqs = fp.taunt(spec[2])
         src = ValveAnimSource(m, ani, seqs[spec[3].lower()])
         rt = Retargeter(src, valve, root_motion=True)
-        T = min(src.duration, 10.0)
+        T = min(src.duration, 10.2)
         for c in range(per):
             t = T * (c + 0.5) / per
             _, _, (WR, WP), _ = rt.solve(t)
@@ -42,4 +42,5 @@ def run(keys, path, family='classd', per=4):
 
 
 if __name__ == '__main__':
-    run(['floss', 'dance', 'electro'], sys.argv[1] if len(sys.argv) > 1 else 'fn_preview.png')
+    import make_actmod_emotes as am
+    run([(k, t, model, seq) for k, t, model, seq, _, _ in am.SPECS], sys.argv[1] if len(sys.argv) > 1 else 'fn_preview.png')

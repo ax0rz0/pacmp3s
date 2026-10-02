@@ -17,6 +17,7 @@ import math
 import numpy as np
 
 from fbx_anim import Scene, rot_of, KTIME
+from mdl_anim import quat_to_mat
 
 GAME_FROM_MIX = np.array([[0, 0, 1], [1, 0, 0], [0, 1, 0]], dtype=float)
 EPS = 1e-9
@@ -216,8 +217,16 @@ class ValveAnimSource:
             keys.update(['%s_Finger0' % s, '%s_Finger1' % s, '%s_Finger2' % s, '%s_Finger4' % s, '%s_Hand' % s])
         self.keys = {k for k in keys if ('ValveBiped.Bip01_' + k) in anim_mdl.index}
         self.rows = [r for r in rows if r[1] in self.keys and (r[4] is None or r[4] in self.keys)]
-        loc, *_ = anim_mdl.anim_frame(0, 0, ani_bytes)   # 'reference' = rest (game frame, includes the +90 root rotation)
-        self._rest = self._pack(anim_mdl.fk(loc))
+        if anim_mdl.anim_info(0)['name'].lower() == 'reference':
+            loc, *_ = anim_mdl.anim_frame(0, 0, ani_bytes)   # 'reference' = rest (game frame, includes the +90 root rotation)
+            W = anim_mdl.fk(loc)
+        else:
+            # no reference animation (e.g. ActMod): rest = the bind pose rotated into the game frame (game = Rz(90) * model space).
+            # Verified equal to the wOS 'reference' animation (0.07 deg) on a model that has both.
+            Rz = np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1.0]])
+            Wb = anim_mdl.fk([(quat_to_mat(anim_mdl.quat[i]), anim_mdl.pos[i].copy()) for i in range(anim_mdl.n)])
+            W = [(Rz @ R, Rz @ p) for R, p in Wb]
+        self._rest = self._pack(W)
         self._cache = {}
         self._ikeys = {}
 

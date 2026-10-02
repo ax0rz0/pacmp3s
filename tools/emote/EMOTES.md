@@ -36,6 +36,8 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `calculated` | Calculated | 1.8s |
 | `hitwoah` | Hit the Woah | 0.9s |
 | `showstopper` | Showstopper | 3.7s |
+| `jabba` | Jabba Switchway | 10.2s (intro once, then loops) |
+| `griddy` | Get Griddy | 6.1s |
 
 Example binds (paste into the console):
 
@@ -52,4 +54,6 @@ bind kp_8 "pac_event moonwalk 2"
 bind kp_9 "pac_event ragequit 2"
 bind kp_enter "pac_event windmill 2"
 bind kp_plus "pac_event boneless 2"
+bind kp_minus "pac_event jabba 2"
+bind kp_multiply "pac_event griddy 2"
 ```

@@ -64,3 +64,11 @@ floor (The Worm, Break Dance, high replay error), need a prop (Mic Drop) or are 
 `fn_thin.py` is an adaptive keyframe-thinning experiment: it did not help (mocap-grade curvature means dropping any 60 fps frame costs about 1.2 deg), so the
 shipped files use plain 30/40/60 fps selection. `EMOTES.md` lists every command with its length and example binds.
 
+### ActMod emotes (Jabba Switchway, Get Griddy)
+
+`make_actmod_emotes.py` converts emotes from an extracted ActMod addon (workshop 2538387266; set `ACTMOD_DIR` in `make_fn_pack.py` to the folder). ActMod keeps its Fortnite emotes as
+`Amod_Fortnite_*` sequences in `models/player/ani_am4/add_fortnite/anim_m_01.mdl` (male skeleton, 30 fps); display names are in `lua/actmod/am_actmod_lan.lua`.
+There is no `reference` animation, so `ValveAnimSource` uses the bind pose rotated into the game frame as the rest pose. Jabba Switchway is a 2.567 s intro followed by a 7.6 s loop
+(`loop_start`, which sets `RestartFrame`); Get Griddy loops over its whole length. ActMod's page says it must not be modified or re-published, so keep the converted data private.
+`find_emote_local.py <regex>` searches every installed addon for sequence or file names.
+

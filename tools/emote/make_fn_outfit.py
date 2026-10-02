@@ -1,6 +1,6 @@
 """Write the big Fortnite emote outfits (one command event + custom_animation per emote).
 
-Main outfit  emote_fortnite.txt        -> 31 emotes, D-class base-pose files (also fine on ISD / GOC / tech expert: ~2 deg mean difference)
+Main outfit  emote_fortnite.txt        -> 33 emotes, D-class base-pose files (also fine on ISD / GOC / tech expert: ~2 deg mean difference)
              emote_fortnite_isd.txt    -> exact for ISD / GOC / tech expert
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
@@ -10,8 +10,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from make_emote_outfit import uid, table, part, verify, PAC_DIR, WATERMARK
 from make_fn_pack import SPECS as SPECS1
 import make_fn_pack2 as p2
+import make_actmod_emotes as am
 
-SPECS = list(SPECS1) + [(k, t, '', seq) for k, t, seq in p2.POOL if k in p2.FINAL]
+SPECS = list(SPECS1) + [(k, t, '', seq) for k, t, seq in p2.POOL if k in p2.FINAL] + [(k, t, model, seq) for k, t, model, seq, _, _ in am.SPECS]
 
 URL = 'https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/fn/%s/fn_%s.json'
 

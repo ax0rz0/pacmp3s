@@ -32,7 +32,17 @@ SPECS = [
 _cache = {}
 
 
+ACTMOD_DIR = os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_2538387266', 'models', 'player', 'ani_am4')
+
+
 def taunt(model):
+    if model.startswith('actmod:'):          # e.g. 'actmod:add_fortnite/anim_m_01' (extracted ActMod folder)
+        if model not in _cache:
+            base = os.path.join(ACTMOD_DIR, *model[7:].split('/'))
+            m = Mdl(open(base + '.mdl', 'rb').read())
+            ani = open(base + '.ani', 'rb').read()
+            _cache[model] = (m, ani, {m.seq_info(k)[0].lower(): m.seq_info(k)[1] for k in range(m.i32(188))})
+        return _cache[model]
     if model not in _cache:
         g = Gma(TAUNT_GMA[0])
         m = Mdl(g.get('models/player/custom_taunt/%s.mdl' % model, limit=64 * 1024 * 1024))
@@ -49,11 +59,11 @@ def body_bone(name):
     return 'Finger' not in name
 
 
-def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0):
+def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0, loop_start=None):
     """fps=None picks the lowest key rate whose pac-replay error is small (30, 40 or 60)."""
     if fps is None:
         for cand in (30, 40, 60):
-            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min)
+            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min, loop_start)
             if (st['p99'] <= 4.0 and st['mean_err'] <= 0.8) or cand == 60:
                 st['fps'] = cand
                 return js, st
@@ -91,14 +101,15 @@ def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimal
                 e['MF'] = round(float(trans[0]), decimals); e['MR'] = round(float(-trans[1]), decimals); e['MU'] = round(float(trans[2]), decimals)
             info[names[b]] = e
         data.append({'FrameRate': (1.0 / ease_in if i == 0 else float(fps)), 'BoneInfo': info})
-    js = {'Type': 'sequence', 'Interpolation': 'linear', 'RestartFrame': 2, 'FrameData': data, 'Name': title, 'Notes': 'claude skill made by ax0rz0'}
+    s_idx = int(round(loop_start * fps)) if loop_start else 0     # the loop restarts at this source frame (an intro plays once)
+    js = {'Type': 'sequence', 'Interpolation': 'linear', 'RestartFrame': s_idx + 2, 'FrameData': data, 'Name': title, 'Notes': 'claude skill made by ax0rz0'}
     worst, errs = me.simulate_pac(rt, js, fps, ease_in)
     # loop closure: end pose vs start pose (body bones), blend back if they differ
-    A, B = rt.solve(times[0])[3], rt.solve(times[-1])[3]
+    A, B = rt.solve(times[s_idx])[3], rt.solve(times[-1])[3]
     closure = max(angle_between(A[b], B[b]) for b in A)
     blended = closure > 5.0
     if blended:
-        first = data[0]['BoneInfo']; last = data[-1]['BoneInfo']
+        first = data[s_idx]['BoneInfo']; last = data[-1]['BoneInfo']
         cp = {}
         for nm, e in first.items():
             prev = np.array([last[nm]['RR'], last[nm]['RU'], last[nm]['RF']])
