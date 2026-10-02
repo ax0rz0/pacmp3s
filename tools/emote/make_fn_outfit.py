@@ -4,7 +4,7 @@ Main outfit  emote_fortnite.txt        -> 33 emotes, D-class base-pose files (al
              emote_fortnite_isd.txt    -> exact for ISD / GOC / tech expert
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
-Jabba Switchway and Get Griddy also get a `sound2` (web sound) part after the animation, ported from the user's own saved setup (see MUSIC).
+Jabba Switchway, Get Griddy, Default Dance and Electro Shuffle also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,7 +33,8 @@ class Raw(object):
 # Audio setup ported from the user's own saved outfit (data/pac3/read me claude.txt, Oct 3 2026): inside the emote's command event, after the animation, one web sound
 # (`sound2`) part. StopOnHide stops it with the emote, PlayCount is how often the file plays (0 = loop forever), Radius 500 and Bone head are the user's choices.
 RAW_URL = 'https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/%s'
-MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51)}      # command -> (file in the repo root, PlayCount)
+MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51),     # command -> (file in the repo root, PlayCount); jabba and griddy are the user's own values
+         'dance': ('default_dance.mp3', 50), 'electro': ('electro_shuffle.mp3', 50)}   # dance and electro: 50 plays is about six minutes, 0 would loop forever
 
 
 def sound_part(slug, key):

@@ -5,6 +5,8 @@
   --length   exact length of the output loop in seconds (it should be a whole number of animation loops; the part loops the file)
   --stretch  reach --length by a pitch-preserving tempo change of the whole track (keeps the beat grid locked to the animation);
              without it the track is padded with silence / trimmed at the end
+  --wrap-tail  when the source is longer than --length, mix the surplus (a reverb / fade tail) onto the start of the loop instead of discarding it,
+               which is what you would hear if the file were retriggered every --length seconds with the tail ringing into the next hit
   --rotate   move the last N seconds to the front. pac eases the first pose in over 0.25 s, so the animation runs 0.25 s behind the
              moment the event fires; rotating a seamless loop by 0.25 s puts the music's downbeat on the animation's first pose
   --lufs/--tp  integrated loudness target and true-peak ceiling (a gain is derived from them)   --gain  fixed gain in dB
@@ -57,6 +59,7 @@ def main():
     ap.add_argument('src'); ap.add_argument('out')
     ap.add_argument('--length', type=float, required=True)
     ap.add_argument('--stretch', action='store_true')
+    ap.add_argument('--wrap-tail', action='store_true')
     ap.add_argument('--rotate', type=float, default=0.0)
     ap.add_argument('--gain', type=float, default=None)
     ap.add_argument('--lufs', type=float, default=None)
@@ -71,6 +74,12 @@ def main():
         print('tempo ratio %.6f (%+.3f %%, %.1f cents if it were resampled)' % (ratio, (ratio - 1) * 100, 1200 * np.log2(ratio)))
         x = decode(a.src, 'atempo=%.9f' % ratio)
         print('after atempo: %d samples (target %d)' % (len(x), n_out))
+    if a.wrap_tail and len(x) > n_out:
+        tail = x[n_out:]
+        x = x[:n_out].copy()
+        k = min(len(tail), n_out)
+        x[:k] += tail[:k]
+        print('tail of %.3f s mixed onto the start of the loop' % (len(tail) / SR))
     if len(x) < n_out:
         x = np.concatenate([x, np.zeros((n_out - len(x), 2))])
     x = x[:n_out]

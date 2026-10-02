@@ -105,5 +105,6 @@ Three timing facts decide how the file has to be cut:
 python prep_audio.py amod_fortnite_griddle.mp3 ..\..\get_griddy.mp3 --length 24.266667 --stretch --rotate 0.25 --lufs -11.4 --tp -1
 python prep_audio.py amod_fortnite_januarybop.mp3 ..\..\jabba_switchway_sync.mp3 --length 7.6 --rotate 0.25 --gain -3
 ```
-`jabba_switchway.mp3` is the same audio without the 0.25 s shift (starts at 0). Output is 44.1 kHz stereo 192 kbps CBR, no tags; the script decodes the result again and prints length, loudness, true peak,
+`jabba_switchway.mp3` is the same audio without the 0.25 s shift (starts at 0). The user prefers the ActMod audio left alone where possible, so `electro_shuffle.mp3` is ActMod's file as it is (ActMod loops it every 7.56 s
+while the animation loops every 8.43 s, so the two run independently there too) and `default_dance.mp3` is only cut to the 6.8 s animation loop (`--length 6.8 --wrap-tail --lufs -11.4 --tp -1`). Output is 44.1 kHz stereo 192 kbps CBR, no tags; the script decodes the result again and prints length, loudness, true peak,
 clipped samples and the loop-seam jump.
