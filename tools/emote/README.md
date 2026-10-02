@@ -88,7 +88,10 @@ Emotes that exist only in the "[ActMod] More Emotes Fortnite" extension (worksho
 
 ### Emote music (`prep_audio.py`)
 
-Music is a `sound2` part next to the `custom_animation`, inside the same `command` event (it starts and stops with the emote and replays `PlayCount` times).
+Music is a web sound (`sound2`) part next to the `custom_animation`, inside the same `command` event: it starts when the event shows the part and `StopOnHide` stops it with the emote.
+`PlayCount` is how often the file plays (0 = loop forever). pac downloads the whole file into `data/pac3_cache/downloads` first, so only the first play can lag.
+`make_fn_outfit.py` writes these parts for `jabba` and `griddy` (`MUSIC`: file and PlayCount 13 / 51, `Radius 500`, `Bone head`, `StopOnHide`), copied from the setup saved in game,
+so the generated outfits already carry the audio.
 Three timing facts decide how the file has to be cut:
 
 - pac eases the first pose in over 0.25 s (`FrameRate 4`), so the animation runs 0.25 s behind the moment the event fires and the sound. `--rotate 0.25` moves the last 0.25 s of a seamless
