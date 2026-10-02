@@ -22,6 +22,7 @@ SPECS = [
     ('outwest', 'Out West', M01, 'Amod_Fortnite_JulyBooks', None, 6.9),         # loops over its whole 6.83 s (closure 0.06 deg); ActMod's music is exactly four loops (27.33 s)
     ('mufasa', 'Go Mufasa', M01, 'Amod_Fortnite_SandwichBop', None, 7.6),       # loops over its whole 7.567 s (closure 0.01 deg); the _walk twin is the moving version
     ('maskoff', 'Mask Off', M04, 'Amod_Fortnite_Reveal', 23 / 30, 13.6),        # 0.767 s intro (frame 23), then a 12.8 s loop (ActMod Cycle 0.0565, Time2 12.8; closure 0.10 deg); extension addon
+    ('toosie', 'Toosie Slide', M04, 'Amod_Fortnite_ArtGiant', None, 5.9),       # loops over its whole 5.867 s (closure 0.08 deg); ActMod's music is exactly six loops (35.2 s); extension addon
 ]
 
 

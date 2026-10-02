@@ -42,10 +42,11 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `outwest` | Out West (ActMod) | 6.8s loop |
 | `mufasa` | Go Mufasa (ActMod) | 7.6s loop |
 | `maskoff` | Mask Off (ActMod extension) | 13.6s (0.8s intro once, then a 12.8s loop) |
+| `toosie` | Toosie Slide (ActMod extension) | 5.9s loop |
 
-Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa and maskoff); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff and toosie); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa` and `maskoff` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff` and `toosie` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -61,6 +62,7 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `out_west.mp3` | `outwest` | none, byte-identical to ActMod's `amod_fortnite_julybooks.mp3` (27.33 s, exactly four animation loops); `Volume 0.6` (mastered at -7.7 LUFS, +1.7 dBTP) |
 | `go_mufasa.mp3` | `mufasa` | none, byte-identical to ActMod's `amod_fortnite_sandwichbop.mp3` (7.57 s, one animation loop); `Volume 0.6` (-7.7 LUFS, +2.3 dBTP) |
 | `mask_off.mp3` | `maskoff` | none, byte-identical to the extension's `Emote_Reveal_2.mp3` (6.4 s loop, half an animation loop); `Volume 0.6` (-8.3 LUFS, +3.7 dBTP). The 0.8 s intro `Emote_Reveal_1.mp3` is left out |
+| `toosie_slide.mp3` | `toosie` | none, byte-identical to the extension's `Emote_Art_Giant01.mp3` (35.2 s, exactly six animation loops); `Volume 0.75` (-9.5 LUFS, +1.2 dBTP) |
 
 Example binds (paste into the console):
 
