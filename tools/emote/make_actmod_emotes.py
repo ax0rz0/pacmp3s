@@ -13,10 +13,12 @@ from retarget import Valve
 from mdl_anim import load_model
 
 M01 = 'actmod:add_fortnite/anim_m_01'      # male skeleton (the job models are male); anim_f_01 is the female twin
+M04 = 'actmod:add_fortnite/anim_m_04'      # from the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307, see ACTMOD_EXT_DIR in make_fn_pack.py)
 # key (pac_event command), title, model, sequence, loop_start seconds (None = loop the whole clip), max seconds
 SPECS = [
     ('jabba', 'Jabba Switchway', M01, 'Amod_Fortnite_JanuaryBop', 77 / 30, 10.2),   # 2.567 s intro, then a 7.6 s loop (frame 77 == last frame: closure 0.0 deg)
     ('griddy', 'Get Griddy', M01, 'Amod_Fortnite_Griddle', None, 10.0),         # loops cleanly over its whole 6.07 s
+    ('pockets', 'Empty Out Your Pockets', M04, 'Amod_Fortnite_KelpLinen_C', 11 / 30, 10.8),   # 0.367 s intro, then a 10.433 s loop (ActMod Cycle 0.03395, Time2 10.43333; frame 11 == last frame, closure 0.14 deg)
 ]
 
 

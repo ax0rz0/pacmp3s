@@ -12,12 +12,14 @@ from mdl_anim import load_model
 M03 = 'actmod:add_fortnite/anim_m_03'
 M02 = 'actmod:add_fortnite/anim_m_02'
 M01 = 'actmod:add_fortnite/anim_m_01'
+M04 = 'actmod:add_fortnite/anim_m_04'      # "[ActMod] More Emotes Fortnite" extension (workshop 3567487307)
 # command, title, model, sequence (the ActMod equivalent of the emote of the same name)
 REPLACE = [
     ('floss', 'Floss', M03, 'Amod_Fortnite_FlossDance'),
     ('dance', 'Default Dance', M03, 'Amod_Fortnite_DanceMoves'),
     ('electro', 'Electro Shuffle', M03, 'Amod_Fortnite_ElectroShuffle'),
     ('hiphop', 'Hip Hop', M03, 'Amod_Fortnite_Hip_Hop'),
+    ('fresh', 'Fresh', M04, 'Amod_Fortnite_Fresh'),
 ]
 
 

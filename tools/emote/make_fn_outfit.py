@@ -4,7 +4,7 @@ Main outfit  emote_fortnite.txt        -> 33 emotes, D-class base-pose files (al
              emote_fortnite_isd.txt    -> exact for ISD / GOC / tech expert
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
-Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle and Hip Hop also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
+Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle, Hip Hop, Fresh and Empty Out Your Pockets also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -35,8 +35,9 @@ class Raw(object):
 RAW_URL = 'https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/%s'
 MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51),     # command -> (file in the repo root, PlayCount); jabba and griddy are the user's own values
          'dance': ('default_dance.mp3', 50), 'electro': ('electro_shuffle.mp3', 50),   # dance and electro: 50 plays is about six minutes, 0 would loop forever
-         'hiphop': ('hip_hop.mp3', 25)}                                                # 25 plays of the 14.5 s track (two animation loops) is about six minutes
-VOLUME = {'hiphop': 0.6}      # ActMod's Hip Hop track is mastered at -7.3 LUFS (the others sit at -11 to -13), so the part plays it quieter and the mp3 stays untouched
+         'hiphop': ('hip_hop.mp3', 25),                                                # 25 plays of the 14.5 s track (two animation loops) is about six minutes
+         'fresh': ('fresh.mp3', 70), 'pockets': ('empty_out_your_pockets.mp3', 17)}    # 70 plays of the 5.05 s track and 17 of the 20.87 s loop (two animation loops): about six minutes
+VOLUME = {'hiphop': 0.6, 'pockets': 0.7, 'fresh': 0.85}      # loud masters (-7.3, -8.9 and -10.5 LUFS against -11 to -13 for the rest): the part plays them quieter and the mp3s stay untouched
 
 
 def sound_part(slug, key):

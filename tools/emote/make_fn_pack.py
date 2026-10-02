@@ -33,12 +33,16 @@ _cache = {}
 
 
 ACTMOD_DIR = os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_2538387266', 'models', 'player', 'ani_am4')
+# the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307) adds anim_m_04 / anim_m_05 to the same add_fortnite folder; set ACTMOD_EXT_DIR to its extracted models/player/ani_am4
+ACTMOD_EXT_DIR = os.environ.get('ACTMOD_EXT_DIR', os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_3567487307', 'models', 'player', 'ani_am4'))
 
 
 def taunt(model):
     if model.startswith('actmod:'):          # e.g. 'actmod:add_fortnite/anim_m_01' (extracted ActMod folder)
         if model not in _cache:
             base = os.path.join(ACTMOD_DIR, *model[7:].split('/'))
+            if not os.path.exists(base + '.mdl'):
+                base = os.path.join(ACTMOD_EXT_DIR, *model[7:].split('/'))
             m = Mdl(open(base + '.mdl', 'rb').read())
             ani = open(base + '.ani', 'rb').read()
             _cache[model] = (m, ani, {m.seq_info(k)[0].lower(): m.seq_info(k)[1] for k in range(m.i32(188))})
