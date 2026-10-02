@@ -72,3 +72,35 @@ There is no `reference` animation, so `ValveAnimSource` uses the bind pose rotat
 (`loop_start`, which sets `RestartFrame`); Get Griddy loops over its whole length. ActMod's page says it must not be modified or re-published, so keep the converted data private.
 `find_emote_local.py <regex>` searches every installed addon for sequence or file names.
 
+
+### ActMod replacements for the older emotes (`am_` files)
+
+ActMod's own versions of Floss, Dance Moves (Default Dance), Electro Shuffle and Hip Hop (listed as "Breakdown" in ActMod) replace the wOS-derived ones in the outfits.
+They are new files, `anim/am/<family>/am_<command>.json`; the old `fn_` files stay in the repo. `make_actmod_replace.py` builds them and `fn_loop.py` picks the loop window
+automatically: it scores every start/end frame pair by world-rotation closure plus angular-velocity continuity and keeps the longest window within 0.75 deg of the best score
+(all four are whole-clip loops, closure <= 0.2 deg, so nothing needed a blend). `make_fn_outfit.py` points the commands in `AM_KEYS` at the `am_` files.
+
+```
+python make_actmod_replace.py --out am_out                    # all four, families isd / medic / classd
+python make_actmod_replace.py --out am_out --only floss --families classd
+```
+Emotes that exist only in the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307) can be added the same way once that addon is extracted next to the main one.
+
+### Emote music (`prep_audio.py`)
+
+Music is a `sound2` part next to the `custom_animation`, inside the same `command` event (it starts and stops with the emote and replays `PlayCount` times).
+Three timing facts decide how the file has to be cut:
+
+- pac eases the first pose in over 0.25 s (`FrameRate 4`), so the animation runs 0.25 s behind the moment the event fires and the sound. `--rotate 0.25` moves the last 0.25 s of a seamless
+  loop to the front, which puts the downbeat on the animation's first pose (and the loop stays seamless).
+- Each replay of a file restarts it, so its length should be a whole number of animation loops. ActMod restarts its own sound on a timer (Jabba 7.6 s, Griddy 24.4 s). Griddy's
+  animation loops every 6.0667 s, so four loops are 24.2667 s and ActMod's 24.4 s track drifts by 0.13 s per cycle. `--stretch` fits the track to the exact loop length with a pitch-preserving tempo
+  change (+0.55 %, inaudible); without it the track is padded with silence or trimmed.
+- ActMod's mp3s are mastered above full scale (Jabba +2.0 dBFS true peak, Griddy +0.7), so a gain is applied: `--gain -3` or `--lufs -11.4 --tp -1` (integrated loudness target plus true-peak ceiling).
+
+```
+python prep_audio.py amod_fortnite_griddle.mp3 ..\..\get_griddy.mp3 --length 24.266667 --stretch --rotate 0.25 --lufs -11.4 --tp -1
+python prep_audio.py amod_fortnite_januarybop.mp3 ..\..\jabba_switchway_sync.mp3 --length 7.6 --rotate 0.25 --gain -3
+```
+`jabba_switchway.mp3` is the same audio without the 0.25 s shift (starts at 0). Output is 44.1 kHz stereo 192 kbps CBR, no tags; the script decodes the result again and prints length, loudness, true peak,
+clipped samples and the loop-seam jump.

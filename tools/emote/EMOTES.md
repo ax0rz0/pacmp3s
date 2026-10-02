@@ -5,12 +5,12 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 
 | command | emote | length |
 |---|---|---|
-| `floss` | Floss | 2.5s |
-| `dance` | Default Dance | 3.4s |
+| `floss` | Floss (ActMod) | 1.6s loop |
+| `dance` | Default Dance (ActMod) | 6.8s loop |
 | `takethel` | Take the L | 2.1s |
 | `deepdab` | Deep Dab | 1.6s |
 | `infinidab` | Infinite Dab | 2.2s |
-| `electro` | Electro Shuffle | 4.0s |
+| `electro` | Electro Shuffle (ActMod) | 8.4s loop |
 | `fresh` | Fresh | 5.1s |
 | `wiggle` | Wiggle | 3.2s |
 | `moonwalk` | Moonwalk | 2.1s |
@@ -30,14 +30,19 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `fancyfeet` | Fancy Feet | 2.1s |
 | `takethew` | Take the W | 2.3s |
 | `onearmfloss` | One Arm Floss | 2.5s |
-| `hiphop` | Hip Hop | 3.6s |
+| `hiphop` | Hip Hop / Breakdown (ActMod) | 7.3s loop |
 | `hula` | Hula | 3.6s |
 | `yeet` | Yeet | 1.7s |
 | `calculated` | Calculated | 1.8s |
 | `hitwoah` | Hit the Woah | 0.9s |
 | `showstopper` | Showstopper | 3.7s |
-| `jabba` | Jabba Switchway | 10.2s (intro once, then loops) |
-| `griddy` | Get Griddy | 6.1s |
+| `jabba` | Jabba Switchway (ActMod) | 10.2s (intro once, then loops) |
+| `griddy` | Get Griddy (ActMod) | 6.1s loop |
+
+Emotes marked ActMod come from the ActMod addon (`anim/am/` for floss, dance, electro and hiphop; `anim/fn/` for jabba and griddy); the others are the wOS "Custom Taunt" versions.
+
+Music (optional `sound2` part inside the emote's event, same trigger): `jabba_switchway.mp3` (7.6 s loop), `jabba_switchway_sync.mp3` (same, shifted 0.25 s so the beat lands on the animation's
+first pose) and `get_griddy.mp3` (24.27 s = four animation loops, already shifted). Raw links: `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`.
 
 Example binds (paste into the console):
 

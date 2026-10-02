@@ -11,17 +11,21 @@ from make_emote_outfit import uid, table, part, verify, PAC_DIR, WATERMARK
 from make_fn_pack import SPECS as SPECS1
 import make_fn_pack2 as p2
 import make_actmod_emotes as am
+from make_actmod_replace import REPLACE as AM_REPLACE
 
 SPECS = list(SPECS1) + [(k, t, '', seq) for k, t, seq in p2.POOL if k in p2.FINAL] + [(k, t, model, seq) for k, t, model, seq, _, _ in am.SPECS]
 
 URL = 'https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/fn/%s/fn_%s.json'
+URL_AM = 'https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/am/%s/am_%s.json'
+AM_KEYS = {r[0] for r in AM_REPLACE}     # commands whose animation now comes from ActMod (new files, the wOS fn_ ones stay in the repo)
 
 
 def outfit(slug, title, family):
     kids = ''
     for key, name, model, seq in SPECS:
-        anim = {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': 'fn_%s.json' % key,
-                'StopOtherAnimations': True, 'URL': URL % (family, key), 'UniqueID': uid(slug, 'anim_' + key)}
+        am_ver = key in AM_KEYS
+        anim = {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': ('am_%s.json' if am_ver else 'fn_%s.json') % key,
+                'StopOtherAnimations': True, 'URL': (URL_AM if am_ver else URL) % (family, key), 'UniqueID': uid(slug, 'anim_' + key)}
         ev = {'AffectChildrenOnly': True, 'Arguments': key, 'ClassName': 'event', 'Event': 'command', 'Invert': True,
               'Name': '%s  (pac_event %s 2)' % (name, key), 'UniqueID': uid(slug, 'event_' + key)}
         kids += part(1, ev, part(3, anim))
