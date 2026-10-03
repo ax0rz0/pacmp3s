@@ -45,10 +45,13 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `toosie` | Toosie Slide (ActMod extension) | 5.9s loop |
 | `droop` | Droop (wOS `CrazyDance`, re-timed to its real 30 fps speed) | 7.4s loop |
 | `orangejustice` | Orange Justice (ActMod, 60 fps keys for the fast arm swings) | 7.1s (0.6s intro once, then a 6.5s loop) |
+| `thoughtiwasdead` | Thought I Was Dead (ActMod AM4 Expansion Pack, Tyler, The Creator) | 19.1s (4.3s intro once, then a 14.8s loop) |
+| `chickenwing` | Chicken Wing It (ActMod) | 10.4s (3.4s intro once, then a 7.0s loop) |
+| `zany` | Zany (ActMod extension) | 9.1s loop |
 
-Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop, fresh and electroswing; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff, toosie and orangejustice); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop, fresh and electroswing; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff, toosie, orangejustice, thoughtiwasdead, chickenwing and zany); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff`, `toosie`, `electroswing`, `droop` and `orangejustice` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff`, `toosie`, `electroswing`, `droop`, `orangejustice`, `thoughtiwasdead`, `chickenwing` and `zany` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -68,6 +71,9 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `electro_swing.mp3` | `electroswing` | none, byte-identical to the extension's `Emotes_ElectroSwing.mp3` (16.0 s, exactly two animation loops); `Volume 0.6` (-7.6 LUFS, +2.1 dBTP). This is the track `electro` used to share by accident, see below |
 | `droop.mp3` | `droop` | no game file exists, so it was cut from the emote's preview video (the game's own audio): one 16-beat phrase (130 BPM, 7.385 s) from the second repeat with a 6 ms seam crossfade, tempo-fitted by -0.66 % to the 7.433 s animation loop, started where the dance's first frame lands after pac's 0.25 s ease-in, normalized to -12 LUFS (-1.5 dBTP). Source: 4nite.site/videos/emotes/droop.mp4 |
 | `orange_justice.mp3` | `orangejustice` | none, byte-identical to ActMod's `Hip_Hop_Good_Vibes_Mix_01.mp3` (18.94 s = three 6.32 s phrases at 152 BPM; the shop preview plays the same audio, and the dance loops every 6.5 s there too, so the two drift against each other in the game as well); `Volume 1.2` because it is a quiet master (-15.7 LUFS, -1.7 dBFS peak) |
+| `thought_i_was_dead.mp3` | `thoughtiwasdead` | none, byte-identical to the pack's `Emote_CanineCronutMix_2.mp3` (14.8 s loop = one animation loop); `Volume 0.45` because it is mastered extremely hot (-5.5 LUFS, +5.1 dBFS peak). ActMod also has a 4.07 s intro (`_1`) and a second variant (`_3` / `_4`, 4.14 s and 14.92 s), neither used |
+| `chicken_wing_it.mp3` | `chickenwing` | none, byte-identical to ActMod's `amod_fortnite_noodles_loop.mp3` (13.93 s, two animation loops); `Volume 0.6` (-6.6 LUFS, +1.0 dBFS). The 3.4 s intro track is left out |
+| `zany.mp3` | `zany` | none, byte-identical to the extension's `Emotes_Bendy.mp3` (9.14 s, one animation loop); `Volume 0.65` (-9.2 LUFS, +2.8 dBFS) |
 
 Every event uses `Operator equal`. pac's default is `find simple`, a substring test, so `pac_event electroswing 2` also switched on the `electro` event and played Electro Shuffle's music (and `pac_event onearmfloss 2` also fired `floss`). Binds are unchanged.
 

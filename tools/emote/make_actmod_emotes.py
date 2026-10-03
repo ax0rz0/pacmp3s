@@ -13,8 +13,10 @@ from retarget import Valve
 from mdl_anim import load_model
 
 M01 = 'actmod:add_fortnite/anim_m_01'      # male skeleton (the job models are male); anim_f_01 is the female twin
+M02 = 'actmod:add_fortnite/anim_m_02'
 M03 = 'actmod:add_fortnite/anim_m_03'
 M04 = 'actmod:add_fortnite/anim_m_04'      # from the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307, see ACTMOD_EXT_DIR in make_fn_pack.py)
+MEXP = 'actmodexp:m_ani_01'      # "[ActMod] AM4 Expansion Pack" (workshop 3682041393), see ACTMOD_EXP_DIR in make_fn_pack.py
 # key (pac_event command), title, model, sequence, loop_start seconds (None = loop the whole clip), max seconds
 SPECS = [
     ('jabba', 'Jabba Switchway', M01, 'Amod_Fortnite_JanuaryBop', 77 / 30, 10.2),   # 2.567 s intro, then a 7.6 s loop (frame 77 == last frame: closure 0.0 deg)
@@ -26,6 +28,9 @@ SPECS = [
     ('toosie', 'Toosie Slide', M04, 'Amod_Fortnite_ArtGiant', None, 5.9),       # loops over its whole 5.867 s (closure 0.08 deg); ActMod's music is exactly six loops (35.2 s); extension addon
     ('droop', 'Droop', 'fortnite1', 'CrazyDance', None, 7.5, 30),                # Droop is EID_CrazyDance; the wOS male taunt is tagged 60 fps but the game animation is 30 fps (7.4 s), so it is re-timed (7th field = real source fps)
     ('orangejustice', 'Orange Justice', M03, 'Amod_Fortnite_MaskOff', 18 / 30, 7.2, None, 60),   # EID_GoodVibes: 0.6 s intro (frame 18), then a 6.5 s loop (ActMod Cycle 0.0845, Time2 6.5; closure 0.01 deg); fast arm swings: 60 fps keys cut the replay error from p99 7.2 to 2.2 deg (8th field = key fps, default 30)
+    ('thoughtiwasdead', 'Thought I Was Dead', MEXP, 'Amod_Fortnite_CanineCronutMix', 128 / 30, 19.1),   # Tyler, The Creator (internal CanineCronutMix): 4.27 s intro (frame 128), then a 14.8 s loop (ActMod Cycle 0.2238, Time2 14.8; closure 0.01 deg); the prop (a cronut) is not reproduced
+    ('chickenwing', 'Chicken Wing It', M02, 'Amod_Fortnite_Noodles', 103 / 30, 10.4),                     # ActMod `noodles`: 3.43 s intro (frame 103), then a 6.97 s loop (Cycle 0.3301, Time2 6.96667; closure 0.01 deg)
+    ('zany', 'Zany', M04, 'Amod_Fortnite_Bendy', None, 9.2),                                              # loops over its whole 9.1 s (closure 0.14 deg); ActMod `Repeat`, music 9.14 s; extension addon
 ]
 
 

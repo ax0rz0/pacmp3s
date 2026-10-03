@@ -37,7 +37,18 @@ ACTMOD_DIR = os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_25383872
 ACTMOD_EXT_DIR = os.environ.get('ACTMOD_EXT_DIR', os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_3567487307', 'models', 'player', 'ani_am4'))
 
 
+# the "[ActMod] AM4 Expansion Pack" (workshop 3682041393, the Commission Hub) keeps its animations in models/player/ani_am4/m_ani_01.mdl; set ACTMOD_EXP_DIR to its extracted models/player/ani_am4
+ACTMOD_EXP_DIR = os.environ.get('ACTMOD_EXP_DIR', os.path.join(os.path.expanduser('~'), 'Downloads', 'actmod_3682041393', 'models', 'player', 'ani_am4'))
+
+
 def taunt(model):
+    if model.startswith('actmodexp:'):        # e.g. 'actmodexp:m_ani_01'
+        if model not in _cache:
+            base = os.path.join(ACTMOD_EXP_DIR, *model[10:].split('/'))
+            m = Mdl(open(base + '.mdl', 'rb').read())
+            ani = open(base + '.ani', 'rb').read()
+            _cache[model] = (m, ani, {m.seq_info(k)[0].lower(): m.seq_info(k)[1] for k in range(m.i32(188))})
+        return _cache[model]
     if model.startswith('actmod:'):          # e.g. 'actmod:add_fortnite/anim_m_01' (extracted ActMod folder)
         if model not in _cache:
             base = os.path.join(ACTMOD_DIR, *model[7:].split('/'))

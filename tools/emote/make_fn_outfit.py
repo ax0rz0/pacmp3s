@@ -5,7 +5,7 @@ Main outfit  emote_fortnite.txt        -> 33 emotes, D-class base-pose files (al
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
 Events use Operator 'equal': pac's default 'find simple' is a substring test, so pac_event electroswing also switched on the 'electro' event (and onearmfloss the 'floss' one).
-Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle, Hip Hop, Fresh, Empty Out Your Pockets, Out West, Go Mufasa, Mask Off, Toosie Slide, Electro Swing, Droop and Orange Justice also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
+Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle, Hip Hop, Fresh, Empty Out Your Pockets, Out West, Go Mufasa, Mask Off, Toosie Slide, Electro Swing, Droop, Orange Justice, Thought I Was Dead, Chicken Wing It and Zany also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -43,8 +43,10 @@ MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51),
          'toosie': ('toosie_slide.mp3', 10),                                          # 10 plays of the 35.2 s track (six animation loops)
          'electroswing': ('electro_swing.mp3', 22),                                   # 22 plays of the 16 s track (two animation loops)
          'droop': ('droop.mp3', 48),                                                   # 48 plays of the 7.43 s loop cut from the emote's preview video (one animation loop)
-         'orangejustice': ('orange_justice.mp3', 19)}                                  # 19 plays of the 18.9 s track (three phrases of 6.32 s; the dance loops every 6.5 s, as in the game)
-VOLUME = {'hiphop': 0.6, 'pockets': 0.7, 'fresh': 0.85, 'outwest': 0.6, 'mufasa': 0.6, 'maskoff': 0.6, 'toosie': 0.75, 'electroswing': 0.6, 'orangejustice': 1.2}      # loud masters (-7.3 to -10.5 LUFS, true peaks up to +3.7 dBFS, against -11 to -13 for the rest): the part plays them quieter and the mp3s stay untouched
+         'orangejustice': ('orange_justice.mp3', 19),                                  # 19 plays of the 18.9 s track (three phrases of 6.32 s; the dance loops every 6.5 s, as in the game)
+         'thoughtiwasdead': ('thought_i_was_dead.mp3', 24), 'chickenwing': ('chicken_wing_it.mp3', 25),   # the 14.8 s loop (one animation loop) and the 13.93 s loop (two); ActMod's intro stings are left out
+         'zany': ('zany.mp3', 39)}                                                    # 39 plays of the 9.14 s track (one animation loop)
+VOLUME = {'hiphop': 0.6, 'pockets': 0.7, 'fresh': 0.85, 'outwest': 0.6, 'mufasa': 0.6, 'maskoff': 0.6, 'toosie': 0.75, 'electroswing': 0.6, 'orangejustice': 1.2, 'thoughtiwasdead': 0.45, 'chickenwing': 0.6, 'zany': 0.65}      # loud masters (-7.3 to -10.5 LUFS, true peaks up to +3.7 dBFS, against -11 to -13 for the rest): the part plays them quieter and the mp3s stay untouched
 
 
 def sound_part(slug, key):
