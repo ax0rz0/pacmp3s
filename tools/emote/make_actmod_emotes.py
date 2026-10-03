@@ -13,6 +13,7 @@ from retarget import Valve
 from mdl_anim import load_model
 
 M01 = 'actmod:add_fortnite/anim_m_01'      # male skeleton (the job models are male); anim_f_01 is the female twin
+M03 = 'actmod:add_fortnite/anim_m_03'
 M04 = 'actmod:add_fortnite/anim_m_04'      # from the "[ActMod] More Emotes Fortnite" extension (workshop 3567487307, see ACTMOD_EXT_DIR in make_fn_pack.py)
 # key (pac_event command), title, model, sequence, loop_start seconds (None = loop the whole clip), max seconds
 SPECS = [
@@ -24,6 +25,7 @@ SPECS = [
     ('maskoff', 'Mask Off', M04, 'Amod_Fortnite_Reveal', 23 / 30, 13.6),        # 0.767 s intro (frame 23), then a 12.8 s loop (ActMod Cycle 0.0565, Time2 12.8; closure 0.10 deg); extension addon
     ('toosie', 'Toosie Slide', M04, 'Amod_Fortnite_ArtGiant', None, 5.9),       # loops over its whole 5.867 s (closure 0.08 deg); ActMod's music is exactly six loops (35.2 s); extension addon
     ('droop', 'Droop', 'fortnite1', 'CrazyDance', None, 7.5, 30),                # Droop is EID_CrazyDance; the wOS male taunt is tagged 60 fps but the game animation is 30 fps (7.4 s), so it is re-timed (7th field = real source fps)
+    ('orangejustice', 'Orange Justice', M03, 'Amod_Fortnite_MaskOff', 18 / 30, 7.2, None, 60),   # EID_GoodVibes: 0.6 s intro (frame 18), then a 6.5 s loop (ActMod Cycle 0.0845, Time2 6.5; closure 0.01 deg); fast arm swings: 60 fps keys cut the replay error from p99 7.2 to 2.2 deg (8th field = key fps, default 30)
 ]
 
 
@@ -39,9 +41,10 @@ def main():
         for spec in SPECS:
             key, title, model, seq, loop_start, max_sec = spec[:6]
             src_fps = spec[6] if len(spec) > 6 else None
+            key_fps = spec[7] if len(spec) > 7 else 30
             if a.only and key not in a.only.split(','):
                 continue
-            js, st = fp.build((key, title, model, seq), valve, fps=30, max_sec=max_sec, finger_min=60.0, loop_start=loop_start, src_fps=src_fps)   # source is 30 fps: native key rate
+            js, st = fp.build((key, title, model, seq), valve, fps=key_fps, max_sec=max_sec, finger_min=60.0, loop_start=loop_start, src_fps=src_fps)   # source is 30 fps: native key rate
             path = os.path.join(a.out, fam, 'fn_%s.json' % key)
             with open(path, 'w', newline='\n') as f:
                 json.dump(js, f, separators=(',', ':'))
