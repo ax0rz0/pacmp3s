@@ -22,7 +22,7 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `bunnyhop` | Bunny Hop | 2.1s |
 | `crab` | Crab Rave | 3.9s |
 | `candy` | Candy Dance | 4.2s |
-| `electroswing` | Electro Swing | 4.4s |
+| `electroswing` | Electro Swing (ActMod extension) | 8.0s loop |
 | `twist` | Twist | 5.5s |
 | `zippy` | Zippy Dance | 3.7s |
 | `smoothride` | Smooth Ride | 3.9s |
@@ -43,10 +43,11 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `mufasa` | Go Mufasa (ActMod) | 7.6s loop |
 | `maskoff` | Mask Off (ActMod extension) | 13.6s (0.8s intro once, then a 12.8s loop) |
 | `toosie` | Toosie Slide (ActMod extension) | 5.9s loop |
+| `droop` | Droop (wOS `CrazyDance`, re-timed to its real 30 fps speed) | 7.4s loop, no music yet |
 
-Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop and fresh; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff and toosie); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop, fresh and electroswing; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff and toosie); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff` and `toosie` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff`, `toosie` and `electroswing` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -63,6 +64,9 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `go_mufasa.mp3` | `mufasa` | none, byte-identical to ActMod's `amod_fortnite_sandwichbop.mp3` (7.57 s, one animation loop); `Volume 0.6` (-7.7 LUFS, +2.3 dBTP) |
 | `mask_off.mp3` | `maskoff` | none, byte-identical to the extension's `Emote_Reveal_2.mp3` (6.4 s loop, half an animation loop); `Volume 0.6` (-8.3 LUFS, +3.7 dBTP). The 0.8 s intro `Emote_Reveal_1.mp3` is left out |
 | `toosie_slide.mp3` | `toosie` | none, byte-identical to the extension's `Emote_Art_Giant01.mp3` (35.2 s, exactly six animation loops); `Volume 0.75` (-9.5 LUFS, +1.2 dBTP) |
+| `electro_swing.mp3` | `electroswing` | none, byte-identical to the extension's `Emotes_ElectroSwing.mp3` (16.0 s, exactly two animation loops); `Volume 0.6` (-7.6 LUFS, +2.1 dBTP). This is the track `electro` used to share by accident, see below |
+
+Every event uses `Operator equal`. pac's default is `find simple`, a substring test, so `pac_event electroswing 2` also switched on the `electro` event and played Electro Shuffle's music (and `pac_event onearmfloss 2` also fired `floss`). Binds are unchanged.
 
 Example binds (paste into the console):
 
