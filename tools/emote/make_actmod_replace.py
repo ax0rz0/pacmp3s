@@ -20,6 +20,7 @@ REPLACE = [
     ('electro', 'Electro Shuffle', M03, 'Amod_Fortnite_ElectroShuffle'),
     ('hiphop', 'Hip Hop', M03, 'Amod_Fortnite_Hip_Hop'),
     ('fresh', 'Fresh', M04, 'Amod_Fortnite_Fresh'),
+    ('electroswing', 'Electro Swing', M04, 'Amod_Fortnite_Electroswing'),
 ]
 
 

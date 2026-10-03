@@ -23,6 +23,7 @@ SPECS = [
     ('mufasa', 'Go Mufasa', M01, 'Amod_Fortnite_SandwichBop', None, 7.6),       # loops over its whole 7.567 s (closure 0.01 deg); the _walk twin is the moving version
     ('maskoff', 'Mask Off', M04, 'Amod_Fortnite_Reveal', 23 / 30, 13.6),        # 0.767 s intro (frame 23), then a 12.8 s loop (ActMod Cycle 0.0565, Time2 12.8; closure 0.10 deg); extension addon
     ('toosie', 'Toosie Slide', M04, 'Amod_Fortnite_ArtGiant', None, 5.9),       # loops over its whole 5.867 s (closure 0.08 deg); ActMod's music is exactly six loops (35.2 s); extension addon
+    ('droop', 'Droop', 'fortnite1', 'CrazyDance', None, 7.5, 30),                # Droop is EID_CrazyDance; the wOS male taunt is tagged 60 fps but the game animation is 30 fps (7.4 s), so it is re-timed (7th field = real source fps)
 ]
 
 
@@ -35,10 +36,12 @@ def main():
     for fam in a.families.split(','):
         valve = Valve(load_model(fp.FAMILIES[fam]))
         os.makedirs(os.path.join(a.out, fam), exist_ok=True)
-        for key, title, model, seq, loop_start, max_sec in SPECS:
+        for spec in SPECS:
+            key, title, model, seq, loop_start, max_sec = spec[:6]
+            src_fps = spec[6] if len(spec) > 6 else None
             if a.only and key not in a.only.split(','):
                 continue
-            js, st = fp.build((key, title, model, seq), valve, fps=30, max_sec=max_sec, finger_min=60.0, loop_start=loop_start)   # source is 30 fps: native key rate
+            js, st = fp.build((key, title, model, seq), valve, fps=30, max_sec=max_sec, finger_min=60.0, loop_start=loop_start, src_fps=src_fps)   # source is 30 fps: native key rate
             path = os.path.join(a.out, fam, 'fn_%s.json' % key)
             with open(path, 'w', newline='\n') as f:
                 json.dump(js, f, separators=(',', ':'))

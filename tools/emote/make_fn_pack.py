@@ -63,11 +63,11 @@ def body_bone(name):
     return 'Finger' not in name
 
 
-def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0, loop_start=None):
-    """fps=None picks the lowest key rate whose pac-replay error is small (30, 40 or 60)."""
+def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0, loop_start=None, src_fps=None):
+    """fps=None picks the lowest key rate whose pac-replay error is small (30, 40 or 60). src_fps re-times a source whose fps tag is wrong (wOS male taunts of 30 fps animations are tagged 60 and run twice too fast)."""
     if fps is None:
         for cand in (30, 40, 60):
-            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min, loop_start)
+            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min, loop_start, src_fps)
             if (st['p99'] <= 4.0 and st['mean_err'] <= 0.8) or cand == 60:
                 st['fps'] = cand
                 return js, st
@@ -75,6 +75,9 @@ def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimal
     key, title, model, seq = spec
     m, ani, seqs = taunt(model)
     src = ValveAnimSource(m, ani, seqs[seq.lower()])
+    if src_fps:
+        src.fps = float(src_fps)
+        src.duration = (src.nframes - 1) / src.fps
     dur = min(src.duration, max_sec)
     n = int(round(dur * fps)) + 1
     times = [i / fps for i in range(n)]
