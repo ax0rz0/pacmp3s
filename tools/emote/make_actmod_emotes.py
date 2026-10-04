@@ -31,6 +31,8 @@ SPECS = [
     ('thoughtiwasdead', 'Thought I Was Dead', MEXP, 'Amod_Fortnite_CanineCronutMix', 128 / 30, 19.1),   # Tyler, The Creator (internal CanineCronutMix): 4.27 s intro (frame 128), then a 14.8 s loop (ActMod Cycle 0.2238, Time2 14.8; closure 0.01 deg); the prop (a cronut) is not reproduced
     ('chickenwing', 'Chicken Wing It', M02, 'Amod_Fortnite_Noodles', 103 / 30, 10.4),                     # ActMod `noodles`: 3.43 s intro (frame 103), then a 6.97 s loop (Cycle 0.3301, Time2 6.96667; closure 0.01 deg)
     ('zany', 'Zany', M04, 'Amod_Fortnite_Bendy', None, 9.2),                                              # loops over its whole 9.1 s (closure 0.14 deg); ActMod `Repeat`, music 9.14 s; extension addon
+    ('scenario', 'Scenario', M04, 'Amod_Fortnite_KPOPDance_03', None, 8.2),                              # loops over its whole 8.13 s (closure 0.13 deg); ActMod's music is exactly four loops (32.54 s); extension addon
+    ('smoothmoves', 'Smooth Moves', 'fortnite2', 'Kpop_02', None, 7.8, 30),                              # EID_KPopDance02: the wOS male taunt is tagged 60 fps but the game animation is 30 fps (7.67 s), so it is re-timed; whole-clip loop (closure 0.10 deg)
 ]
 
 
