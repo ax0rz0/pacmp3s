@@ -74,11 +74,11 @@ def body_bone(name):
     return 'Finger' not in name
 
 
-def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0, loop_start=None, src_fps=None):
-    """fps=None picks the lowest key rate whose pac-replay error is small (30, 40 or 60). src_fps re-times a source whose fps tag is wrong (wOS male taunts of 30 fps animations are tagged 60 and run twice too fast)."""
+def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimals=1, finger_min=20.0, loop_start=None, src_fps=None, extra=None):
+    """fps=None picks the lowest key rate whose pac-replay error is small (30, 40 or 60). extra(rt, valve, times) -> list (one dict per frame) of additional bone entries {full bone name: {RR,RU,RF,MF,MR,MU}} merged into every frame after the replay check (prop carrier bones); src_fps re-times a source whose fps tag is wrong (wOS male taunts of 30 fps animations are tagged 60 and run twice too fast)."""
     if fps is None:
         for cand in (30, 40, 60):
-            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min, loop_start, src_fps)
+            js, st = build(spec, valve, cand, max_sec, ease_in, blend, decimals, finger_min, loop_start, src_fps, extra)
             if (st['p99'] <= 4.0 and st['mean_err'] <= 0.8) or cand == 60:
                 st['fps'] = cand
                 return js, st
@@ -122,6 +122,12 @@ def build(spec, valve, fps=None, max_sec=10.0, ease_in=0.25, blend=0.35, decimal
     s_idx = int(round(loop_start * fps)) if loop_start else 0     # the loop restarts at this source frame (an intro plays once)
     js = {'Type': 'sequence', 'Interpolation': 'linear', 'RestartFrame': s_idx + 2, 'FrameData': data, 'Name': title, 'Notes': 'claude skill made by ax0rz0'}
     worst, errs = me.simulate_pac(rt, js, fps, ease_in)
+    if extra is not None:
+        ex = extra(rt, valve, times)
+        assert len(ex) == len(data), (len(ex), len(data))
+        for fr, e in zip(data, ex):
+            for nm, vals in e.items():
+                fr['BoneInfo'][nm] = {k: round(float(v), decimals) for k, v in vals.items()}
     # loop closure: end pose vs start pose (body bones), blend back if they differ
     A, B = rt.solve(times[s_idx])[3], rt.solve(times[-1])[3]
     closure = max(angle_between(A[b], B[b]) for b in A)

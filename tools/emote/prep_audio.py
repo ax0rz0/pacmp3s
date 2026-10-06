@@ -1,6 +1,6 @@
 """Prep an emote's music for a pac3 `sound` part that loops next to a looping custom_animation.
 
-  python prep_audio.py SRC.mp3 OUT.mp3 --length 24.2667 [--stretch] [--rotate 0.25] [--lufs -11.4 --tp -1.0 | --gain -3]
+  python prep_audio.py SRC.mp3 OUT.mp3 [--length 24.2667] [--stretch] [--rotate 0.25] [--lead 0.451] [--lufs -11.4 --tp -1.0 [--limit] | --gain -3]
 
   --length   exact length of the output loop in seconds (it should be a whole number of animation loops; the part loops the file)
   --stretch  reach --length by a pitch-preserving tempo change of the whole track (keeps the beat grid locked to the animation);
@@ -10,6 +10,9 @@
   --rotate   move the last N seconds to the front. pac eases the first pose in over 0.25 s, so the animation runs 0.25 s behind the
              moment the event fires; rotating a seamless loop by 0.25 s puts the music's downbeat on the animation's first pose
   --lufs/--tp  integrated loudness target and true-peak ceiling (a gain is derived from them)   --gain  fixed gain in dB
+  --limit    with --lufs: do not cap the gain by the true peak, run a transparent peak limiter at --tp instead (for quiet masters)
+  --lead     prepend N seconds of silence (an intro that must start later than the event: pac's 0.25 s ease-in plus ActMod's own delay);
+             with --lead the --length is optional and defaults to lead + source length
 Output: 44.1 kHz stereo CBR mp3, no ID3 tags, with the LAME/Info header (gapless length).
 """
 import argparse, re, subprocess, sys
@@ -57,7 +60,9 @@ def seam_report(x, name):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('src'); ap.add_argument('out')
-    ap.add_argument('--length', type=float, required=True)
+    ap.add_argument('--length', type=float, default=None)
+    ap.add_argument('--lead', type=float, default=0.0)
+    ap.add_argument('--limit', action='store_true')
     ap.add_argument('--stretch', action='store_true')
     ap.add_argument('--wrap-tail', action='store_true')
     ap.add_argument('--rotate', type=float, default=0.0)
@@ -66,8 +71,8 @@ def main():
     ap.add_argument('--tp', type=float, default=-1.0)
     ap.add_argument('--bitrate', default='192k')
     a = ap.parse_args()
-    n_out = int(round(a.length * SR))
     x = decode(a.src)
+    n_out = int(round(a.length * SR)) if a.length else len(x) + int(round(a.lead * SR))
     print('source: %d samples = %.4f s' % (len(x), len(x) / SR))
     if a.stretch:
         ratio = len(x) / float(n_out)
@@ -80,6 +85,8 @@ def main():
         k = min(len(tail), n_out)
         x[:k] += tail[:k]
         print('tail of %.3f s mixed onto the start of the loop' % (len(tail) / SR))
+    if a.lead:
+        x = np.concatenate([np.zeros((int(round(a.lead * SR)), 2)), x])
     if len(x) < n_out:
         x = np.concatenate([x, np.zeros((n_out - len(x), 2))])
     x = x[:n_out]
@@ -88,11 +95,17 @@ def main():
     i, tp = measure(x)
     print('before gain: %.1f LUFS, true peak %.1f dBFS' % (i, tp))
     if a.lufs is not None:
-        gain = min(a.lufs - i, a.tp - tp)
+        gain = (a.lufs - i) if a.limit else min(a.lufs - i, a.tp - tp)
     else:
         gain = a.gain if a.gain is not None else 0.0
     x = x * 10 ** (gain / 20)
     print('gain %+.2f dB' % gain)
+    if a.limit:
+        ceiling = 10 ** (a.tp / 20)
+        out, _ = run_ffmpeg(['-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', '-', '-af', 'alimiter=limit=%.4f:attack=3:release=60:level=disabled' % ceiling, '-f', 'f32le', '-'], x.astype('<f4').tobytes())
+        y2 = np.frombuffer(out, dtype='<f4').reshape(-1, 2).astype(np.float64)
+        print('limiter at %.1f dBFS: peak before %.3f after %.3f, %d samples changed by more than 1 dB' % (a.tp, np.abs(x).max(), np.abs(y2).max(), int((np.abs(np.abs(y2) - np.abs(x)) > 0.1 * np.abs(x)).sum())))
+        x = y2[:len(x)]
     encode(x, a.out, a.bitrate)
     y = decode(a.out)
     i2, tp2 = measure(y)

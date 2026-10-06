@@ -10,6 +10,7 @@ import argparse, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import make_fn_pack as fp
 from retarget import Valve
+from emote_props import EXTRAS      # prop carrier bones per emote (trumpet, orb ...)
 from mdl_anim import load_model
 
 M01 = 'actmod:add_fortnite/anim_m_01'      # male skeleton (the job models are male); anim_f_01 is the female twin
@@ -31,6 +32,8 @@ SPECS = [
     ('thoughtiwasdead', 'Thought I Was Dead', MEXP, 'Amod_Fortnite_CanineCronutMix', 128 / 30, 19.1),   # Tyler, The Creator (internal CanineCronutMix): 4.27 s intro (frame 128), then a 14.8 s loop (ActMod Cycle 0.2238, Time2 14.8; closure 0.01 deg); the prop (a cronut) is not reproduced
     ('chickenwing', 'Chicken Wing It', M02, 'Amod_Fortnite_Noodles', 103 / 30, 10.4),                     # ActMod `noodles`: 3.43 s intro (frame 103), then a 6.97 s loop (Cycle 0.3301, Time2 6.96667; closure 0.01 deg)
     ('zany', 'Zany', M04, 'Amod_Fortnite_Bendy', None, 9.2),                                              # loops over its whole 9.1 s (closure 0.14 deg); ActMod `Repeat`, music 9.14 s; extension addon
+    ('headbanger', 'Head Banger', M01, 'Amod_Fortnite_cyclone_headbang', None, 3.1),    # EID_CycloneHeadBang (Travis Scott, Astronomical): loops over its whole 3.067 s clip (closure 0.0 deg); ActMod restarts sound and animation together (AutoReAnim)
+    ('mystery', "I'm a Mystery", M01, 'Amod_Fortnite_VoidRedemption', 22 / 60.0, 7.75, None, 60),   # EID_VoidRedemption (the 'You Don't Know Me' emote): 0.367 s intro (60 fps frame 22), then a 7.333 s loop (closure 0.02 deg); 60 fps keys: 30 fps left 20 deg errors in the fast moves
     ('scenario', 'Scenario', M04, 'Amod_Fortnite_KPOPDance_03', None, 8.2),                              # loops over its whole 8.13 s (closure 0.13 deg); ActMod's music is exactly four loops (32.54 s); extension addon
     ('smoothmoves', 'Smooth Moves', 'fortnite2', 'Kpop_02', None, 7.8, 30),                              # EID_KPopDance02: the wOS male taunt is tagged 60 fps but the game animation is 30 fps (7.67 s), so it is re-timed; whole-clip loop (closure 0.10 deg)
 ]
@@ -51,7 +54,7 @@ def main():
             key_fps = spec[7] if len(spec) > 7 else 30
             if a.only and key not in a.only.split(','):
                 continue
-            js, st = fp.build((key, title, model, seq), valve, fps=key_fps, max_sec=max_sec, finger_min=60.0, loop_start=loop_start, src_fps=src_fps)   # source is 30 fps: native key rate
+            js, st = fp.build((key, title, model, seq), valve, fps=key_fps, max_sec=max_sec, finger_min=60.0, loop_start=loop_start, src_fps=src_fps, extra=EXTRAS.get(key))   # source is 30 fps: native key rate
             path = os.path.join(a.out, fam, 'fn_%s.json' % key)
             with open(path, 'w', newline='\n') as f:
                 json.dump(js, f, separators=(',', ':'))
