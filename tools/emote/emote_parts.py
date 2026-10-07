@@ -129,6 +129,16 @@ def extras_mystery(slug, family):
     return kids
 
 
-EXTRA_PARTS = {'thoughtiwasdead': extras_thoughtiwasdead, 'mystery': extras_mystery}
+def extras_touchingthesky(slug, family):
+    """Touching The Sky: ActMod's two tracks untouched (1.07 s intro, 14.93 s loop = two dance loops). ActMod starts them 0.01 s and 1.0667 s after the emote on its own clock, but the animation here starts
+    0.25 s late (pac's ease-in), so each track sits under its own timerx event (0.26 s and 1.3167 s) inside the command event. Part keys carry a tts_ prefix: UniqueIDs are hashed per outfit, not per emote."""
+    intro = sound2(slug, 'tts_sound_intro', 'touching_the_sky_intro.mp3', 1, 0.65, name='intro')
+    loop = sound2(slug, 'tts_sound_loop', 'touching_the_sky.mp3', 24, 0.65, name='loop')
+    kids = part(3, timerx_event(slug, 'tts_event_intro', 0.26, 'intro starts 0.26 s after the emote (ActMod delay 0.01 s + pac ease-in 0.25 s)'), part(5, intro))
+    kids += part(3, timerx_event(slug, 'tts_event_loop', 1.3167, 'loop starts 1.32 s after the emote (ActMod delay 1.0667 s + pac ease-in 0.25 s)'), part(5, loop))
+    return kids
+
+
+EXTRA_PARTS = {'thoughtiwasdead': extras_thoughtiwasdead, 'mystery': extras_mystery, 'touchingthesky': extras_touchingthesky}
 # commands whose sound parts the extras build themselves (the generic MUSIC entry is skipped for them)
-CUSTOM_SOUND = {'thoughtiwasdead', 'mystery'}
+CUSTOM_SOUND = {'thoughtiwasdead', 'mystery', 'touchingthesky'}

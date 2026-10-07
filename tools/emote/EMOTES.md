@@ -45,15 +45,19 @@ Trigger: `pac_event <command> 2` (toggle). Starting another emote stops the curr
 | `toosie` | Toosie Slide (ActMod extension) | 5.9s loop |
 | `droop` | Droop (wOS `CrazyDance`, re-timed to its real 30 fps speed) | 7.4s loop |
 | `orangejustice` | Orange Justice (ActMod, 60 fps keys for the fast arm swings) | 7.1s (0.6s intro once, then a 6.5s loop) |
-| `thoughtiwasdead` | Thought I Was Dead (ActMod AM4 Expansion Pack, Tyler, The Creator) | 19.1s (4.3s intro once, then a 14.8s loop) |
+| `thoughtiwasdead` | Thought I Was Dead (ActMod AM4 Expansion Pack, Tyler, The Creator), with its gold trumpet (held, thrown at 3.6 s) and the trumpet intro sound | 19.1s (4.3s intro once, then a 14.8s loop) |
 | `chickenwing` | Chicken Wing It (ActMod) | 10.4s (3.4s intro once, then a 7.0s loop) |
 | `zany` | Zany (ActMod extension) | 9.1s loop |
 | `scenario` | Scenario (ActMod extension) | 8.1s loop |
 | `smoothmoves` | Smooth Moves (wOS `Kpop_02`, re-timed to its real 30 fps speed) | 7.7s loop |
+| `headbanger` | Head Banger (ActMod, Travis Scott) | 3.1s loop |
+| `mystery` | I'm a Mystery (ActMod `VoidRedemption`, the "You Don't Know Me" emote) with its glowing orb, hoops, trails and sparkles | 7.7s (0.4s intro once, then a 7.3s loop) |
+| `touchingthesky` | Touching The Sky (ActMod extension) | 9.1s (1.7s intro once, then a 7.5s loop) |
+| `leiltelomr` | Leilt Elomr (ActMod `myeffort`) | 8.4s loop |
 
-Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop, fresh and electroswing; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff, toosie, orangejustice, thoughtiwasdead, chickenwing, zany, scenario and smoothmoves); the others are the wOS "Custom Taunt" versions.
+Emotes marked ActMod come from the ActMod addons (`anim/am/` for floss, dance, electro, hiphop, fresh and electroswing; `anim/fn/` for jabba, griddy, pockets, outwest, mufasa, maskoff, toosie, orangejustice, thoughtiwasdead, chickenwing, zany, scenario, smoothmoves, headbanger, mystery, touchingthesky and leiltelomr); the others are the wOS "Custom Taunt" versions.
 
-Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff`, `toosie`, `electroswing`, `droop`, `orangejustice`, `thoughtiwasdead`, `chickenwing`, `zany`, `scenario` and `smoothmoves` (the audio setup comes from the user's saved outfit). Files in the repo root,
+Music: the generated outfits already hold a `sound2` part in the event of `jabba`, `griddy`, `dance`, `electro`, `hiphop`, `fresh`, `pockets`, `outwest`, `mufasa`, `maskoff`, `toosie`, `electroswing`, `droop`, `orangejustice`, `thoughtiwasdead`, `chickenwing`, `zany`, `scenario`, `smoothmoves`, `headbanger`, `mystery`, `touchingthesky` and `leiltelomr` (the audio setup comes from the user's saved outfit). Files in the repo root,
 raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 
 | file | emote | what was done to ActMod's file |
@@ -78,6 +82,28 @@ raw link `https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/<file>`:
 | `zany.mp3` | `zany` | none, byte-identical to the extension's `Emotes_Bendy.mp3` (9.14 s, one animation loop); `Volume 0.65` (-9.2 LUFS, +2.8 dBFS) |
 | `scenario.mp3` | `scenario` | none, byte-identical to the extension's `Emote_KPopDance03.mp3` (32.54 s, exactly four animation loops, 118 BPM); `Volume 0.95` (-11.8 LUFS, +0.1 dBFS) |
 | `smooth_moves.mp3` | `smoothmoves` | no game file exists, so it is the music of the emote's preview video (4nite.site/videos/emotes/smooth-moves.mp4): it repeats sample-exactly every 19.2 s (8 bars at 100 BPM), so the file is a cyclic 19.2 s window starting 0.25 s before the loop start, normalized to -12 LUFS (-1.4 dBTP). The dance loops every 7.67 s, so the two drift against each other (as in the game) |
+| `head_banger.mp3` | `headbanger` | ActMod's `amod_fortnite_cyclone_headbang.mp3` cut to the 3.067 s animation loop (it is 3.097 s), rotated 0.25 s (the beat lands on the animation's first pose) and raised from -17.9 to -13.5 LUFS with a peak limiter at -1 dBTP (`--lufs -11 --tp -1 --limit`; a plain gain would clip). PlayCount 100 (about five minutes) |
+| `thought_i_was_dead_intro.mp3` | `thoughtiwasdead` | ActMod's trumpet intro `Emote_CanineCronutMix_1.mp3` (4.07 s, AM4 Expansion Pack) with 0.451 s of silence in front (pac's 0.25 s ease-in plus ActMod's own 0.2 s start delay) and -2.2 dB because the source peaks at +1.7 dBFS; 4.52 s long, plays once, `Volume 0.8`. The loop file `thought_i_was_dead.mp3` starts 4.52 s later through a `timerx` event |
+| `im_a_mystery_sting.mp3` | `mystery` | ActMod's `amod_fortnite_voidredemption1.mp3` (0.4 s) with 0.25 s of silence in front (pac's ease-in) and -2 dB (+0.7 dBFS peak); plays once, `Volume 0.9` |
+| `im_a_mystery.mp3` | `mystery` | ActMod's `amod_fortnite_voidredemption2.mp3` (29.33 s = exactly four animation loops of 7.333 s) rotated by 0.617 s (the dance loop starts 0.367 s intro + 0.25 s ease-in after the event, so the music's downbeat lands on it) and -2 dB (+0.9 dBFS peak); PlayCount 12 (about six minutes), `Volume 0.9` |
+| `touching_the_sky_intro.mp3` | `touchingthesky` | none, byte-identical to the extension's `Emote_Tailor_Music_1.mp3` (1.07 s, -7.5 LUFS, +1.0 dBFS); `Volume 0.65`, plays once, 0.26 s after the emote starts |
+| `touching_the_sky.mp3` | `touchingthesky` | none, byte-identical to the extension's `Emote_Tailor_Music_2.mp3` (14.93 s = exactly two animation loops, -8.0 LUFS, +0.8 dBFS); `Volume 0.65`, PlayCount 24 (about six minutes); starts 1.32 s after the emote |
+| `leilt_elomr.mp3` | `leiltelomr` | none, byte-identical to ActMod's `Emote_MyEffort.mp3` (16.8 s = exactly two animation loops, -10.3 LUFS, +1.2 dBFS); `Volume 0.8`, PlayCount 21 (about six minutes) |
+
+`thoughtiwasdead`, `mystery` and `touchingthesky` have more than one sound part, built in `emote_parts.py` instead of the `MUSIC` table. Thought I Was Dead plays the intro once and starts the loop 4.52 s later: the loop `sound2` sits under a `timerx` event (`Arguments 4.5167@@1@@0`, `Operator above`, `Invert true`, `AffectChildrenOnly true`) inside the command event. On the server's pac build that timer counts from the moment the command event shows it and resets when the emote stops (`reset_on_hide`), so the loop is in step with the dance every time. I'm a Mystery uses no timer: the sting carries its own lead silence and the loop file is rotated so its downbeat falls on the start of the dance loop. Touching The Sky plays both of ActMod's tracks untouched: the intro and the loop each sit under their own `timerx` event (0.26 s and 1.3167 s, which are ActMod's own delays of 0.01 s and 1.0667 s plus pac's 0.25 s ease-in), so no audio was edited.
+
+## Props and effects
+
+Two emotes carry props. They are ordinary pac parts whose movement comes from the animation itself: the JSON also animates a bone that has no mesh (`ValveBiped.Anim_Attachment_LH` / `_RH`; pac's friendly names are `attach left hand` / `attach right hand`) and the prop sits on that bone, so it is held, thrown, spun and hidden with the exact timing of the dance, loops with it and needs no event, timer or proxy. A prop that is not in use is parked 1500 units below the player's feet, where the map floor hides it. The props are in `obj/props/` (own geometry, written by `tools/emote/prop_geom.py`, because ActMod's own models may not be re-published).
+
+| emote | parts | what it does |
+|---|---|---|
+| `thoughtiwasdead` | `model2` `obj/props/trumpet.obj` on `attach left hand` | a gold trumpet held with ActMod's own grip (mouthpiece at the mouth), thrown over the shoulder at 3.6 s on ActMod's arc while spinning, gone after it lands |
+| `mystery` | `model2` `models/hunter/misc/sphere025x025.mdl` plus two `sprite` glows on `attach right hand` | the orb: in the right hand, over to the left, back to the right, dropped onto the left palm, then held between both hands above the head |
+| `mystery` | `model2` `obj/props/hoop.obj` plus the translucent `obj/props/hoop_glow.obj` on `attach left hand` | the hoop: raised in the right hand, then around the waist, right ankle, right knee, left ankle, chest, and so on, following the shop preview |
+| `mystery` | four `trail2` (hands and feet), two `particles` (hands) | the blue swooshes and the sparkles |
+
+The orb and hoop timings were read off Epic's shop preview video at 0.15 s steps, so they are right to about 0.15 s; there is one orb and one hoop at a time, the original's crescent slashes and the teal puff after the trumpet throw are not reproduced, and none of this has been confirmed in game yet.
 
 Every event uses `Operator equal`. pac's default is `find simple`, a substring test, so `pac_event electroswing 2` also switched on the `electro` event and played Electro Shuffle's music (and `pac_event onearmfloss 2` also fired `floss`). Binds are unchanged.
 

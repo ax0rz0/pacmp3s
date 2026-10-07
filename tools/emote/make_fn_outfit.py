@@ -5,8 +5,8 @@ Main outfit  emote_fortnite.txt        -> every emote in EMOTES.md, D-class base
              emote_fortnite_medic.txt  -> combat medic (its sequence 0 is a baton idle, so it needs its own files)
 Trigger an emote:  pac_event <command> 2   (toggle).  Starting a new emote stops the previous one (StopOtherAnimations).
 Events use Operator 'equal': pac's default 'find simple' is a substring test, so pac_event electroswing also switched on the 'electro' event (and onearmfloss the 'floss' one).
-Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle, Hip Hop, Fresh, Empty Out Your Pockets, Out West, Go Mufasa, Mask Off, Toosie Slide, Electro Swing, Droop, Orange Justice, Chicken Wing It, Zany, Scenario, Smooth Moves and Head Banger also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
-Thought I Was Dead (trumpet + intro sound) and I'm a Mystery (orb, hoop, trails, sparkles, sting + loop) get their props and their own sound parts from emote_parts.py (EXTRA_PARTS / CUSTOM_SOUND); the props ride carrier bones that the animation JSON itself drives (emote_props.py).
+Jabba Switchway, Get Griddy, Default Dance, Electro Shuffle, Hip Hop, Fresh, Empty Out Your Pockets, Out West, Go Mufasa, Mask Off, Toosie Slide, Electro Swing, Droop, Orange Justice, Chicken Wing It, Zany, Scenario, Smooth Moves, Head Banger and Leilt Elomr also get a `sound2` (web sound) part after the animation, copied from the user's own saved setup (see MUSIC).
+Thought I Was Dead (trumpet + intro sound), I'm a Mystery (orb, hoop, trails, sparkles, sting + loop) and Touching The Sky (intro and loop, each under its own timerx event) get their props and their own sound parts from emote_parts.py (EXTRA_PARTS / CUSTOM_SOUND); the props ride carrier bones that the animation JSON itself drives (emote_props.py).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -39,9 +39,10 @@ MUSIC = {'jabba': ('jabba_switchway.mp3', 13), 'griddy': ('get_griddy.mp3', 51),
          'thoughtiwasdead': ('thought_i_was_dead.mp3', 24), 'chickenwing': ('chicken_wing_it.mp3', 25),   # the 14.8 s loop (one animation loop) and the 13.93 s loop (two); ActMod's intro stings are left out
          'zany': ('zany.mp3', 39),                                                    # 39 plays of the 9.14 s track (one animation loop)
          'scenario': ('scenario.mp3', 11), 'smoothmoves': ('smooth_moves.mp3', 18),   # 11 plays of the 32.54 s track (four animation loops); 18 of the 19.2 s loop cut from the preview video
-         'headbanger': ('head_banger.mp3', 100)}                                       # 100 plays of the 3.07 s loop (one animation loop, shifted 0.25 s, loudness-matched with a limiter): about five minutes
-# thoughtiwasdead and mystery are in emote_parts.CUSTOM_SOUND: their sound parts (intro / sting + loop, timers, volumes) are built in emote_parts.py; the thoughtiwasdead entry above only documents the loop file
-VOLUME = {'hiphop': 0.6, 'pockets': 0.7, 'fresh': 0.85, 'outwest': 0.6, 'mufasa': 0.6, 'maskoff': 0.6, 'toosie': 0.75, 'electroswing': 0.6, 'orangejustice': 1.2, 'thoughtiwasdead': 0.45, 'chickenwing': 0.6, 'zany': 0.65, 'scenario': 0.95}      # loud masters (-7.3 to -10.5 LUFS, true peaks up to +3.7 dBFS, against -11 to -13 for the rest): the part plays them quieter and the mp3s stay untouched
+         'headbanger': ('head_banger.mp3', 100),
+         'leiltelomr': ('leilt_elomr.mp3', 21)}                                       # 100 plays of the 3.07 s loop (one animation loop, shifted 0.25 s, loudness-matched with a limiter): about five minutes; leiltelomr: 21 plays of the 16.8 s track (two animation loops), byte copy of ActMod's file
+# thoughtiwasdead, mystery and touchingthesky are in emote_parts.CUSTOM_SOUND: their sound parts (intro / sting + loop, timers, volumes) are built in emote_parts.py; the thoughtiwasdead entry above only documents the loop file
+VOLUME = {'hiphop': 0.6, 'pockets': 0.7, 'fresh': 0.85, 'outwest': 0.6, 'mufasa': 0.6, 'maskoff': 0.6, 'toosie': 0.75, 'electroswing': 0.6, 'orangejustice': 1.2, 'thoughtiwasdead': 0.45, 'chickenwing': 0.6, 'zany': 0.65, 'scenario': 0.95, 'leiltelomr': 0.8}      # loud masters (-7.3 to -10.5 LUFS, true peaks up to +3.7 dBFS, against -11 to -13 for the rest): the part plays them quieter and the mp3s stay untouched
 
 
 def sound_part(slug, key):

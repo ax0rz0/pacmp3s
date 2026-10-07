@@ -13,7 +13,7 @@ import numpy as np
 
 from retarget import angles_matrix, source_angles, continuous
 
-FAR = np.array([0.0, 0.0, 1500.0])           # where a hidden prop is parked (straight up, far outside any normal view)
+FAR = np.array([0.0, 0.0, -1500.0])          # where a hidden prop is parked: 1500 units straight DOWN, so the map's floor hides it (straight up showed as a dot in open sky, and the one-frame sweep to/from the hand crossed the air)
 CARRIER_RH = 'ValveBiped.Anim_Attachment_RH'
 CARRIER_LH = 'ValveBiped.Anim_Attachment_LH'
 PAC_BONE = {CARRIER_RH: 'attach right hand', CARRIER_LH: 'attach left hand'}
