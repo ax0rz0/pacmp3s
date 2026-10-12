@@ -1,0 +1,62 @@
+# BNA outfit tools
+
+Generators for the BNA-palette outfits in `outfits/bna/` (own textures and own geometry, linked by raw GitHub URL):
+
+| outfit | made by | what it is |
+|---|---|---|
+| `d-class low sec bna.txt` | `make_dclass_outfit.py` | copy of `d-class low sec.txt`, emote pack removed, gray uniform kept, BNA accessories only |
+| `ethics asst bna formal / anima / neon.txt` | `make_ethics_textures.py`, `make_ethics_outfits.py` | three re-textured Ethics Assistant looks on `jericho/citizens/female_04`; only Anima has ears, none has a tail |
+| `tech expert bna.txt` | `make_tech_textures.py`, `make_tech_outfit.py` | copy of `tech expert.txt` with a pink / navy retexture and a tech accessory group |
+
+Palette: PINK `#fc2c9d`, MAGENTA `#c62c80`, INDIGO `#554eae`, ROYAL `#21388c`, NAVY `#0f215e`. Every generated outfit starts with `-- claude skill made by ax0rz0`, has `Notes` on each top-level group and UniqueIDs ending in `a0c3f`.
+
+## Requirements
+
+Python 3 with numpy, scipy, Pillow and opencv-python. Paths of the local machine are constants at the top of `ethics_common.py` (SCP playermodel pack, HL2 VPKs), `dclass_scene.py`, `make_*_outfit*.py` (the `data/pac3` folder) and `ethics_styles.py` (fonts); adjust them if the folders move.
+Generated caches and previews go to `ethics/`, `stage_bna/` and `tech/` next to the scripts (git-ignored).
+
+## Running
+
+```
+python make_dclass_outfit.py
+python verify_derivative.py "stage_bna/outfits/d-class low sec bna.txt" "<data/pac3>/d-class low sec.txt" stage_bna --n-original 4
+
+python make_ethics_textures.py            # once: position maps + painted textures (make_ethics_textures.py --check compares with the cache)
+python make_ethics_outfits.py [formal anima neon]
+python verify_ethics.py stage_bna "stage_bna/outfits/ethics asst bna formal.txt" ...
+
+python make_tech_outfit.py                # also paints the textures when they are missing
+python verify_tech.py "stage_bna/outfits/tech expert bna.txt" "<data/pac3>/tech expert.txt" stage_bna
+```
+
+Publishing (the order matters, pac caches a 404 for a url and keeps it until `pac_restart`):
+
+1. copy `stage_bna/obj/bna/*` to `obj/bna/`, `stage_bna/tex/bna/*` to `tex/bna/` and `stage_bna/outfits/*.txt` to `outfits/bna/`, commit and push;
+2. `python wait_assets_live.py stage_bna 8 tech_` (prefixes `dclass_`, `ethics_`, `tech_`) until every file is live with the right size;
+3. only then copy the outfit txt into `garrysmod/data/pac3` and load it fresh in the editor (do not save an old editor session over it).
+
+Previews (point-splat renderer, no game needed): `run_tech_preview.py orig|slots|bna`, `run_tech_acc.py bind|game full|head|arm|pack|chest [views] [height]` (`game` renders the body deformed by the outfit's feminiser bone scales with the accessories placed the way pac draws them), `dclass_fit_check.py`. Close-ups are memory hungry (keep the height at 460 or lower while Garry's Mod runs). `inspect_models.py`, `show_tree.py` print model slots / an outfit's part tree.
+
+## How it works
+
+* **Textures** are image URLs in the `Materials` list of an `entity2` (one entry per model material slot, 1-based). The server's pac3 loads each url into a hidden 1024x1024 page, so images are stretched to a square (any source aspect works), have no alpha and no bump / phong. A ` noclamp` suffix gives a wrapping texture, needed when the UVs leave 0..1 (the femsuit skirt, the tech expert helmet and backpack). `null` hides a slot. `entity2` must keep `Model=""`.
+* With several `entity2` parts in one outfit only the last one shown draws (it replaces `ent.RenderOverride`), so `make_tech_outfit.py` adds the urls to both entity2 parts of the original and keeps their `null` slots.
+* **Accessories** are authored in world space (x forward, y left, z up, bind pose) on the real body surface (ray casts) and baked into **bone-local OBJs** (`Position`/`Angles` stay 0, `Size` equals the entity2 size). Bone names are the pac friendly names (`head`, `spine 4`, `left forearm`, ...). Closed shapes are wound outward, UVs are only used by textured parts, every OBJ carries the watermark comment.
+* **Ethics textures** are painted in UV space from position maps (`uvmap.py`): every texel knows its 3D position, so stripes, cuffs, gradients and the vector emblem are defined on the body. **Tech expert textures** keep the original atlases and recolor them (`tech_paint.py`: orange to PINK, white to lavender white, gray cloth through NAVY / ROYAL / INDIGO ramps).
+* **Feminiser bone scales** (`bone3` parts on pelvis, thighs, upper arms) are inherited by child bones in game while pac draws a part at the bone's position and angles only. `tech_deform.DeformedRig` emulates that (bone matrices with the scales, Source `MatrixAngles` of the sheared matrix) and localises the accessories accordingly. The D-class outfit was generated before this existed (plain bind pose, about 0.4 units looser at the wrists).
+
+## Modules
+
+| file | role |
+|---|---|
+| `vtf.py`, `vpk_tools.py`, `mdl_mesh.py`, `mdl_tex.py`, `mdl_anim.py` | VTF / VPK / MDL (+VVD, VTX) readers |
+| `uvmap.py`, `preview.py`, `meshgen.py` | position maps, point-splat renderer, mesh generators (torus, tube, ribbon, card, bow, ...) |
+| `pac_parse.py`, `pac_write.py`, `bna_parts.py` | read / write pac3 outfit files byte-exactly, part builders, asset staging |
+| `ethics_*.py`, `scene.py` | femsuit_04 body, painters, accessory builders for the Ethics looks |
+| `dclass_*.py` | class_d_mike body (+ bonemerged Female_04 head) and the D-class accessories |
+| `tech_*.py` | technical_expert body, recolor, accessories, deformation, previews |
+| `verify_*.py`, `check_live.py`, `wait_assets_live.py` | checks of the generated files and of the published urls |
+
+## Not verified in game
+
+URL textures and the `noclamp` path on the server, the bodygroup choices through `ModelModifiers`, the material slot numbers on the actual job models (the Ethics Assistant model is assumed to be `jericho/citizens/female_04`), bone friendly names, accessory fit in animation poses, glow sprites, and which of the tech expert's two entity2 parts draws.
