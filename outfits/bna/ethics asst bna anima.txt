@@ -99,22 +99,6 @@
 			["children"] = {
 			},
 			["self"] = {
-				["Bone"] = "pelvis",
-				["ClassName"] = "model2",
-				["Color"] = Vector(1, 1, 1),
-				["ForceObjUrl"] = true,
-				["Hide"] = false,
-				["Material"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/tex/bna/ethics_anima_tail.png",
-				["Model"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/bna/ethics_anima_tail.obj",
-				["Name"] = "tail",
-				["Size"] = 1,
-				["UniqueID"] = "62d3dbbff930b2847b1a066acfb80145c6dbe52c0fbf76a8a0b33671fcba0c3f",
-			},
-		},
-		[6] = {
-			["children"] = {
-			},
-			["self"] = {
 				["Bone"] = "spine 4",
 				["ClassName"] = "model2",
 				["Color"] = Vector(0.98823529411765, 0.17254901960784, 0.6156862745098),
@@ -127,7 +111,7 @@
 				["UniqueID"] = "0ff57fa0b914b8d325ef41a4fc4b7fb95b8f0e0a9538d1aa63d09583848a0c3f",
 			},
 		},
-		[7] = {
+		[6] = {
 			["children"] = {
 			},
 			["self"] = {
@@ -143,7 +127,7 @@
 				["UniqueID"] = "5938f7e69ea440242ab91e90f6f47e07103a10dbb56c7b02c1448a0c3d4a0c3f",
 			},
 		},
-		[8] = {
+		[7] = {
 			["children"] = {
 			},
 			["self"] = {
@@ -160,7 +144,7 @@
 				["UniqueID"] = "ffeb5fbb5c53c44fd13d80a7d5f991e8d645afda39265ec30bbf9b7a1eaa0c3f",
 			},
 		},
-		[9] = {
+		[8] = {
 			["children"] = {
 			},
 			["self"] = {
@@ -177,23 +161,6 @@
 				["UniqueID"] = "b0e0868eee75c6b6f745a53af43999ee66cf4702a0fd3d1c768510ea77aa0c3f",
 			},
 		},
-		[10] = {
-			["children"] = {
-			},
-			["self"] = {
-				["Alpha"] = 0.6,
-				["Bone"] = "pelvis",
-				["ClassName"] = "sprite",
-				["Color"] = Vector(252, 44, 157),
-				["Hide"] = false,
-				["Name"] = "tail glow",
-				["Position"] = Vector(4.999999872854e-06, -13.916112018169, -14.430417086516),
-				["SizeX"] = 5,
-				["SizeY"] = 5,
-				["SpritePath"] = "sprites/light_glow02_add",
-				["UniqueID"] = "61585a1a628096d7d2f33cd048958dd6bbc5904dacb52e73b260b63a046a0c3f",
-			},
-		},
 	},
 	["self"] = {
 		["ClassName"] = "group",
@@ -202,10 +169,10 @@
 		["EditorExpand"] = true,
 		["Hide"] = false,
 		["IsDisturbing"] = false,
-		["Name"] = "Ethics Assistant - BNA Anima (tanuki ears + tail)",
+		["Name"] = "Ethics Assistant - BNA Anima (ears)",
 		["Notes"] = "claude skill made by ax0rz0",
 		["OwnerName"] = "self",
 		["TargetEntityUID"] = "",
-		["UniqueID"] = "a19d48c46de1683cdc6b73b46644bb9882bd2a21100f0e202eed0774642a0c3f",
+		["UniqueID"] = "d3ea580a578aec17d5044db5a1ceef02f922f681ade94d9a95fb8fc91f4a0c3f",
 	},
 },
