@@ -90,7 +90,7 @@ SLOTS = sorted(list(SLOT_FILES) + [14])                    # 14 = the flat orang
 
 
 def slot_filename(slot):
-    return 'tech_stripes.png' if slot == 14 else SLOT_FILES[slot] + '.jpg'
+    return SLOT_FILES[slot] + '.png' if slot != 14 else 'tech_stripes.png'
 
 
 def recolor_slot(slot, img):
@@ -102,11 +102,17 @@ def recolor_slot(slot, img):
     return recolor_cloth(img, table[slot])
 
 
-def to_square_jpeg(arr, path, size=1024, quality=92):
+PALETTE_SLOTS = (6, 10, 11, 12, 13, 15, 16)               # dark cloth atlases: a gradient map of the luminance, 250-370 colours: 256-colour PNG keeps them under 1 MB
+
+
+def to_square_png(arr, path, size=1024, palette=False):
+    """PNG (the format pac's material parts are known to load from a url); stretched to a square: pac / the engine map UV 0..1 over the whole image whatever its aspect"""
     im = Image.fromarray(arr)
     if im.size != (size, size):
         im = im.resize((size, size), Image.LANCZOS)
-    im.save(path, 'JPEG', quality=quality, subsampling=0, optimize=True)
+    if palette:
+        im = im.quantize(colors=256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+    im.save(path, 'PNG', optimize=True)
 
 
 def stripe_png(path, color=PINK, size=32):
@@ -114,12 +120,12 @@ def stripe_png(path, color=PINK, size=32):
 
 
 def make_all(out_dir, originals):
-    """originals: slot -> uint8 RGB. Writes tech_*.jpg + tech_stripes.png into out_dir, returns {slot: filename}"""
+    """originals: slot -> uint8 RGB. Writes tech_*.png (palette PNG for the dark cloth) into out_dir, returns {slot: filename}"""
     os.makedirs(out_dir, exist_ok=True)
     files = {}
     for slot, base in SLOT_FILES.items():
-        to_square_jpeg(recolor_slot(slot, originals[slot]), os.path.join(out_dir, base + '.jpg'))
-        files[slot] = base + '.jpg'
+        to_square_png(recolor_slot(slot, originals[slot]), os.path.join(out_dir, base + '.png'), palette=slot in PALETTE_SLOTS)
+        files[slot] = base + '.png'
     stripe_png(os.path.join(out_dir, 'tech_stripes.png'))
     files[14] = 'tech_stripes.png'
     return files

@@ -36,7 +36,9 @@ def build(out_path=None, stage=STAGE):
             continue
         keep[len(keep) + 1] = parts[k]
     # 2) the BNA accessory group (Size 0.95 like the user's entity2 so the accessories scale with the body)
-    kids = bp.parts_for(acc, urls, size=0.95) + bp.sprite_parts(spr, d.rig)
+    # the material_3d parts of the textured accessories come first: model2 `Material` finds them by name only if they already exist
+    mat_parts, tex_names = bp.texture_material_parts(acc, urls, 'bna dclass')
+    kids = mat_parts + bp.parts_for(acc, urls, size=0.95, tex_names=tex_names) + bp.sprite_parts(spr, d.rig)
     keep[len(keep) + 1] = bp.group('BNA accessories (D-class)', kids)
     # 3) watermark + fresh UIDs
     for k in keep:

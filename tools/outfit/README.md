@@ -6,7 +6,7 @@ Generators for the BNA-palette outfits in `outfits/bna/` (own textures and own g
 |---|---|---|
 | `d-class low sec bna.txt` | `make_dclass_outfit.py` | copy of `d-class low sec.txt`, emote pack removed, gray uniform kept, BNA accessories only |
 | `ethics asst bna formal / anima / neon.txt` | `make_ethics_textures.py`, `make_ethics_outfits.py` | three re-textured Ethics Assistant looks on `jericho/citizens/female_04`; only Anima has ears, none has a tail |
-| `tech expert bna.txt` | `make_tech_textures.py`, `make_tech_outfit.py` | copy of `tech expert.txt` with a pink / navy retexture and a tech accessory group |
+| `tech expert bna.txt` | `make_tech_textures.py`, `make_tech_outfit.py` | copy of `tech expert.txt` (its groups untouched) with a pink / navy retexture through a group of material parts and a tech accessory group |
 
 Palette: PINK `#fc2c9d`, MAGENTA `#c62c80`, INDIGO `#554eae`, ROYAL `#21388c`, NAVY `#0f215e`. Every generated outfit starts with `-- claude skill made by ax0rz0`, has `Notes` on each top-level group and UniqueIDs ending in `a0c3f`.
 
@@ -39,8 +39,9 @@ Previews (point-splat renderer, no game needed): `run_tech_preview.py orig|slots
 
 ## How it works
 
-* **Textures** are image URLs in the `Materials` list of an `entity2` (one entry per model material slot, 1-based). The server's pac3 loads each url into a hidden 1024x1024 page, so images are stretched to a square (any source aspect works), have no alpha and no bump / phong. A ` noclamp` suffix gives a wrapping texture, needed when the UVs leave 0..1 (the femsuit skirt, the tech expert helmet and backpack). `null` hides a slot. `entity2` must keep `Model=""`.
-* With several `entity2` parts in one outfit only the last one shown draws (it replaces `ent.RenderOverride`), so `make_tech_outfit.py` adds the urls to both entity2 parts of the original and keeps their `null` slots.
+* **Textures** are `material_3d` parts whose `basetexture` is the url of a PNG (`bna_parts.material_part`, built from a real saved part of the server's pac: `material_template.py`). pac downloads the file with a plain HTTP request (`pac.resource.DownloadTexture`; png, jpg and vtf are accepted), loads it wrapping and with mipmaps, and other parts use the material part **by name**: the `Materials` list of an `entity2` (one entry per model material slot, 1-based, `null` hides a slot) and the `Material` of a `model2`. pac re-resolves these names after the whole outfit is loaded (each part's first think), so the order of the parts does not matter. The same route is what `mf doom thaum.txt` uses for its badge. Keep every texture under 1 MB (servers may cap web content with `sv_pac_webcontent_limit`); the dark cloth atlases of the tech expert are 256-colour PNGs.
+* Image urls written straight into `Materials` / `Material` take another route: a hidden browser panel renders the image into a 1024x1024 square (no mipmaps, ` noclamp` flag for wrapping). That is what the first version of these outfits used and it did not show on the server, so do not use it.
+* With several `entity2` parts in one outfit only the last one shown draws (it replaces `ent.RenderOverride`), so `make_tech_outfit.py` names the material parts in both entity2 parts of the original and keeps their `null` slots; the material parts sit in a first group of their own.
 * **Accessories** are authored in world space (x forward, y left, z up, bind pose) on the real body surface (ray casts) and baked into **bone-local OBJs** (`Position`/`Angles` stay 0, `Size` equals the entity2 size). Bone names are the pac friendly names (`head`, `spine 4`, `left forearm`, ...). Closed shapes are wound outward, UVs are only used by textured parts, every OBJ carries the watermark comment.
 * **Ethics textures** are painted in UV space from position maps (`uvmap.py`): every texel knows its 3D position, so stripes, cuffs, gradients and the vector emblem are defined on the body. **Tech expert textures** keep the original atlases and recolor them (`tech_paint.py`: orange to PINK, white to lavender white, gray cloth through NAVY / ROYAL / INDIGO ramps).
 * **Feminiser bone scales** (`bone3` parts on pelvis, thighs, upper arms) are inherited by child bones in game while pac draws a part at the bone's position and angles only. `tech_deform.DeformedRig` emulates that (bone matrices with the scales, Source `MatrixAngles` of the sheared matrix) and localises the accessories accordingly. The D-class outfit was generated before this existed (plain bind pose, about 0.4 units looser at the wrists).
@@ -51,7 +52,7 @@ Previews (point-splat renderer, no game needed): `run_tech_preview.py orig|slots
 |---|---|
 | `vtf.py`, `vpk_tools.py`, `mdl_mesh.py`, `mdl_tex.py`, `mdl_anim.py` | VTF / VPK / MDL (+VVD, VTX) readers |
 | `uvmap.py`, `preview.py`, `meshgen.py` | position maps, point-splat renderer, mesh generators (torus, tube, ribbon, card, bow, ...) |
-| `pac_parse.py`, `pac_write.py`, `bna_parts.py` | read / write pac3 outfit files byte-exactly, part builders, asset staging |
+| `pac_parse.py`, `pac_write.py`, `bna_parts.py`, `material_template.py` | read / write pac3 outfit files byte-exactly, part builders (model2, sprite, material_3d), asset staging |
 | `ethics_*.py`, `scene.py` | femsuit_04 body, painters, accessory builders for the Ethics looks |
 | `dclass_*.py` | class_d_mike body (+ bonemerged Female_04 head) and the D-class accessories |
 | `tech_*.py` | technical_expert body, recolor, accessories, deformation, previews |
@@ -59,4 +60,4 @@ Previews (point-splat renderer, no game needed): `run_tech_preview.py orig|slots
 
 ## Not verified in game
 
-URL textures and the `noclamp` path on the server, the bodygroup choices through `ModelModifiers`, the material slot numbers on the actual job models (the Ethics Assistant model is assumed to be `jericho/citizens/female_04`), bone friendly names, accessory fit in animation poses, glow sprites, and which of the tech expert's two entity2 parts draws.
+The material_3d + url PNG route on the server (it is the one `mf doom thaum.txt` uses), the bodygroup choices through `ModelModifiers`, the material slot numbers on the actual job models (the Ethics Assistant model is assumed to be `jericho/citizens/female_04`), bone friendly names, accessory fit in animation poses, glow sprites, and which of the tech expert's two entity2 parts draws.

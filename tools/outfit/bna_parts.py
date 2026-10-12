@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 
 from ethics_acc import friendly
+from material_template import MATERIAL_3D
 
 REPO_RAW = 'https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/'
 WATERMARK = 'claude skill made by ax0rz0'
@@ -54,6 +55,26 @@ def sprite_part(name, bone, position, color255, size, alpha=1.0, path='sprites/l
     return part(d)
 
 
+def material_part(name, url, uid=None):
+    """A material_3d part (VertexLitGeneric) whose base texture is an image url. pac downloads it over plain HTTP (pac.resource.DownloadTexture, png / jpg / vtf) and parts use it BY NAME:
+    entity2 / model2 `Materials` lists, model2 `Material`. (Image urls written straight into `Materials` / `Material` go through a hidden browser panel instead, which does not work reliably.)"""
+    d = dict(MATERIAL_3D)
+    d.update({'Name': name, 'basetexture': url, 'MaterialOverride': 'all', 'EditorExpand': False, 'Hide': False, 'TargetEntityUID': '', 'UniqueID': uid or 'material:' + name})
+    return part(d)
+
+
+def texture_material_parts(acc_list, urls, tag):
+    """one material part per textured accessory: -> (list of parts, {acc.name: material part name})"""
+    parts, names = [], {}
+    for a in acc_list:
+        tex_url = urls[a.name][1]
+        if tex_url:
+            name = '%s %s tex' % (tag, a.name.replace('_', ' '))
+            parts.append(material_part(name, tex_url))
+            names[a.name] = name
+    return parts, names
+
+
 def stage_assets(stage_dir, subdir, acc_list, rig, prefix):
     """write bone-local OBJs (and textures) for every accessory under stage_dir/obj/<subdir>/ and stage_dir/tex/<subdir>/. Returns {acc.name: (obj_url, texture_url_or_None)}"""
     out = {}
@@ -73,14 +94,16 @@ def stage_assets(stage_dir, subdir, acc_list, rig, prefix):
     return out
 
 
-def parts_for(acc_list, urls, size=1.0, name_prefix=''):
-    """model2 parts for a list of Acc using staged urls"""
+def parts_for(acc_list, urls, size=1.0, name_prefix='', tex_names=None):
+    """model2 parts for a list of Acc using staged urls; textured accessories use their material part (texture_material_parts) by name, which must be created BEFORE them"""
     kids = []
     for a in acc_list:
         obj_url, tex_url = urls[a.name]
         col = tuple(c / 255.0 for c in (a.color or (255, 255, 255)))
         if tex_url:
-            kids.append(model_part(name_prefix + a.name, obj_url, friendly(a.bone), color01=(1, 1, 1), material=tex_url, size=size, nolight=a.nolight, nocull=a.nocull))
+            if not tex_names or a.name not in tex_names:
+                raise ValueError('textured accessory %r needs its material part name (tex_names)' % a.name)
+            kids.append(model_part(name_prefix + a.name, obj_url, friendly(a.bone), color01=(1, 1, 1), material=tex_names[a.name], size=size, nolight=a.nolight, nocull=a.nocull))
         else:
             kids.append(model_part(name_prefix + a.name, obj_url, friendly(a.bone), color01=col, size=size, nolight=a.nolight, alpha=a.alpha, translucent=a.translucent, nocull=a.nocull))
     return kids

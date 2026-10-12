@@ -1,7 +1,8 @@
 """Build the three BNA Ethics Assistant outfits for models/jericho/citizens/female_04 ("femsuit_04").
 
-Each outfit = one root group holding an entity2 (re-textured suit / skirt / face-and-hair via image URLs, bodygroup choice) plus own-geometry accessories (bone-local OBJ urls, textures
-by url). Assets are staged under STAGE (obj/bna, tex/bna) for the repo; the outfits link them by raw GitHub URL.
+Each outfit = one root group holding material_3d parts (image urls as base textures, downloaded by pac over plain HTTP), an entity2 (re-textured suit / skirt / face-and-hair through those
+material parts used BY NAME, bodygroup choice) plus own-geometry accessories (bone-local OBJ urls; textured ones use their own material part). Assets are staged under STAGE
+(obj/bna, tex/bna) for the repo; the outfits link them by raw GitHub URL.
 """
 import os
 import pickle
@@ -31,8 +32,9 @@ FACE_SLOT = 1
 N_SLOTS = 21
 
 
-def save_jpeg(arr, path, quality=93):
-    Image.fromarray(np.asarray(arr)[..., :3]).save(path, 'JPEG', quality=quality, subsampling=0, optimize=True)
+def save_png(arr, path):
+    """PNG: the format pac's material parts are known to load from a url (each texture stays under 1 MB)"""
+    Image.fromarray(np.asarray(arr)[..., :3]).save(path, 'PNG', optimize=True)
 
 
 def entity2_part(materials, modifiers, name='femsuit_04 body (textures + bodygroups)'):
@@ -44,14 +46,15 @@ def entity2_part(materials, modifiers, name='femsuit_04 body (textures + bodygro
     return bp.part(d)
 
 
-def materials_string(face_url, suit_url, skirt_url):
+def materials_string(face_mat, suit_mat, skirt_mat):
+    """the entity2 Materials list: the NAMES of material_3d parts (one entry per model material slot)"""
     slots = [''] * N_SLOTS
-    slots[FACE_SLOT - 1] = face_url
+    slots[FACE_SLOT - 1] = face_mat
     for s in SUIT_SLOTS:
-        slots[s - 1] = suit_url
-    if skirt_url:
+        slots[s - 1] = suit_mat
+    if skirt_mat:
         for s in SKIRT_SLOTS:
-            slots[s - 1] = skirt_url
+            slots[s - 1] = skirt_mat
     return ';'.join(slots)
 
 
@@ -63,14 +66,14 @@ def build_style(style, out_dir=None, stage=STAGE, textures=None):
     os.makedirs(tdir, exist_ok=True)
     # --- body textures
     base = 'ethics_%s_' % style
-    save_jpeg(tex['suit'], os.path.join(tdir, base + 'suit.jpg'))
-    save_jpeg(tex['chau_facemap'], os.path.join(tdir, base + 'face.jpg'), quality=95)
-    face_url = bp.REPO_RAW + 'tex/bna/' + base + 'face.jpg'
-    suit_url = bp.REPO_RAW + 'tex/bna/' + base + 'suit.jpg'
+    save_png(tex['suit'], os.path.join(tdir, base + 'suit.png'))
+    save_png(tex['chau_facemap'], os.path.join(tdir, base + 'face.png'))
+    face_url = bp.REPO_RAW + 'tex/bna/' + base + 'face.png'
+    suit_url = bp.REPO_RAW + 'tex/bna/' + base + 'suit.png'
     skirt_url = None
     if cfg['skirt']:
-        save_jpeg(tex['skirt'], os.path.join(tdir, base + 'skirt.jpg'))
-        skirt_url = bp.REPO_RAW + 'tex/bna/' + base + 'skirt.jpg noclamp'          # the skirt UVs run from 1 to 2: ask pac for a wrapping texture
+        save_png(tex['skirt'], os.path.join(tdir, base + 'skirt.png'))
+        skirt_url = bp.REPO_RAW + 'tex/bna/' + base + 'skirt.png'                  # the skirt UVs run from 1 to 2: the material route loads textures wrapping (noclamp)
     # --- accessories
     S, S_suit = sc.surfaces(b, cfg['skirt'])
     acc, spr = cfg['builder'](b, S, S_suit)
@@ -79,13 +82,22 @@ def build_style(style, out_dir=None, stage=STAGE, textures=None):
     for s in spr:
         s.name = '%s_%s' % (style, s.name)
     urls = bp.stage_assets(stage, 'bna', acc, b.rig, 'ethics')
-    kids = [entity2_part(materials_string(face_url, suit_url, skirt_url), 'skirt=%d;' % (1 if cfg['skirt'] else 0))]
-    kids += bp.parts_for(acc, urls, size=1.0)
+    # material_3d parts first (they are used by name and must exist before the parts that use them), then the entity2, the accessories, the glows
+    tag = 'bna %s' % style
+    mat_names = {'suit': tag + ' suit', 'face': tag + ' face', 'skirt': tag + ' skirt' if skirt_url else None}
+    kids = [bp.material_part(mat_names['face'], face_url), bp.material_part(mat_names['suit'], suit_url)]
+    if skirt_url:
+        kids.append(bp.material_part(mat_names['skirt'], skirt_url))
+    acc_mat_parts, tex_names = bp.texture_material_parts(acc, urls, 'bna')
+    kids += acc_mat_parts
+    kids.append(entity2_part(materials_string(mat_names['face'], mat_names['suit'], mat_names['skirt']), 'skirt=%d;' % (1 if cfg['skirt'] else 0)))
+    kids += bp.parts_for(acc, urls, size=1.0, tex_names=tex_names)
     kids += bp.sprite_parts(spr, b.rig)
     # nicer names in the editor
-    for k in kids[1:]:
+    for k in kids:
         s = k['self']
-        s['Name'] = s['Name'].split('_', 1)[-1].replace('_', ' ')
+        if s['ClassName'] in ('model2', 'sprite'):
+            s['Name'] = s['Name'].split('_', 1)[-1].replace('_', ' ')
     root = bp.group(cfg['title'], kids, notes=bp.WATERMARK)
     parts = {1: root}
     pw.remap_uids(parts, 'ethics_bna_' + style)

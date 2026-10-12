@@ -41,7 +41,7 @@ elif mode == 'bna':
     tdir = os.path.join('stage_bna', 'tex', 'bna')
     over = {}
     for slot, fn in {**tp.SLOT_FILES, 14: 'tech_stripes'}.items():
-        fn = fn + ('.png' if fn == 'tech_stripes' else '.jpg')
+        fn = fn + '.png'
         over[te.mesh.textures[slot - 1]] = np.asarray(Image.open(os.path.join(tdir, fn)).convert('RGB'))
     scn, tl = te.soup(textures=over)
     out = 'tech/ref/tech_bna.png'

@@ -1,6 +1,6 @@
 """Verify 'tech expert bna.txt':  python verify_tech.py NEW.txt ORIGINAL.txt STAGE_DIR
-Format (no BOM / CR, watermark, UIDs), the user's original groups unchanged apart from UID / Notes and the entity2 Materials (their entries kept, only the BNA slots added),
-every accessory bone a valid pac bone name of the rig, every asset url present in STAGE_DIR, OBJ sanity."""
+[1] must be the material group (material_3d parts, image-url base textures present in STAGE_DIR), [2..n+1] the user's original groups unchanged apart from UID / Notes and the entity2
+Materials (their entries kept, only the BNA slots added, by material part NAME), [n+2] the accessory group; format, UIDs, bones, OBJ sanity, no image urls in Material / Materials."""
 import copy
 import os
 import re
@@ -8,6 +8,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ethics_acc as ea
+import make_tech_outfit as mto
 import pac_parse as pp
 import pac_write as pw
 import tech_paint as tp
@@ -63,50 +64,72 @@ def main():
         bad('header / trailing newline')
     new = pp.parse(text)
     orig = pp.load(orig_path)
-    parts = list(pw.walk(new))
-    ids = [p['self'].get('UniqueID', '') for p in parts]
+    n_orig = len(orig)
+    ordered = [p for k in sorted(new) for p in pw.walk([new[k]])]
+    ids = [p['self'].get('UniqueID', '') for p in ordered]
     if len(set(ids)) != len(ids) or any((not re.fullmatch(r'[0-9a-f]{64}', u)) or not u.endswith('a0c3f') for u in ids):
         bad('UIDs not unique / not 64 hex ending a0c3f')
     for k in sorted(new):
         if new[k]['self'].get('Notes') != 'claude skill made by ax0rz0':
             bad('top-level [%d] has no watermark Notes' % k)
     classes = {}
-    for p in parts:
+    for p in ordered:
         classes[p['self']['ClassName']] = classes.get(p['self']['ClassName'], 0) + 1
-    print('  parts %d %s' % (len(parts), dict(sorted(classes.items()))))
-    n_orig = len(orig)
-    if len(new) != n_orig + 1:
-        bad('expected %d top-level groups, found %d' % (n_orig + 1, len(new)))
-    # --- the user's groups
-    bna_slots = set(tp.SLOTS)
+    print('  parts %d %s' % (len(ordered), dict(sorted(classes.items()))))
+    if len(new) != n_orig + 2:
+        bad('expected %d top-level groups, found %d' % (n_orig + 2, len(new)))
+    # --- [1] the material group
+    mats = {}
+    urls = set()
+    for p in pw.walk([new[1]]):
+        s = p['self']
+        if s['ClassName'] == 'group':
+            continue
+        if s['ClassName'] != 'material_3d':
+            bad('group [1] holds a %s' % s['ClassName'])
+            continue
+        mats[s['Name']] = s
+        if s.get('MaterialOverride') != 'all':
+            bad('material %r has no MaterialOverride key' % s['Name'])
+        if not str(s.get('basetexture', '')).startswith(REPO_RAW):
+            bad('material %r basetexture %r is not a repo url' % (s['Name'], s.get('basetexture')))
+        else:
+            urls.add(s['basetexture'])
+    names = mto.material_names()
+    for slot, name in names.items():
+        if name not in mats:
+            bad('no material part %r for slot %d' % (name, slot))
+        elif mats[name]['basetexture'] != mto.texture_urls()[slot]:
+            bad('material %r points at %r' % (name, mats[name]['basetexture']))
+    print('  group [1]: %d material_3d parts (%d body, %d accessory textures)' % (len(mats), len(names), len(mats) - len(names)))
+    # --- the user's groups [2..n+1]
     for k in range(1, n_orig + 1):
-        if strip(new[k]) != strip(orig[k]):
+        if strip(new[k + 1]) != strip(orig[k]):
             bad('original group [%d] changed' % k)
         else:
-            print('  original group [%d] identical apart from UID / Notes / entity2 Materials (%d parts)' % (k, sum(1 for _ in pw.walk([new[k]]))))
-        for pn, po in zip(pw.walk([new[k]]), pw.walk([orig[k]])):
+            print('  original group [%d] (now [%d]) identical apart from UID / Notes / entity2 Materials (%d parts)' % (k, k + 1, sum(1 for _ in pw.walk([new[k + 1]]))))
+        for pn, po in zip(pw.walk([new[k + 1]]), pw.walk([orig[k]])):
             if po['self']['ClassName'] != 'entity2':
                 continue
             mn = pn['self']['Materials'].split(';')
             mo = po['self']['Materials'].split(';')
             mo += [''] * (len(mn) - len(mo))
             for i, (a, b) in enumerate(zip(mn, mo)):
-                if (i + 1) in bna_slots:
+                slot = i + 1
+                if slot in names:
                     if b != '':
-                        bad('entity2 slot %d was set in the original (%r) and got replaced' % (i + 1, b))
-                    if not a.startswith(REPO_RAW + 'tex/bna/' + tp.slot_filename(i + 1).split('.')[0]):
-                        bad('entity2 slot %d is %r' % (i + 1, a))
-                    if (i + 1 in (5, 6)) != a.endswith(' noclamp'):
-                        bad('entity2 slot %d noclamp flag wrong: %r' % (i + 1, a))
+                        bad('entity2 slot %d was set in the original (%r) and got replaced' % (slot, b))
+                    if a != names[slot]:
+                        bad('entity2 slot %d is %r, expected the material part %r' % (slot, a, names[slot]))
                 elif a != b:
-                    bad('entity2 slot %d changed: %r -> %r' % (i + 1, b, a))
-            print('    entity2 Materials: %d entries, BNA slots %s, original entries kept: %s' % (len(mn), sorted(i + 1 for i, a in enumerate(mn) if a.startswith('http')), [(i + 1, b) for i, b in enumerate(mo) if b]))
+                    bad('entity2 slot %d changed: %r -> %r' % (slot, b, a))
+                if 'http' in a:
+                    bad('entity2 slot %d has an image url' % slot)
+            print('    entity2 Materials: %d entries, BNA slots %s, original entries kept: %s' % (len(mn), sorted(s for s in names if mn[s - 1] == names[s]), [(i + 1, b) for i, b in enumerate(mo) if b]))
     # --- the accessory group
     rig = Rig(ts.TECH)
     friendly_names = {ea.friendly(n) for n in rig.names}
-    urls = set()
-    tot_v = tot_f = 0
-    for p in pw.walk([new[n_orig + 1]]):
+    for p in pw.walk([new[n_orig + 2]]):
         s = p['self']
         c = s['ClassName']
         if c in ('model2', 'sprite') and s.get('Bone') not in friendly_names:
@@ -114,23 +137,17 @@ def main():
         if c == 'model2':
             if not s.get('Model', '').endswith('.obj'):
                 bad('model url must end in .obj: %r' % s.get('Model'))
+            else:
+                urls.add(s['Model'])
             if abs(s.get('Size', 1.0) - 0.85) > 1e-9:
                 bad('accessory Size %r != 0.85' % s.get('Size'))
-        for key in ('Model', 'Material', 'Materials'):
-            v = s.get(key)
-            if isinstance(v, str):
-                for piece in v.split(';'):
-                    piece = piece.replace(' noclamp', '').strip()
-                    if piece.startswith(REPO_RAW):
-                        urls.add(piece)
-    for p in pw.walk(new):                                   # body texture urls of the entity2 parts too
-        v = p['self'].get('Materials')
-        if p['self']['ClassName'] == 'entity2' and isinstance(v, str):
-            for piece in v.split(';'):
-                piece = piece.replace(' noclamp', '').strip()
-                if piece.startswith(REPO_RAW):
-                    urls.add(piece)
+            m = s.get('Material', '')
+            if 'http' in m:
+                bad('model2 %r Material is an image url' % s.get('Name'))
+            elif not m.startswith('models/') and m not in mats:
+                bad('model2 %r Material %r names no material part' % (s.get('Name'), m))
     total = 0
+    tot_v = tot_f = 0
     for u in sorted(urls):
         rel = u[len(REPO_RAW):]
         f = os.path.join(stage, *rel.split('/'))

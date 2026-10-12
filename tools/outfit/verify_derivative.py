@@ -65,17 +65,32 @@ def main():
             bad('original group [%d] changed' % k)
         else:
             print('  original group [%d] identical apart from UID/Notes (%d parts)' % (k, sum(1 for _ in pw.walk([new[k]]))))
-    # asset links
+    # asset links; material_3d parts are used by name, so they must exist before their users and no image url may sit in Material / Materials
     urls = set()
+    seen = set()
+    for k in sorted(new):
+        for p in pw.walk([new[k]]):
+            s = p['self']
+            if s['ClassName'] == 'material_3d':
+                seen.add(s.get('Name'))
+                if s.get('MaterialOverride') != 'all':
+                    bad('material %r has no MaterialOverride key' % s.get('Name'))
+                if not str(s.get('basetexture', '')).startswith(REPO_RAW):
+                    bad('material %r basetexture %r is not a repo url' % (s.get('Name'), s.get('basetexture')))
+            for key in ('Material', 'Materials'):
+                v = s.get(key)
+                if isinstance(v, str) and s['ClassName'] in ('model2', 'entity2') and k > n_orig:
+                    for piece in v.split(';'):
+                        if 'http' in piece:
+                            bad('%s %r of %r is an image url (use a material part)' % (key, piece, s.get('Name')))
+                        elif piece and piece != 'null' and not piece.startswith('models/') and piece not in seen:
+                            bad('%s %r of %r names no earlier material part' % (key, piece, s.get('Name')))
     for p in parts:
         s = p['self']
-        for key in ('Model', 'Material', 'Materials'):
+        for key in ('Model', 'basetexture'):
             v = s.get(key)
-            if isinstance(v, str):
-                for piece in v.split(';'):
-                    piece = piece.replace(' noclamp', '').strip()
-                    if piece.startswith(REPO_RAW):
-                        urls.add(piece)
+            if isinstance(v, str) and v.startswith(REPO_RAW):
+                urls.add(v.strip())
     miss = []
     for u in sorted(urls):
         rel = u[len(REPO_RAW):]
