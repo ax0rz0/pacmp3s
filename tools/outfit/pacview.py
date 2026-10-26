@@ -36,6 +36,7 @@ CACHE = os.path.join(HERE, 'pv_cache')
 PAC_DIR = r'C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod\data\pac3'
 STAGE_OBJ = os.path.join(HERE, 'stage_adv', 'obj', 'adv')
 DONOR_ROOT = os.path.join(HERE, 'donor', 'ssm')
+PACK_ROOT = 'C:/Users/poopy/Downloads/cg_scp_pm_combined_2830971578'
 
 # ------------------------------------------------------------------------------------------------------------------------------ catalog / defaults
 _CAT = json.load(open(os.path.join(HERE, 'cat_dev.json')))
@@ -750,6 +751,8 @@ class Build:
         from PIL import Image as _I
         mdl = part.get('Model', '')
         local = os.path.join(DONOR_ROOT, mdl.replace('/', os.sep))
+        if not os.path.exists(local):                                  # the server's SCP playermodel pack (job models) is on this PC too
+            local = os.path.join(PACK_ROOT, mdl.replace('/', os.sep))
         if not os.path.exists(local):
             self.log.append('NOTE bonemerge model %s not available locally (it comes from the workshop addon)' % mdl)
             return
@@ -765,6 +768,7 @@ class Build:
             if len(sel) == 0:
                 continue
             Pp, Nn, UV = P[sel], N[sel], tr['uv'][sel]
+            UV = UV - np.floor(UV.min(axis=1, keepdims=True))                     # source textures repeat: bring every triangle's uvs into [0, 1)
             for nrm, c in planes:
                 Pp, Nn, UV = clip_soup(Pp, Nn, UV, nrm, c)
                 if len(Pp) == 0:

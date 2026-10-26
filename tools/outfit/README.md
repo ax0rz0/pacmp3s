@@ -64,7 +64,7 @@ The material_3d + url PNG route on the server (it is the one `mf doom thaum.txt`
 
 ## Advanced Ethics Assistant outfits (`outfits/adv/`, `obj/adv/`)
 
-Seven own-geometry outfits for `jericho/citizens/female_04`, made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
+Eight outfits for `jericho/citizens/female_04` (six with own geometry, two built from bone-merged playermodels), made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
 "heavy above" values of the PAC outfit cost window (checked by `adv_parts.validate`: URL models <= 16, model parts <= 60, proxies, particle emitters <= 4, no URL textures).
 
 | outfit | made by | what it is | console |
@@ -73,6 +73,7 @@ Seven own-geometry outfits for `jericho/citizens/female_04`, made with the `adv_
 | `ethics asst netrunner.txt` | `make_adv_net.py` | respirator face cover with hex vents + filters, right-eye cyber implant, headset, silver hair with a neon-tipped swinging ponytail (jiggle), black gloves + vambraces, fingertip trails | `nr_theme 0-3`, `nr_hair 0-3` |
 | `ethics asst netrunner custom head.txt` | `make_adv_net_custom.py` | the same without the hair, on a **donor head** (see below): mask / implant / headset re-fitted to her face (`adv_panels.WarpSurf`) | `nr_theme 0-3` |
 | `ethics asst custom head.txt` | `make_adv_head_swap.py` | nothing but the donor head package: an entity2 that hides the player's head slots + the `custom head` group | - |
+| `ethics asst researcher.txt` | `make_adv_researcher.py` | the small blend-in one: a white lab coat over a dark shirt and tie (the Armacham scientist model `models/armacham/scientists/scientists_1.mdl` of the SCP playermodel pack, bone-merged, only its `suit_shirt` / `body_scientist` / `tiesandties` slots drawn), the player's own suit and head hidden, plus the donor head package | - |
 | `ethics asst ghost.txt` | `make_adv_ghost.py` | spectral archivist: additive translucent body that hovers (a `bone3` on the pelvis: an entity2 offset is a draw-time matrix, the bones every attached part reads do not follow it), porcelain veil mask, hood + veil strips, glowing spine / ribs / core with gyro rings, ragged shroud, chains (cloth and chains sway through jiggle parts), plasma trails, soul motes | `gh_theme 0-3` |
 | `ethics asst protocol unit.txt` | `make_adv_cyborg.py` | cyborg: left half of the face is a chrome endoskeleton (lens eye, steel teeth, piston), neck collar, heavy left arm (pauldron, elbow ball, gauntlet), back reactor with steaming vents | `cb_theme 0-3` |
 | `ethics asst neon seraph.txt` | `make_adv_seraph.py` | cyber angel: data-wings that breathe, sweep back with running speed and flap / spread on demand, translucent visor, shoulder fins, hologram ring on the left forearm, four orbs circling the waist, wing-tip trails | `sr_theme 0-3`, `sr_open 0-1`, `sr_flap 0-1` |

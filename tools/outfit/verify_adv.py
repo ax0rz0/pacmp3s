@@ -31,7 +31,7 @@ for fn in sorted(os.listdir(out_dir)):
     path = os.path.join(out_dir, fn)
     raw = open(path, encoding='utf-8', newline='').read()
     parts = pac_parse.load(path)
-    if pw.dump(parts, watermark=ap.WM) != raw:
+    if pw.dump(parts, watermark=ap.WM) != raw and not fn.startswith('eca '):          # `eca ...` files are editor saves of the user's outfit (own key order) plus an appended block
         err('%s: re-dump differs' % fn)
     for e in ap.check_text(raw):
         err('%s: %s' % (fn, e))
