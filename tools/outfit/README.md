@@ -64,24 +64,33 @@ The material_3d + url PNG route on the server (it is the one `mf doom thaum.txt`
 
 ## Advanced Ethics Assistant outfits (`outfits/adv/`, `obj/adv/`)
 
-Six own-geometry outfits for `jericho/citizens/female_04`, made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
+Seven own-geometry outfits for `jericho/citizens/female_04`, made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
 "heavy above" values of the PAC outfit cost window (checked by `adv_parts.validate`: URL models <= 16, model parts <= 60, proxies, particle emitters <= 4, no URL textures).
 
 | outfit | made by | what it is | console |
 |---|---|---|---|
 | `ethics asst cyber oni.txt` | `make_adv_oni.py` | robotic oni mask: hard-surface plates on a black under-layer, glowing visor slits, hinged jaw (follows the voice meter), two short swept-back horns, ear cups, hoses | `pac_proxy oni_theme 0-3` accent colour, `pac_proxy oni_jaw 0-1` open the jaw |
 | `ethics asst netrunner.txt` | `make_adv_net.py` | respirator face cover with hex vents + filters, right-eye cyber implant, headset, silver hair with a neon-tipped swinging ponytail (jiggle), black gloves + vambraces, fingertip trails | `nr_theme 0-3`, `nr_hair 0-3` |
-| `ethics asst netrunner custom head.txt` | `make_adv_net_custom.py` | the same without the hair, on a **donor head**: Song So Mi (Cyberpunk 2077 Phantom Liberty, workshop 3283215678) bone-merged onto the head bone, the Ethics Assistant's own head slots nulled, mask / implant / headset re-fitted to her face (`adv_panels.WarpSurf`) | `nr_theme 0-3` |
-| `ethics asst ghost.txt` | `make_adv_ghost.py` | spectral archivist: additive translucent body that hovers, porcelain veil mask, hood + veil strips, glowing spine / ribs / core with gyro rings, ragged shroud, chains (cloth and chains sway through jiggle parts), plasma trails, soul motes | `gh_theme 0-3` |
+| `ethics asst netrunner custom head.txt` | `make_adv_net_custom.py` | the same without the hair, on a **donor head** (see below): mask / implant / headset re-fitted to her face (`adv_panels.WarpSurf`) | `nr_theme 0-3` |
+| `ethics asst custom head.txt` | `make_adv_head_swap.py` | nothing but the donor head package: an entity2 that hides the player's head slots + the `custom head` group | - |
+| `ethics asst ghost.txt` | `make_adv_ghost.py` | spectral archivist: additive translucent body that hovers (a `bone3` on the pelvis: an entity2 offset is a draw-time matrix, the bones every attached part reads do not follow it), porcelain veil mask, hood + veil strips, glowing spine / ribs / core with gyro rings, ragged shroud, chains (cloth and chains sway through jiggle parts), plasma trails, soul motes | `gh_theme 0-3` |
 | `ethics asst protocol unit.txt` | `make_adv_cyborg.py` | cyborg: left half of the face is a chrome endoskeleton (lens eye, steel teeth, piston), neck collar, heavy left arm (pauldron, elbow ball, gauntlet), back reactor with steaming vents | `cb_theme 0-3` |
 | `ethics asst neon seraph.txt` | `make_adv_seraph.py` | cyber angel: data-wings that breathe, sweep back with running speed and flap / spread on demand, translucent visor, shoulder fins, hologram ring on the left forearm, four orbs circling the waist, wing-tip trails | `sr_theme 0-3`, `sr_open 0-1`, `sr_flap 0-1` |
 
 Accent colours are blended by a proxy named like the console command (the old pac build reads `command()` from the proxy's own name, so the names matter).
 
-**Head donor note:** `pac_proxy` swaps are free, but the custom-head outfit hides the player's own head (material nulling) and bone-merges `models/cyberpunk2077rex/songsomirex/song_so_mi_pm.mdl`; other players only see
-it when that addon is in the server's collection, otherwise they see no head. The normal-head file has no such dependency.
+**Head donor package** (`adv_head_pkg.py`, Song So Mi, Cyberpunk 2077 Phantom Liberty, workshop 3283215678): the outfit's entity2 hides the player's own head slots (1 chau_facemap = head AND neck skin, 2 / 3 eyeballs,
+4 mouth). `hd_neck.obj` is a skin coloured neck column on the neck bone (`adv_neck.py`; the donor's own neck is a wide flat flange, the player's goes with her head slot), the donor
+`models/cyberpunk2077rex/songsomirex/song_so_mi_pm.mdl` is bone-merged on the head bone with every non-head slot null and a `clip2` plane under the skull that rises towards the nape, and a second bone-merged copy
+draws only `Scalp` + `Hair`, unclipped, so the bob hangs to its natural length. The donor's `$color2` tints (hair 2.5, lipstick a dark rose) are applied by the game. Other players only see the head when that
+addon is in the server's collection, otherwise they see no head. The normal-head files have no such dependency. `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single
+entity2 by plain text edit (that outfit's other bytes stay identical) and writes the result as a new file.
+
+**Colour ranges:** `trail2` `StartColor` / `EndColor` are 0..1 (`ProperColorRange`, multiplied by 255 when drawn), `sprite` and `particles` colours are 0..255, `model2` / `material_3d` colours are 0..1.
+`adv_parts.trail` takes 0..255 and writes 0..1; a proxy driving a trail colour uses `theme_expr(..., 1.0)`.
 
 Tools: `adv_geom.py` (loft / spike / solidify / Cyl / Radial, `write_obj_smooth` with shared normals and no degenerate faces), `adv_panels.py` (raised plates draped on a head / limb surface, ribbons, bolts, `WarpSurf`),
 `adv_parts.py` (part builders + the validator), `donor_tools.py` (skins another playermodel into the Ethics Assistant's frame the way BoneMerge does), `ax_render.py` (previews through the ax3d engine,
-optional), `verify_adv.py` (outfit / OBJ checks), `steam_details.py` (Workshop file details + thumbnails), `wait_assets_live_adv.py`. Run a builder, then `python verify_adv.py`; publish like the BNA outfits
+optional), `verify_adv.py` (outfit / OBJ checks), `steam_details.py` (Workshop file details + thumbnails), `wait_assets_live_adv.py`, `pacview.py` (renders an outfit FILE the way pac places it: friendly bone names through `pac.BoneNameReplacements`, base_movable world matrices, proxies, entity2 `Materials`,
+bone-merged donors with `$color2` tints and clip planes, OBJs fetched from the live host or `PV_LOCAL=1` from `stage_adv`; checks the files rather than the generator). Run a builder, then `python verify_adv.py`; publish like the BNA outfits
 (copy `stage_adv/obj/adv/*` to `obj/adv/`, `stage_adv/outfits/*.txt` to `outfits/adv/`, push, `python wait_assets_live_adv.py`, then copy the txt into `garrysmod/data/pac3`).

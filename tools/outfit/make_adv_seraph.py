@@ -132,7 +132,7 @@ def build(stage_dir=STAGE_DIR, write=True):
         tip_local_bone = ap.local_point(rig, 'Spine4', tip_world)
         trails.append(ap.trail('%s wing tip trail' % side, spine4, tuple(tip_local_bone), path='trails/plasma', start_color=(40, 220, 255), end_color=(40, 220, 255), start_size=1.2, end_size=0.0,
                                start_alpha=0.7, end_alpha=0.0, duration=0.8, spacing=0.3, stretch=1.0))
-    trail_group = ap.proxy('sr_theme', 'StartColor', ac.theme_expr('sr_theme', PALETTE, 255.0, '1'), affect_children=True, children=trails)
+    trail_group = ap.proxy('sr_theme', 'StartColor', ac.theme_expr('sr_theme', PALETTE, 1.0, '1'), affect_children=True, children=trails)
     mote_pos = tuple(ap.local_point(rig, 'Spine4', np.array([-5.0, 0.0, 58.0])))
     motes = ap.proxy('sr_theme', 'Color1', ac.theme_expr('sr_theme', PALETTE, 255.0, '1'), affect_children=True, children=[
         ap.particles('light motes', spine4, mote_pos, material='sprites/light_glow02_add', start_size=0.9, end_size=0.0, color1=(40, 220, 255), color2=(40, 220, 255), start_alpha=230, end_alpha=0,

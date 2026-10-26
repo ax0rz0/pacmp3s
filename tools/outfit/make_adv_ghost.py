@@ -72,8 +72,11 @@ def build(stage_dir=STAGE_DIR, write=True):
     for k, v in SLOTS_BODY.items():
         slots[k - 1] = v
     body = ap.entity2('Ethics Assistant (spectral body)', materials=';'.join(slots), modifiers='', alpha=0.85, color=PALETTE[0], translucent=True, children=[
-        ap.proxy('gh_theme', 'Color', theme(0.8, soft)),
-        ap.proxy('gh_hover', 'PositionOffset', '0, 0, 3.4 + sin(time()*1.4)*0.9')])
+        ap.proxy('gh_theme', 'Color', theme(0.8, soft))])
+    # the hover: entity2 PositionOffset is a draw-time RenderMultiply translation (the bone matrices that every bone-attached part reads do not follow it), so the body would float away from
+    # its own accessories.  A bone3 on the pelvis moves the pelvis and every bone below it rigidly (children are re-based on the moved parent), so mesh and accessories rise together.
+    # bone3 Position rides the pelvis axes: X left, Y up, Z forward.
+    hover = ap.bone3('hover', ap.bone_name('Pelvis'), children=[ap.proxy('gh_hover', 'Position', '0, 3.4 + sin(time()*1.4)*0.9, 0')])
     M = ap.model
 
     def glow(nm, u, bone, pos=None, scale=1.0, kids=()):
@@ -125,7 +128,7 @@ def build(stage_dir=STAGE_DIR, write=True):
         pw_ = ac.tip_position(rig, pre + '_Finger21', pre + '_Finger22', 0.45)
         trails.append(ap.trail('%s hand trail' % side, ap.bone_name(pre + '_Finger22'), tuple(ap.local_point(rig, pre + '_Finger22', pw_)), path='trails/plasma', start_color=(110, 215, 255),
                                end_color=(110, 215, 255), start_size=1.1, end_size=0.0, start_alpha=0.8, end_alpha=0.0, duration=0.9, spacing=0.3, stretch=1.0))
-    trail_group = ap.proxy('gh_theme', 'StartColor', ac.theme_expr('gh_theme', PALETTE, 255.0, '1'), affect_children=True, children=trails)
+    trail_group = ap.proxy('gh_theme', 'StartColor', ac.theme_expr('gh_theme', PALETTE, 1.0, '1'), affect_children=True, children=trails)
 
     feet_local = tuple(ap.local_point(rig, 'Pelvis', (0.0, 0.0, 6.0)))
     chest_local = tuple(ap.local_point(rig, 'Spine2', (1.0, 0.0, 50.0)))
@@ -140,7 +143,7 @@ def build(stage_dir=STAGE_DIR, write=True):
     ]
     particle_group = ap.proxy('gh_theme', 'Color1', ac.theme_expr('gh_theme', PALETTE, 255.0, '1'), affect_children=True, children=emitters)
 
-    root = ap.group(TITLE, [ap.group('materials', mats, expand=False), body, ap.group('veil mask + hood', face), ap.group('inner light', inner), ap.group('shroud', cloth), ap.group('chains', chains),
+    root = ap.group(TITLE, [ap.group('materials', mats, expand=False), body, hover, ap.group('veil mask + hood', face), ap.group('inner light', inner), ap.group('shroud', cloth), ap.group('chains', chains),
                             ap.group('glow sprites', [sprites]), ap.group('trails', [trail_group]), ap.group('soul motes', [particle_group])], notes=ap.WM)
     text, tree = ap.finalize(root, 'ethics_adv_ghost')
     errs, warns, counts = ap.validate(tree, TITLE)

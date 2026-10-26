@@ -1,0 +1,1270 @@
+{
+ "base": {
+  "base": null,
+  "props": {
+   "PlayerOwner": {
+    "raw": "NULL"
+   },
+   "Owner": {
+    "raw": "NULL"
+   },
+   "Enabled": true,
+   "Name": "",
+   "Notes": "",
+   "Hide": false,
+   "EditorExpand": false,
+   "UniqueID": "",
+   "DrawOrder": 0,
+   "IsDisturbing": false,
+   "ParentUID": "",
+   "TargetEntityUID": ""
+  },
+  "removed": []
+ },
+ "base_movable": {
+  "base": "base",
+  "props": {
+   "Bone": "head",
+   "Position": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "Angles": {
+    "Angle": [
+     0,
+     0,
+     0
+    ]
+   },
+   "EyeAngles": false,
+   "PositionOffset": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "AngleOffset": {
+    "Angle": [
+     0,
+     0,
+     0
+    ]
+   },
+   "AimPartName": "",
+   "AimPartUID": "",
+   "ParentUID": ""
+  },
+  "removed": []
+ },
+ "base_drawable": {
+  "base": "base_movable",
+  "props": {
+   "Translucent": false,
+   "IgnoreZ": false,
+   "NoTextureFiltering": false,
+   "BlendMode": ""
+  },
+  "removed": []
+ },
+ "animation": {
+  "base": "base",
+  "props": {
+   "Loop": true,
+   "PingPongLoop": false,
+   "SequenceName": "",
+   "Rate": 1,
+   "Offset": 0,
+   "Min": 0,
+   "Max": 1,
+   "WeaponHoldType": "none",
+   "OwnerCycle": false,
+   "InvertFrames": false,
+   "ResetOnHide": true
+  },
+  "removed": []
+ },
+ "beam": {
+  "base": "base_drawable",
+  "props": {
+   "Material": "cable/rope",
+   "MultipleEndPoints": "",
+   "AutoHitpos": false,
+   "AutoHitposFilter": "standard",
+   "Width": 1,
+   "WidthBend": 0,
+   "WidthBendSize": 1,
+   "StartWidthMultiplier": 1,
+   "EndWidthMultiplier": 1,
+   "WidthMorphPower": 1,
+   "Bend": 10,
+   "Frequency": 1,
+   "Resolution": 16,
+   "TextureStretch": 1,
+   "TextureScroll": 0,
+   "ScrollRate": 0,
+   "StartColor": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "EndColor": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "StartAlpha": 1,
+   "EndAlpha": 1,
+   "EnableDynamics": false,
+   "SizeFadeSpeed": 1,
+   "SizeFadePower": 1,
+   "IncludeWidthBend": true,
+   "DynamicsStartSizeMultiplier": 1,
+   "DynamicsEndSizeMultiplier": 1,
+   "AlphaFadeSpeed": 1,
+   "AlphaFadePower": 1,
+   "DynamicsStartAlpha": 1,
+   "DynamicsEndAlpha": 1,
+   "EndPointUID": ""
+  },
+  "removed": []
+ },
+ "bone3": {
+  "base": "base_movable",
+  "props": {
+   "ScaleChildren": false,
+   "MoveChildrenToOrigin": false,
+   "FollowAnglesOnly": false,
+   "HideMesh": false,
+   "InvertHideMesh": false,
+   "Size": 1,
+   "Scale": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "FollowPartUID": ""
+  },
+  "removed": []
+ },
+ "camera": {
+  "base": "base_movable",
+  "props": {
+   "EyeAnglesLerp": 1,
+   "DrawViewModel": false,
+   "NearZ": -1,
+   "FarZ": -1,
+   "FOV": -1
+  },
+  "removed": []
+ },
+ "woohoo": {
+  "base": "base_drawable",
+  "props": {
+   "Resolution": 8,
+   "Size": 1,
+   "FixedSize": true,
+   "BlurFiltering": false,
+   "Translucent": true
+  },
+  "removed": []
+ },
+ "clip2": {
+  "base": "base_drawable",
+  "props": {},
+  "removed": []
+ },
+ "command": {
+  "base": "base",
+  "props": {
+   "String": "",
+   "UseLua": false,
+   "ExecuteOnWear": false,
+   "ExecuteOnShow": true,
+   "SafeGuard": false,
+   "DynamicMode": false,
+   "AppendedNumber": 1,
+   "OnHideString": "",
+   "DelayedString": "",
+   "Delay": 1,
+   "PriorityMode": "Default",
+   "CommandName": "",
+   "Action": "Default",
+   "Minimum": 1,
+   "Maximum": 1
+  },
+  "removed": []
+ },
+ "custom_animation": {
+  "base": "base",
+  "props": {
+   "URL": "",
+   "Data": "",
+   "StopOnHide": true,
+   "StopOtherAnimations": false,
+   "AnimationType": "sequence",
+   "Interpolation": "cosine",
+   "Rate": 1,
+   "BonePower": 1,
+   "Offset": 0
+  },
+  "removed": []
+ },
+ "damage_zone": {
+  "base": "base_movable",
+  "props": {
+   "AffectSelf": false,
+   "Players": true,
+   "NPC": true,
+   "PointEntities": true,
+   "Friendlies": true,
+   "Neutrals": true,
+   "Hostiles": true,
+   "Radius": 20,
+   "Length": 50,
+   "HitboxMode": "Box",
+   "Detail": 20,
+   "ExtraSteps": 0,
+   "RadialRandomize": 1,
+   "PhaseRandomize": 1,
+   "DamageFalloff": false,
+   "DamageFalloffPower": 1,
+   "Preview": false,
+   "RenderingHook": "PostDrawOpaqueRenderables",
+   "Bullet": false,
+   "Damage": 0,
+   "DamageType": "generic",
+   "DoNotKill": false,
+   "ReverseDoNotKill": false,
+   "CriticalHealth": 1,
+   "MaxHpScaling": 0,
+   "DOTMode": false,
+   "DOTMethod": "Debuff",
+   "DOTTime": 0,
+   "DOTCount": 0,
+   "NoInitialDOT": false,
+   "HitMarkerLifetime": 1,
+   "KillMarkerLifetime": 1,
+   "AllowOverlappingHitSounds": false,
+   "AllowOverlappingHitMarkers": false,
+   "RemoveDuplicateHitMarkers": true,
+   "AttachPartsToTargetEntity": false,
+   "RemoveNPCWeaponsOnKill": false,
+   "HitSoundPartUID": "",
+   "KillSoundPartUID": "",
+   "HitMarkerPartUID": "",
+   "KillMarkerPartUID": ""
+  },
+  "removed": []
+ },
+ "decal": {
+  "base": "base_movable",
+  "props": {
+   "Color": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Alpha": 1,
+   "Material": "",
+   "IgnoreOwner": true
+  },
+  "removed": []
+ },
+ "effect": {
+  "base": "base_drawable",
+  "props": {
+   "Effect": "default",
+   "Loop": true,
+   "Follow": true,
+   "Rate": 1,
+   "UseParticleTracer": false,
+   "PointAUID": "",
+   "PointBUID": "",
+   "PointCUID": "",
+   "PointDUID": ""
+  },
+  "removed": [
+   "Translucent"
+  ]
+ },
+ "event": {
+  "base": "base",
+  "props": {
+   "Event": "",
+   "Operator": "find simple",
+   "Arguments": "",
+   "Invert": true,
+   "RootOwner": true,
+   "AffectChildrenOnly": false,
+   "ZeroEyePitch": false,
+   "MultipleTargetParts": "",
+   "TargetPartUID": "",
+   "DestinationPartUID": ""
+  },
+  "removed": []
+ },
+ "faceposer": {
+  "base": "base",
+  "props": {
+   "Preset": "",
+   "FlexWeights": "",
+   "Scale": 1,
+   "Additive": false
+  },
+  "removed": []
+ },
+ "flex": {
+  "base": "base",
+  "props": {
+   "Flex": "",
+   "Weight": 0,
+   "Additive": false,
+   "RootOwner": false
+  },
+  "removed": []
+ },
+ "fog": {
+  "base": "base_drawable",
+  "props": {
+   "Color": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Start": 0,
+   "End": 10,
+   "Alpha": 1,
+   "Height": 0
+  },
+  "removed": []
+ },
+ "force": {
+  "base": "base_drawable",
+  "props": {
+   "HitboxMode": "Box",
+   "Length": 50,
+   "Radius": 50,
+   "Preview": false,
+   "PreviewForces": false,
+   "BaseForce": 0,
+   "AddedVectorForce": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "Torque": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "BaseForceAngleMode": "Radial",
+   "VectorForceAngleMode": "Global",
+   "TorqueMode": "TargetLocal",
+   "Continuous": true,
+   "AccountMass": false,
+   "Falloff": false,
+   "ReverseFalloff": false,
+   "Levitation": false,
+   "LevitationHeight": 0,
+   "Damping": 0,
+   "DampingFalloff": false,
+   "DampingReverseFalloff": false,
+   "AffectSelf": false,
+   "AlternateAffectSelf": false,
+   "AffectPlayerOwner": false,
+   "Players": true,
+   "PhysicsProps": true,
+   "PointEntities": true,
+   "NPC": false,
+   "LocusUID": ""
+  },
+  "removed": []
+ },
+ "gesture": {
+  "base": "base",
+  "props": {
+   "Loop": false,
+   "GestureName": "",
+   "SlotName": "attackreload",
+   "SlotWeight": 1
+  },
+  "removed": []
+ },
+ "group": {
+  "base": "base",
+  "props": {
+   "Duplicate": false,
+   "OwnerName": "self",
+   "ModelTracker": "",
+   "ClassTracker": ""
+  },
+  "removed": []
+ },
+ "halo": {
+  "base": "base",
+  "props": {
+   "BlurX": 2,
+   "BlurY": 2,
+   "Amount": 1,
+   "Passes": 1,
+   "SphericalSize": 1,
+   "Shape": 1,
+   "Color": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Additive": true,
+   "IgnoreZ": false,
+   "AffectChildren": false,
+   "AffectTargetChildren": false
+  },
+  "removed": []
+ },
+ "health_modifier": {
+  "base": "base",
+  "props": {
+   "ActivateOnShow": true,
+   "ActivateOnWear": true,
+   "ChangeHealth": false,
+   "FollowHealth": true,
+   "MaxHealth": 100,
+   "FollowHealthBars": true,
+   "HealthBars": 0,
+   "BarsAmount": 100,
+   "BarsLayer": 1,
+   "AbsorbFactor": 0,
+   "HPBarsResetOnHide": false,
+   "CountedHits": false,
+   "NoOverflow": false,
+   "ChangeArmor": false,
+   "FollowArmor": true,
+   "MaxArmor": 100,
+   "DamageMultiplier": 1,
+   "ModifierId": "",
+   "MultiplierResetOnHide": false
+  },
+  "removed": []
+ },
+ "hitscan": {
+  "base": "base_drawable",
+  "props": {
+   "ServerBullets": true,
+   "Damage": 1,
+   "Force": 1000,
+   "AffectSelf": false,
+   "DamageFalloff": false,
+   "DamageFalloffDistance": 5000,
+   "DamageFalloffFraction": 0.5,
+   "DamageType": "generic",
+   "Spread": 0,
+   "SpreadX": 1,
+   "SpreadY": 1,
+   "NumberBullets": 1,
+   "DistributeDamage": false,
+   "TracerSparseness": 1,
+   "MaxDistance": 10000,
+   "TracerName": "Tracer"
+  },
+  "removed": []
+ },
+ "holdtype": {
+  "base": "base",
+  "props": {
+   "Fallback": "",
+   "Noclip": "",
+   "Air": "",
+   "Sitting": "",
+   "AlternativeRate": false,
+   "Override": false
+  },
+  "removed": []
+ },
+ "info": {
+  "base": "base",
+  "props": {
+   "SpawnEntity": "",
+   "UserData": ""
+  },
+  "removed": []
+ },
+ "interpolated_multibone": {
+  "base": "base_drawable",
+  "props": {
+   "Preview": false,
+   "LerpValue": 0,
+   "Power": 1,
+   "InterpolatePosition": true,
+   "InterpolateAngles": true,
+   "Node1UID": "",
+   "Node2UID": "",
+   "Node3UID": "",
+   "Node4UID": "",
+   "Node5UID": "",
+   "Node6UID": "",
+   "Node7UID": "",
+   "Node8UID": "",
+   "Node9UID": "",
+   "Node10UID": "",
+   "Node11UID": "",
+   "Node12UID": "",
+   "Node13UID": "",
+   "Node14UID": "",
+   "Node15UID": "",
+   "Node16UID": "",
+   "Node17UID": "",
+   "Node18UID": "",
+   "Node19UID": "",
+   "Node20UID": ""
+  },
+  "removed": []
+ },
+ "jiggle": {
+  "base": "base_drawable",
+  "props": {
+   "Strain": 0.5,
+   "Speed": 1,
+   "ConstantVelocity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "InitialVelocity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "LocalVelocity": true,
+   "ResetOnHide": false,
+   "Ground": false,
+   "JiggleAngle": true,
+   "ClampAngles": false,
+   "AngleClampAmount": {
+    "Vector": [
+     180,
+     180,
+     180
+    ]
+   },
+   "ConstrainPitch": false,
+   "ConstrainYaw": false,
+   "ConstrainRoll": false,
+   "JigglePosition": true,
+   "ConstrainSphere": 0,
+   "StopRadius": 0,
+   "ConstrainX": false,
+   "ConstrainY": false,
+   "ConstrainZ": false
+  },
+  "removed": []
+ },
+ "light2": {
+  "base": "base_drawable",
+  "props": {
+   "InnerAngle": 0,
+   "OuterAngle": 0,
+   "NoModel": false,
+   "NoWorld": false,
+   "Brightness": 8,
+   "Size": 100,
+   "Color": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "Style": 0
+  },
+  "removed": []
+ },
+ "link": {
+  "base": "base",
+  "props": {
+   "Type": "from -> to",
+   "FromVariableName": "",
+   "ToVariableName": "",
+   "FromUID": "",
+   "ToUID": ""
+  },
+  "removed": []
+ },
+ "lock": {
+  "base": "base_movable",
+  "props": {
+   "Mode": "None",
+   "OverrideAngles": true,
+   "RelativeGrab": false,
+   "RestoreDelay": 1,
+   "MinimalRestore": false,
+   "NoCollide": true,
+   "ThrowMode": "None",
+   "ThrowAmount": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "Radius": 20,
+   "OffsetDownAmount": 0,
+   "ContinuousSearch": false,
+   "Preview": false,
+   "AffectPitch": true,
+   "AffectYaw": true,
+   "ContinuousAim": true,
+   "SmoothAiming": false,
+   "SmoothFraction": 0.05,
+   "ClampDistance": false,
+   "SlopeSafety": false,
+   "OverrideEyeAngles": false,
+   "OverrideEyePosition": false,
+   "DrawLocalPlayer": true,
+   "AffectPlayerOwner": false,
+   "Players": false,
+   "PhysicsProps": false,
+   "ExcludeProjectiles": false,
+   "NPC": false,
+   "ThrowTargetPartUID": "",
+   "TargetPartUID": "",
+   "OverrideEyePositionPartUID": ""
+  },
+  "removed": []
+ },
+ "material_": {
+  "base": "base",
+  "props": {
+   "LoadVmt": "",
+   "MaterialOverride": "all"
+  },
+  "removed": []
+ },
+ "model2": {
+  "base": "base_drawable",
+  "props": {
+   "Model": "",
+   "ForceObjUrl": false,
+   "Size": 1,
+   "Scale": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "BoneMerge": false,
+   "LegacyTransform": false,
+   "Color": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "Brightness": 1,
+   "NoLighting": false,
+   "NoCulling": false,
+   "Invert": false,
+   "Alpha": 1,
+   "ModelModifiers": "",
+   "Material": "",
+   "Materials": "",
+   "Skin": 0,
+   "LevelOfDetail": 0,
+   "EyeTargetUID": ""
+  },
+  "removed": []
+ },
+ "motion_blur": {
+  "base": "base_drawable",
+  "props": {
+   "Bone": "none",
+   "Alpha": 0.5,
+   "BlurLength": 10,
+   "BlurSpacing": 0.1
+  },
+  "removed": []
+ },
+ "player_movement": {
+  "base": "base",
+  "props": {
+   "PreserveInFirstPerson": false
+  },
+  "removed": []
+ },
+ "particles": {
+  "base": "base_drawable",
+  "props": {
+   "Follow": false,
+   "Additive": false,
+   "PositionSpread": 0,
+   "PositionSpread2": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "DieTime": 3,
+   "StartSize": 2,
+   "EndSize": 20,
+   "StartLength": 0,
+   "EndLength": 0,
+   "ParticleAngle": {
+    "Angle": [
+     0,
+     0,
+     0
+    ]
+   },
+   "AddFrametimeLife": false,
+   "FireDelay": 0.2,
+   "FireOnce": false,
+   "NumberParticles": 1,
+   "FireDuration": 0,
+   "Decay": 0,
+   "FractionalChance": false,
+   "AlignToSurface": true,
+   "StickToSurface": true,
+   "StickLifetime": 2,
+   "StickStartSize": 20,
+   "StickEndSize": 0,
+   "StickStartAlpha": 255,
+   "StickEndAlpha": 0,
+   "Material": "effects/slime1",
+   "StartAlpha": 255,
+   "EndAlpha": 0,
+   "Translucent": true,
+   "Color2": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Color1": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "RandomColor": false,
+   "Lighting": true,
+   "3D": false,
+   "DoubleSided": true,
+   "DrawManual": false,
+   "ZeroAngle": true,
+   "RandomRollSpeed": 0,
+   "RollDelta": 0,
+   "ParticleAngleVelocity": {
+    "Vector": [
+     50,
+     50,
+     50
+    ]
+   },
+   "Velocity": 250,
+   "Spread": 0.1,
+   "AirResistance": 5,
+   "Bounce": 5,
+   "Gravity": {
+    "Vector": [
+     0,
+     0,
+     -50
+    ]
+   },
+   "Collide": true,
+   "Sliding": true,
+   "OwnerVelocityMultiplier": 0,
+   "Animated": false,
+   "BrownianMotion": false,
+   "ThinkTime": 0,
+   "AnimatedParticleWrap": false,
+   "AnimatedParticleStartFrame": 1,
+   "AnimatedParticleMaxFrame": 0,
+   "AnimatedParticleFps": 0,
+   "AnimatedTextureType": "$basetexture",
+   "IndividualBrownianStrength": 0,
+   "SharedBrownianStrength": 0,
+   "FlockBrownianStrength": 0
+  },
+  "removed": []
+ },
+ "physics": {
+  "base": "base",
+  "props": {
+   "SelfCollision": false,
+   "Gravity": true,
+   "Collisions": true,
+   "ConstrainSphere": 0,
+   "Pushable": false,
+   "ThinkDelay": 1,
+   "Follow": false,
+   "PushFollow": false,
+   "SecondsToArrive": 0.1,
+   "MaxSpeed": 10000,
+   "MaxAngular": 3600,
+   "MaxSpeedDamp": 1000,
+   "MaxAngularDamp": 1000,
+   "DampFactor": 1,
+   "DampFactorPost": 0,
+   "AngleDampFactorPost": 0,
+   "ConstantVelocity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "BoxScale": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "Box": true,
+   "Radius": 1,
+   "SurfaceProperties": "default",
+   "Preview": false,
+   "Mass": 100,
+   "AddOwnerSpeed": false,
+   "InitialVelocityVector": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "OverrideInitialPosition": false,
+   "InitialVelocityPartUID": ""
+  },
+  "removed": []
+ },
+ "player_config": {
+  "base": "base",
+  "props": {
+   "MuteSounds": false,
+   "AllowOggWhenMuted": false,
+   "HideBullets": false,
+   "HidePhysgunBeam": false,
+   "UseLegacyScale": false,
+   "GrabEarAnimation": true,
+   "BloodColor": "red",
+   "MuteFootsteps": false,
+   "AnimationRate": 1,
+   "FallApartOnDeath": false,
+   "DeathRagdollizeParent": true,
+   "DrawPlayerOnDeath": false,
+   "HideRagdollOnDeath": false
+  },
+  "removed": []
+ },
+ "poseparameter": {
+  "base": "base",
+  "props": {
+   "PoseParameter": "",
+   "Range": 0
+  },
+  "removed": []
+ },
+ "projected_texture": {
+  "base": "base_drawable",
+  "props": {
+   "Shadows": true,
+   "Orthographic": false,
+   "NearZ": 1,
+   "FarZ": 2048,
+   "FOV": 90,
+   "HorizontalFOV": 90,
+   "VerticalFOV": 90,
+   "Texture": "effects/flashlight/hard",
+   "TextureFrame": 0,
+   "Brightness": 8,
+   "Color": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "removed": []
+ },
+ "projectile": {
+  "base": "base_movable",
+  "props": {
+   "Speed": 1,
+   "AddOwnerSpeed": false,
+   "Spread": 0,
+   "NumberProjectiles": 1,
+   "Delay": 0,
+   "Maximum": 0,
+   "IndependentMaximum": false,
+   "RandomAngleVelocity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "LocalAngleVelocity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "Freeze": false,
+   "Mass": 100,
+   "ImpactSounds": true,
+   "SurfaceProperties": "default",
+   "RescalePhysMesh": false,
+   "OverridePhysMesh": false,
+   "FallbackSurfpropModel": "models/props_junk/PopCan01a.mdl",
+   "Damping": 0,
+   "Gravity": true,
+   "Collisions": true,
+   "Sphere": false,
+   "Radius": 1,
+   "Bounce": 0,
+   "Sticky": false,
+   "CollideWithOwner": false,
+   "CollideWithSelf": false,
+   "RemoveOnHide": false,
+   "AimDir": false,
+   "DrawShadow": true,
+   "Physical": false,
+   "DamageRadius": 50,
+   "LifeTime": 5,
+   "RemoveOnCollide": false,
+   "BulletImpact": false,
+   "Damage": 0,
+   "DamageType": "generic",
+   "Attract": 0,
+   "AttractMode": "closest_to_projectile",
+   "AttractRadius": 200,
+   "OutfitPartUID": ""
+  },
+  "removed": []
+ },
+ "proxy": {
+  "base": "base",
+  "props": {
+   "VariableName": "",
+   "RootOwner": false,
+   "MultipleTargetParts": "",
+   "AffectChildren": false,
+   "Expression": "",
+   "Input": "time",
+   "Function": "sin",
+   "Axis": "",
+   "Min": 0,
+   "Max": 1,
+   "Offset": 0,
+   "InputMultiplier": 1,
+   "InputDivider": 1,
+   "Pow": 1,
+   "Additive": false,
+   "PlayerAngles": false,
+   "ZeroEyePitch": false,
+   "ResetVelocitiesOnHide": true,
+   "VelocityRoughness": 10,
+   "PreviewOutput": false,
+   "ExpressionOnHide": "",
+   "Extra1": "",
+   "Extra2": "",
+   "Extra3": "",
+   "Extra4": "",
+   "Extra5": "",
+   "TargetPartUID": "",
+   "OutputTargetPartUID": ""
+  },
+  "removed": []
+ },
+ "script": {
+  "base": "base",
+  "props": {
+   "Code": ""
+  },
+  "removed": []
+ },
+ "shake": {
+  "base": "base_movable",
+  "props": {
+   "Amplitude": 1,
+   "Falloff": false,
+   "Frequency": 1,
+   "Duration": 0.5,
+   "Radius": 100
+  },
+  "removed": []
+ },
+ "sound2": {
+  "base": "base_movable",
+  "props": {
+   "Path": "",
+   "AllPaths": "",
+   "Volume": 1,
+   "Pitch": 1,
+   "Radius": 1500,
+   "Doppler": false,
+   "MinPitch": 0,
+   "MaxPitch": 0,
+   "PlayCount": 1,
+   "Sequential": false,
+   "SequentialStep": 1,
+   "StopOnHide": false,
+   "PauseOnHide": false,
+   "Overlapping": false,
+   "PlayOnFootstep": false,
+   "FilterType": 0,
+   "FilterFraction": 1,
+   "Echo": false,
+   "EchoDelay": 0.5,
+   "EchoFeedback": 0.75,
+   "PitchLFOAmount": 0,
+   "PitchLFOTime": 0,
+   "VolumeLFOAmount": 0,
+   "VolumeLFOTime": 0
+  },
+  "removed": []
+ },
+ "sprite": {
+  "base": "base_drawable",
+  "props": {
+   "IgnoreZ": false,
+   "SizeX": 1,
+   "SizeY": 1,
+   "SpritePath": "sprites/grip",
+   "Size": 1,
+   "Color": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Alpha": 1,
+   "Translucent": true,
+   "EnableDynamics": false,
+   "SizeFadeSpeed": 1,
+   "SizeFadePower": 1,
+   "DynamicsStartSizeMultiplier": 1,
+   "DynamicsEndSizeMultiplier": 1,
+   "AlphaFadeSpeed": 1,
+   "AlphaFadePower": 1,
+   "DynamicsStartAlpha": 1,
+   "DynamicsEndAlpha": 1
+  },
+  "removed": []
+ },
+ "submaterial": {
+  "base": "base",
+  "props": {
+   "Material": "",
+   "SubMaterialId": 1,
+   "UnlitMaterialHack": false,
+   "RootOwner": false
+  },
+  "removed": []
+ },
+ "sunbeams": {
+  "base": "base_drawable",
+  "props": {
+   "Darken": 0,
+   "Multiplier": 0.25,
+   "Size": 0.1,
+   "DrawDistance": 1000,
+   "Translucent": true,
+   "EnableDynamics": false,
+   "EndMultiplier": 1,
+   "StartMultiplier": 1,
+   "MultiplierFadePower": 1,
+   "MultiplierFadeSpeed": 1,
+   "MultiplierAttack": 0,
+   "EndDarken": 0,
+   "StartDarken": 0,
+   "DarkenFadeSpeed": 1,
+   "DarkenFadePower": 1
+  },
+  "removed": []
+ },
+ "text": {
+  "base": "base_drawable",
+  "props": {
+   "Text": "",
+   "Font": "DermaDefault",
+   "Size": 1,
+   "DrawMode": "DrawTextOutlined",
+   "HorizontalTextAlign": {
+    "raw": "TEXT_ALIGN_CENTER"
+   },
+   "VerticalTextAlign": {
+    "raw": "TEXT_ALIGN_CENTER"
+   },
+   "ConcatenateTextAndOverrideValue": false,
+   "TextPosition": "Prefix",
+   "SentenceNewlines": false,
+   "Truncate": false,
+   "TruncateWords": false,
+   "TruncateSkipCharacters": "",
+   "TruncatePosition": 0,
+   "VectorBrackets": "()",
+   "VectorSeparator": ",",
+   "UseBracketsOnNonVectors": false,
+   "ForceNewline": false,
+   "LineSpacing": 1,
+   "Wrap": false,
+   "WrapWidth": 500,
+   "WrapByWords": false,
+   "TextOverride": "Text",
+   "DynamicTextValue": 0,
+   "DynamicVectorValue": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "RoundingPosition": 2,
+   "ForceAdditive": false,
+   "Outline": 0,
+   "Color": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "Alpha": 1,
+   "OutlineColor": {
+    "Vector": [
+     255,
+     255,
+     255
+    ]
+   },
+   "OutlineAlpha": 1,
+   "Translucent": true,
+   "CreateCustomFont": false,
+   "CustomFont": "DermaDefault",
+   "FontSize": 13,
+   "FontWeight": 500,
+   "FontBlurSize": 0,
+   "FontScanLines": 0,
+   "FontAntialias": true,
+   "FontUnderline": false,
+   "FontItalic": false,
+   "FontStrikeout": false,
+   "FontSymbol": false,
+   "FontRotary": false,
+   "Shadow": false,
+   "FontAdditive": false,
+   "FontOutline": false
+  },
+  "removed": []
+ },
+ "trail2": {
+  "base": "base_drawable",
+  "props": {
+   "Duration": 1,
+   "Spacing": 0.25,
+   "StartSize": 3,
+   "EndSize": 0,
+   "StartColor": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "EndColor": {
+    "Vector": [
+     1,
+     1,
+     1
+    ]
+   },
+   "StartAlpha": 1,
+   "EndAlpha": 0,
+   "Stretch": 1,
+   "CenterAttraction": 0,
+   "Gravity": {
+    "Vector": [
+     0,
+     0,
+     0
+    ]
+   },
+   "IgnoreZ": false,
+   "TrailPath": "trails/laser",
+   "Translucent": true
+  },
+  "removed": []
+ },
+ "entity2": {
+  "base": "model2",
+  "props": {
+   "NoDraw": false,
+   "DrawShadow": true,
+   "InverseKinematics": true,
+   "StandingHullHeight": 72,
+   "CrouchingHullHeight": 36,
+   "HullWidth": 32,
+   "OverrideStepAndView": false,
+   "OverrideStepSize": false,
+   "StepSize": 18,
+   "OverrideView": false,
+   "StandingViewOffset": 64,
+   "CrouchingViewOffset": 28
+  },
+  "removed": [
+   "BoneMerge",
+   "Bone",
+   "EyeAngles",
+   "AimPartName",
+   "ForceObjUrl"
+  ]
+ },
+ "weapon": {
+  "base": "model2",
+  "props": {
+   "OverridePosition": false,
+   "Class": "all",
+   "NoDraw": false,
+   "DrawShadow": true,
+   "Bone": "right hand"
+  },
+  "removed": [
+   "Model",
+   "ForceObjUrl"
+  ]
+ }
+}

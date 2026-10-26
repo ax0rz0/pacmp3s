@@ -39,7 +39,8 @@ def world_meshes(sc, head_kw=None, with_hair=True):
     return out, ctx, tie
 
 
-def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=None, extra_head_parts=None, hands=True, with_hair=True, file=None, title=None, null_slots=(), head_ctx=None):
+def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=None, extra_head_parts=None, hands=True, with_hair=True, file=None, title=None, null_slots=(), head_ctx=None,
+          extra_materials=()):
     ap.reset_uids()
     sc = asn.Scene()
     rig = sc.rig
@@ -76,6 +77,7 @@ def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=
                       rimlightboost=0.35),
         ap.material3d('nr glove', 'models/debug/debugwhite', color=(0.05, 0.05, 0.06), halflambert=True, phong=True, phongboost=2.6, phongexponent=38, phongfresnelranges=(0.1, 0.6, 1.0)),
     ]
+    mats = mats + list(extra_materials)
     M = ap.model
     theme = lambda scale, pulse: ac.theme_expr('nr_theme', ac.PALETTE_NEON, scale, pulse)
     hair_expr = ac.theme_expr('nr_hair', ac.PALETTE_HAIR, 1.0, '1')
@@ -156,7 +158,7 @@ def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=
             pw_ = ac.tip_position(rig, pre + '_' + parent, pre + '_' + tip, 0.45)
             trails.append(ap.trail('%s %s trail' % (side, nm), ap.bone_name(pre + '_' + tip), tuple(ap.local_point(rig, pre + '_' + tip, pw_)), path='trails/laser',
                                    start_color=(255, 40, 140), end_color=(255, 40, 140), start_size=0.55, end_size=0.0, start_alpha=0.85, end_alpha=0.0, duration=0.5, spacing=0.3, stretch=1.0))
-    parts.append(ap.group('fingertip trails', [ap.proxy('nr_theme', 'StartColor', ac.theme_expr('nr_theme', ac.PALETTE_NEON, 255.0, '1'), affect_children=True, children=trails)]))
+    parts.append(ap.group('fingertip trails', [ap.proxy('nr_theme', 'StartColor', ac.theme_expr('nr_theme', ac.PALETTE_NEON, 1.0, '1'), affect_children=True, children=trails)]))
 
     title = title or ('Ethics Assistant - Netrunner' if variant == 'normal' else 'Ethics Assistant - Netrunner (custom head)')
     root = ap.group(title, parts, notes=ap.WM)

@@ -173,6 +173,18 @@ def command(name, command_name, uid=None, on_wear=False, extra=None):
     return part(d)
 
 
+def bone3(name, bone='pelvis', pos=None, ang_=None, children=(), uid=None, extra=None):
+    """bone3 (the editor's 'bone'): moves / turns a bone and everything below it; Position rides the bone's own axes (pelvis: X left, Y up, Z forward)"""
+    d = _std('bone3', name, 'bone', uid, {'Bone': bone})
+    if pos is not None:
+        d['Position'] = vec(*pos)
+    if ang_ is not None:
+        d['Angles'] = ang(*ang_)
+    if extra:
+        d.update(extra)
+    return part(d, list(children))
+
+
 def jiggle(name, bone='head', children=(), strain=0.5, speed=1.0, pos=None, ang_=None, uid=None, extra=None):
     d = _std('jiggle', name, 'jiggle', uid, {'Bone': bone, 'Strain': float(strain), 'Speed': float(speed)})
     if pos is not None:
@@ -186,7 +198,10 @@ def jiggle(name, bone='head', children=(), strain=0.5, speed=1.0, pos=None, ang_
 
 def trail(name, bone, pos, path='trails/laser', start_color=(255, 255, 255), end_color=(255, 255, 255), start_size=1.0, end_size=0.0, start_alpha=1.0, end_alpha=0.0, duration=1.0, spacing=0.25,
           stretch=1.0, uid=None, extra=None, children=()):
-    d = _std('trail2', name, 'trail', uid, {'Bone': bone, 'Position': vec(*pos), 'TrailPath': path, 'StartColor': vec(*start_color), 'EndColor': vec(*end_color), 'StartSize': float(start_size),
+    """trail2: colours are given 0..255 here but trail2 has ProperColorRange (0..1, multiplied by 255 when drawn), so they are written divided by 255.
+    A proxy driving StartColor / EndColor of a trail must output 0..1 as well (theme_expr scale 1.0)"""
+    d = _std('trail2', name, 'trail', uid, {'Bone': bone, 'Position': vec(*pos), 'TrailPath': path, 'StartColor': vec(*[c / 255.0 for c in start_color]),
+                                           'EndColor': vec(*[c / 255.0 for c in end_color]), 'StartSize': float(start_size),
                                            'EndSize': float(end_size), 'StartAlpha': float(start_alpha), 'EndAlpha': float(end_alpha), 'Duration': float(duration), 'Spacing': float(spacing),
                                            'Stretch': float(stretch)})
     if extra:

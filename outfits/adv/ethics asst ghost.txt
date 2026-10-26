@@ -533,18 +533,6 @@
 						["VariableName"] = "Color",
 					},
 				},
-				[2] = {
-					["children"] = {
-					},
-					["self"] = {
-						["ClassName"] = "proxy",
-						["Expression"] = "0, 0, 3.4 + sin(time()*1.4)*0.9",
-						["Hide"] = false,
-						["Name"] = "gh_hover",
-						["UniqueID"] = "0fb25205278ed8c7bd8a96bb19bda842ee6315e0f2db04e920405caaa9aa0c3f",
-						["VariableName"] = "PositionOffset",
-					},
-				},
 			},
 			["self"] = {
 				["AimPartUID"] = "",
@@ -589,6 +577,29 @@
 			},
 		},
 		[3] = {
+			["children"] = {
+				[1] = {
+					["children"] = {
+					},
+					["self"] = {
+						["ClassName"] = "proxy",
+						["Expression"] = "0, 3.4 + sin(time()*1.4)*0.9, 0",
+						["Hide"] = false,
+						["Name"] = "gh_hover",
+						["UniqueID"] = "0fb25205278ed8c7bd8a96bb19bda842ee6315e0f2db04e920405caaa9aa0c3f",
+						["VariableName"] = "Position",
+					},
+				},
+			},
+			["self"] = {
+				["Bone"] = "pelvis",
+				["ClassName"] = "bone3",
+				["Hide"] = false,
+				["Name"] = "hover",
+				["UniqueID"] = "f7f66a9e2621495eae241f15aa3796e922668cdd7b9376d3d1ffd04d5a7a0c3f",
+			},
+		},
+		[4] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -718,7 +729,7 @@
 				["UniqueID"] = "0550b0bc5b78a1a38e21c1ab5f3acdb0f01f09fd35ebd47231531a3cbb8a0c3f",
 			},
 		},
-		[4] = {
+		[5] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -847,7 +858,7 @@
 				["UniqueID"] = "81053931451350530a46a472de3fd4ad3593431d42fb828692dff083e75a0c3f",
 			},
 		},
-		[5] = {
+		[6] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -905,7 +916,7 @@
 				["UniqueID"] = "edddea8b2738c0dfa1d0e3443e939a46ca98a2efaa94b4d7d74e06706eaa0c3f",
 			},
 		},
-		[6] = {
+		[7] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -1007,7 +1018,7 @@
 				["UniqueID"] = "527cc679ec3a737d07f92914491c8cf47400632ed9fa38d9b9a277f7111a0c3f",
 			},
 		},
-		[7] = {
+		[8] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -1189,7 +1200,7 @@
 				["UniqueID"] = "274e5bdc06371425bfb8f827cada10cf5839a443a0325044aba125bcbf9a0c3f",
 			},
 		},
-		[8] = {
+		[9] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
@@ -1201,14 +1212,14 @@
 								["ClassName"] = "trail2",
 								["Duration"] = 0.9,
 								["EndAlpha"] = 0,
-								["EndColor"] = Vector(110, 215, 255),
+								["EndColor"] = Vector(0.43137254901961, 0.84313725490196, 1),
 								["EndSize"] = 0,
 								["Hide"] = false,
 								["Name"] = "left hand trail",
 								["Position"] = Vector(0.44778977862328, 0.044476006923258, -0.0024845863049905),
 								["Spacing"] = 0.3,
 								["StartAlpha"] = 0.8,
-								["StartColor"] = Vector(110, 215, 255),
+								["StartColor"] = Vector(0.43137254901961, 0.84313725490196, 1),
 								["StartSize"] = 1.1,
 								["Stretch"] = 1,
 								["TrailPath"] = "trails/plasma",
@@ -1223,14 +1234,14 @@
 								["ClassName"] = "trail2",
 								["Duration"] = 0.9,
 								["EndAlpha"] = 0,
-								["EndColor"] = Vector(110, 215, 255),
+								["EndColor"] = Vector(0.43137254901961, 0.84313725490196, 1),
 								["EndSize"] = 0,
 								["Hide"] = false,
 								["Name"] = "right hand trail",
 								["Position"] = Vector(0.44778969286942, 0.044476819544958, 0.0024844660408351),
 								["Spacing"] = 0.3,
 								["StartAlpha"] = 0.8,
-								["StartColor"] = Vector(110, 215, 255),
+								["StartColor"] = Vector(0.43137254901961, 0.84313725490196, 1),
 								["StartSize"] = 1.1,
 								["Stretch"] = 1,
 								["TrailPath"] = "trails/plasma",
@@ -1241,7 +1252,7 @@
 					["self"] = {
 						["AffectChildren"] = true,
 						["ClassName"] = "proxy",
-						["Expression"] = "(max(1-abs(command(\"gh_theme\")-0),0)*114.750 + max(1-abs(command(\"gh_theme\")-1),0)*168.300 + max(1-abs(command(\"gh_theme\")-2),0)*89.250 + max(1-abs(command(\"gh_theme\")-3),0)*255.000)*1, (max(1-abs(command(\"gh_theme\")-0),0)*216.750 + max(1-abs(command(\"gh_theme\")-1),0)*107.100 + max(1-abs(command(\"gh_theme\")-2),0)*255.000 + max(1-abs(command(\"gh_theme\")-3),0)*91.800)*1, (max(1-abs(command(\"gh_theme\")-0),0)*255.000 + max(1-abs(command(\"gh_theme\")-1),0)*255.000 + max(1-abs(command(\"gh_theme\")-2),0)*158.100 + max(1-abs(command(\"gh_theme\")-3),0)*66.300)*1",
+						["Expression"] = "(max(1-abs(command(\"gh_theme\")-0),0)*0.450 + max(1-abs(command(\"gh_theme\")-1),0)*0.660 + max(1-abs(command(\"gh_theme\")-2),0)*0.350 + max(1-abs(command(\"gh_theme\")-3),0)*1.000)*1, (max(1-abs(command(\"gh_theme\")-0),0)*0.850 + max(1-abs(command(\"gh_theme\")-1),0)*0.420 + max(1-abs(command(\"gh_theme\")-2),0)*1.000 + max(1-abs(command(\"gh_theme\")-3),0)*0.360)*1, (max(1-abs(command(\"gh_theme\")-0),0)*1.000 + max(1-abs(command(\"gh_theme\")-1),0)*1.000 + max(1-abs(command(\"gh_theme\")-2),0)*0.620 + max(1-abs(command(\"gh_theme\")-3),0)*0.260)*1",
 						["Hide"] = false,
 						["Name"] = "gh_theme",
 						["UniqueID"] = "3300a5c2ef136294faafde3cebb18efef262fdc7e4077af040a9076df35a0c3f",
@@ -1262,7 +1273,7 @@
 				["UniqueID"] = "507fda5d9a017bc042e74a0f171b250bf080b40de21a075d87e16299cffa0c3f",
 			},
 		},
-		[9] = {
+		[10] = {
 			["children"] = {
 				[1] = {
 					["children"] = {
