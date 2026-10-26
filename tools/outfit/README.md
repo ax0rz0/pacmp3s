@@ -61,3 +61,27 @@ Previews (point-splat renderer, no game needed): `run_tech_preview.py orig|slots
 ## Not verified in game
 
 The material_3d + url PNG route on the server (it is the one `mf doom thaum.txt` uses), the bodygroup choices through `ModelModifiers`, the material slot numbers on the actual job models (the Ethics Assistant model is assumed to be `jericho/citizens/female_04`), bone friendly names, accessory fit in animation poses, glow sprites, and which of the tech expert's two entity2 parts draws.
+
+## Advanced Ethics Assistant outfits (`outfits/adv/`, `obj/adv/`)
+
+Six own-geometry outfits for `jericho/citizens/female_04`, made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
+"heavy above" values of the PAC outfit cost window (checked by `adv_parts.validate`: URL models <= 16, model parts <= 60, proxies, particle emitters <= 4, no URL textures).
+
+| outfit | made by | what it is | console |
+|---|---|---|---|
+| `ethics asst cyber oni.txt` | `make_adv_oni.py` | robotic oni mask: hard-surface plates on a black under-layer, glowing visor slits, hinged jaw (follows the voice meter), two short swept-back horns, ear cups, hoses | `pac_proxy oni_theme 0-3` accent colour, `pac_proxy oni_jaw 0-1` open the jaw |
+| `ethics asst netrunner.txt` | `make_adv_net.py` | respirator face cover with hex vents + filters, right-eye cyber implant, headset, silver hair with a neon-tipped swinging ponytail (jiggle), black gloves + vambraces, fingertip trails | `nr_theme 0-3`, `nr_hair 0-3` |
+| `ethics asst netrunner custom head.txt` | `make_adv_net_custom.py` | the same without the hair, on a **donor head**: Song So Mi (Cyberpunk 2077 Phantom Liberty, workshop 3283215678) bone-merged onto the head bone, the Ethics Assistant's own head slots nulled, mask / implant / headset re-fitted to her face (`adv_panels.WarpSurf`) | `nr_theme 0-3` |
+| `ethics asst ghost.txt` | `make_adv_ghost.py` | spectral archivist: additive translucent body that hovers, porcelain veil mask, hood + veil strips, glowing spine / ribs / core with gyro rings, ragged shroud, chains (cloth and chains sway through jiggle parts), plasma trails, soul motes | `gh_theme 0-3` |
+| `ethics asst protocol unit.txt` | `make_adv_cyborg.py` | cyborg: left half of the face is a chrome endoskeleton (lens eye, steel teeth, piston), neck collar, heavy left arm (pauldron, elbow ball, gauntlet), back reactor with steaming vents | `cb_theme 0-3` |
+| `ethics asst neon seraph.txt` | `make_adv_seraph.py` | cyber angel: data-wings that breathe, sweep back with running speed and flap / spread on demand, translucent visor, shoulder fins, hologram ring on the left forearm, four orbs circling the waist, wing-tip trails | `sr_theme 0-3`, `sr_open 0-1`, `sr_flap 0-1` |
+
+Accent colours are blended by a proxy named like the console command (the old pac build reads `command()` from the proxy's own name, so the names matter).
+
+**Head donor note:** `pac_proxy` swaps are free, but the custom-head outfit hides the player's own head (material nulling) and bone-merges `models/cyberpunk2077rex/songsomirex/song_so_mi_pm.mdl`; other players only see
+it when that addon is in the server's collection, otherwise they see no head. The normal-head file has no such dependency.
+
+Tools: `adv_geom.py` (loft / spike / solidify / Cyl / Radial, `write_obj_smooth` with shared normals and no degenerate faces), `adv_panels.py` (raised plates draped on a head / limb surface, ribbons, bolts, `WarpSurf`),
+`adv_parts.py` (part builders + the validator), `donor_tools.py` (skins another playermodel into the Ethics Assistant's frame the way BoneMerge does), `ax_render.py` (previews through the ax3d engine,
+optional), `verify_adv.py` (outfit / OBJ checks), `steam_details.py` (Workshop file details + thumbnails), `wait_assets_live_adv.py`. Run a builder, then `python verify_adv.py`; publish like the BNA outfits
+(copy `stage_adv/obj/adv/*` to `obj/adv/`, `stage_adv/outfits/*.txt` to `outfits/adv/`, push, `python wait_assets_live_adv.py`, then copy the txt into `garrysmod/data/pac3`).

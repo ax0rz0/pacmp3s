@@ -3,3 +3,6 @@ stage_bna/
 tech/
 __pycache__/
 *.pyc
+stage_adv/
+donor/
+adv/
