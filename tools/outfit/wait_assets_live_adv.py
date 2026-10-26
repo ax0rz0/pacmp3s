@@ -11,6 +11,9 @@ stage = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.pa
 minutes = float(sys.argv[2]) if len(sys.argv) > 2 else 10
 d = os.path.join(stage, 'obj', 'adv')
 urls = {RAW + 'obj/adv/' + fn: os.path.getsize(os.path.join(d, fn)) for fn in os.listdir(d) if fn.endswith('.obj')}
+td = os.path.join(stage, 'tex', 'adv')
+if os.path.isdir(td):
+    urls.update({RAW + 'tex/adv/' + fn: os.path.getsize(os.path.join(td, fn)) for fn in os.listdir(td)})
 print('watching %d files' % len(urls))
 t0 = time.time()
 while True:

@@ -392,6 +392,38 @@ def fetch_obj(url, notes):
     return o, status
 
 
+_tex_cache = {}
+STAGE_TEX = os.path.join(HERE, 'stage_adv', 'tex', 'adv')
+
+
+def fetch_tex(url, notes):
+    """texture url -> path relative to the ax project (png, rgba); PV_LOCAL=1 reads unpushed files from stage_adv/tex/adv"""
+    if url in _tex_cache:
+        return _tex_cache[url]
+    fn = url.rsplit('/', 1)[-1]
+    data = None
+    if os.environ.get('PV_LOCAL') and os.path.exists(os.path.join(STAGE_TEX, fn)):
+        data = open(os.path.join(STAGE_TEX, fn), 'rb').read()
+    else:
+        os.makedirs(CACHE, exist_ok=True)
+        path = os.path.join(CACHE, fn)
+        if not os.path.exists(path):
+            req = urllib.request.Request(url, headers={'User-Agent': 'pacview'})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                open(path, 'wb').write(r.read())
+        data = open(path, 'rb').read()
+        loc = os.path.join(STAGE_TEX, fn)
+        if os.path.exists(loc) and open(loc, 'rb').read() != data:
+            notes.append('LIVE texture %s DIFFERS from the staged file' % fn)
+    import io
+    im = Image.open(io.BytesIO(data)).convert('RGBA')
+    rel = 'tex/pvtex_%s.png' % os.path.splitext(fn)[0]
+    os.makedirs(os.path.join(PROJECT, 'tex'), exist_ok=True)
+    im.save(os.path.join(PROJECT, rel))
+    _tex_cache[url] = rel
+    return rel
+
+
 # ------------------------------------------------------------------------------------------------------------------------------ material mapping (Source shader params -> ax3d PBR, approximate)
 def phong_rough(exp):
     return float(np.clip(0.95 - 0.115 * math.log2(max(float(exp), 1.0)), 0.15, 0.9))
@@ -418,6 +450,12 @@ def style_of(part, mats, ent_color=(1, 1, 1), ent_alpha=1.0):
         if mp.get('additive'):
             st['additive'] = True
         alpha *= float(mp.get('alpha', 1.0))
+        bt = mp.get('basetexture', '')
+        if isinstance(bt, str) and bt.startswith('http'):
+            st['tex_url'] = bt
+            st['alphatest'] = bool(mp.get('alphatest'))
+            st['cutoff'] = float(mp.get('alphatestreference', 0.5))
+            st['translucent'] = bool(mp.get('translucent'))
     if part is not None and part.get('NoLighting'):
         st['glow'] = True
     if part is not None and part.get('NoCulling'):
@@ -646,6 +684,17 @@ class Build:
             it['glow'] = True
             it['emissive'] = tuple(float(c) / 255.0 * 0.85 for c in st['color'])
             it['alpha'] = min(st['alpha'] if st['alpha'] is not None else 1.0, 0.6)
+        if st.get('tex_url'):
+            try:
+                it['tex'] = fetch_tex(st['tex_url'], self.log)
+            except Exception as e:               # noqa
+                self.log.append('ERROR texture %s: %s' % (st['tex_url'], e))
+            if st.get('alphatest'):
+                it['mask'] = True
+                it['cutoff'] = st.get('cutoff', 0.5)
+            elif st.get('translucent'):
+                it['blend'] = True
+            it['color'] = (255, 255, 255)
         return it
 
     def write_obj(self, rel, nm, Vw, Nw, obj, flip):
@@ -935,8 +984,10 @@ def patch_scene_text():
             if it.get('glow'):
                 base = '#000000%02X' % int(round(255 * it['alpha']))
             f.append('basecolour=%s' % base)
+        if it.get('blend') and it.get('tex'):
+            f.append('alphamode=Blend')
         if it.get('mask'):
-            f.append('alphamode=Mask alphacutoff=0.5')
+            f.append('alphamode=Mask alphacutoff=%.2f' % it.get('cutoff', 0.5))
         if it.get('double'):
             f.append('doublesided=true')
         return 'Material ' + ' '.join(f)

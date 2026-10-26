@@ -64,7 +64,7 @@ The material_3d + url PNG route on the server (it is the one `mf doom thaum.txt`
 
 ## Advanced Ethics Assistant outfits (`outfits/adv/`, `obj/adv/`)
 
-Eight outfits for `jericho/citizens/female_04` (six with own geometry, two built from bone-merged playermodels), made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
+Eight outfits for `jericho/citizens/female_04` (six with own geometry; the head-only one and the researcher are built from the custom head package, the researcher also bone-merges a job model's coat), made with the `adv_*` modules. No `light`, `halo`, `projected_texture`, `shake` or `sunbeams` parts anywhere; every outfit stays under the
 "heavy above" values of the PAC outfit cost window (checked by `adv_parts.validate`: URL models <= 16, model parts <= 60, proxies, particle emitters <= 4, no URL textures).
 
 | outfit | made by | what it is | console |
@@ -72,20 +72,22 @@ Eight outfits for `jericho/citizens/female_04` (six with own geometry, two built
 | `ethics asst cyber oni.txt` | `make_adv_oni.py` | robotic oni mask: hard-surface plates on a black under-layer, glowing visor slits, hinged jaw (follows the voice meter), two short swept-back horns, ear cups, hoses | `pac_proxy oni_theme 0-3` accent colour, `pac_proxy oni_jaw 0-1` open the jaw |
 | `ethics asst netrunner.txt` | `make_adv_net.py` | respirator face cover with hex vents + filters, right-eye cyber implant, headset, silver hair with a neon-tipped swinging ponytail (jiggle), black gloves + vambraces, fingertip trails | `nr_theme 0-3`, `nr_hair 0-3` |
 | `ethics asst netrunner custom head.txt` | `make_adv_net_custom.py` | the same without the hair, on a **donor head** (see below): mask / implant / headset re-fitted to her face (`adv_panels.WarpSurf`) | `nr_theme 0-3` |
-| `ethics asst custom head.txt` | `make_adv_head_swap.py` | nothing but the donor head package: an entity2 that hides the player's head slots + the `custom head` group | - |
-| `ethics asst researcher.txt` | `make_adv_researcher.py` | the small blend-in one: a white lab coat over a dark shirt and tie (the Armacham scientist model `models/armacham/scientists/scientists_1.mdl` of the SCP playermodel pack, bone-merged, only its `suit_shirt` / `body_scientist` / `tiesandties` slots drawn), the player's own suit and head hidden, plus the donor head package | - |
+| `ethics asst custom head.txt` | `make_adv_head_swap.py` | nothing but the custom head package: an entity2 that hides the player's head slots + the `custom head` group | - |
+| `ethics asst researcher.txt` | `make_adv_researcher.py` | the small blend-in one: a white lab coat over a dark shirt and tie (the Armacham scientist model `models/armacham/scientists/scientists_1.mdl` of the SCP playermodel pack, bone-merged, only its `suit_shirt` / `body_scientist` / `tiesandties` slots drawn), the player's own suit and head hidden, plus the custom head package | - |
 | `ethics asst ghost.txt` | `make_adv_ghost.py` | spectral archivist: additive translucent body that hovers (a `bone3` on the pelvis: an entity2 offset is a draw-time matrix, the bones every attached part reads do not follow it), porcelain veil mask, hood + veil strips, glowing spine / ribs / core with gyro rings, ragged shroud, chains (cloth and chains sway through jiggle parts), plasma trails, soul motes | `gh_theme 0-3` |
 | `ethics asst protocol unit.txt` | `make_adv_cyborg.py` | cyborg: left half of the face is a chrome endoskeleton (lens eye, steel teeth, piston), neck collar, heavy left arm (pauldron, elbow ball, gauntlet), back reactor with steaming vents | `cb_theme 0-3` |
 | `ethics asst neon seraph.txt` | `make_adv_seraph.py` | cyber angel: data-wings that breathe, sweep back with running speed and flap / spread on demand, translucent visor, shoulder fins, hologram ring on the left forearm, four orbs circling the waist, wing-tip trails | `sr_theme 0-3`, `sr_open 0-1`, `sr_flap 0-1` |
 
 Accent colours are blended by a proxy named like the console command (the old pac build reads `command()` from the proxy's own name, so the names matter).
 
-**Head donor package** (`adv_head_pkg.py`, Song So Mi, Cyberpunk 2077 Phantom Liberty, workshop 3283215678): the outfit's entity2 hides the player's own head slots (1 chau_facemap = head AND neck skin, 2 / 3 eyeballs,
-4 mouth). `hd_neck.obj` is a skin coloured neck column on the neck bone (`adv_neck.py`; the donor's own neck is a wide flat flange, the player's goes with her head slot), the donor
-`models/cyberpunk2077rex/songsomirex/song_so_mi_pm.mdl` is bone-merged on the head bone with every non-head slot null and a `clip2` plane under the skull that rises towards the nape, and a second bone-merged copy
-draws only `Scalp` + `Hair`, unclipped, so the bob hangs to its natural length. The donor's `$color2` tints (hair 2.5, lipstick a dark rose) are applied by the game. Other players only see the head when that
-addon is in the server's collection, otherwise they see no head. The normal-head files have no such dependency. `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single
-entity2 by plain text edit (that outfit's other bytes stay identical) and writes the result as a new file.
+**Custom head package** (`adv_head_pkg.py` + `adv_head_obj.py` + `adv_neck.py`, Song So Mi from Cyberpunk 2077: Phantom Liberty, Workshop 3283215678): nothing needs the Workshop addon, pac downloads the head itself
+from this repo. The donor's compiled model is only read (never run), skinned into the Ethics Assistant's bind frame the way BoneMerge would, moved into the head bone's frame and written as static meshes
+(`obj/adv/hd_*.obj`, every file under 1 MiB) with their textures (`tex/adv/hd_*.png|jpg`, the VMT `$color2` tints baked in): `hd_head.obj` (skin cut under the skull + the eyeballs, texture
+`hd_head.jpg` 2048x1024), `hd_extras.obj` (lipstick, eye makeup, brows, cyberware lines, lashes and the nape port, one translucent atlas), `hd_hair_a|b|c.obj` (alpha tested hair cards, `hd_hair.png` palette
+png), `hd_neck_b.obj` (a skin neck on the neck bone whose uvs borrow a patch of the head texture; the donor has no neck below the jaw and the player's own neck goes with her head slot).
+Materials are `material_3d` parts with url basetextures used by name (`hd skin`, `hd extras`, `hd hair`). The outfit's entity2 hides the player's head slots (1 chau_facemap = head AND neck, 2 / 3 eyeballs,
+4 mouth). The head is rigid on the head bone (no lip sync / blinking). `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single entity2 by plain text edit (that outfit's
+other bytes stay identical) and writes the result as a new file.
 
 **Colour ranges:** `trail2` `StartColor` / `EndColor` are 0..1 (`ProperColorRange`, multiplied by 255 when drawn), `sprite` and `particles` colours are 0..255, `model2` / `material_3d` colours are 0..1.
 `adv_parts.trail` takes 0..255 and writes 0..1; a proxy driving a trail colour uses `theme_expr(..., 1.0)`.

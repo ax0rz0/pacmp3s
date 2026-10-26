@@ -286,7 +286,7 @@ def _is_uid(s):
     return bool(re.fullmatch(r'[0-9a-f]{64}', s)) and s.endswith('a0c3f')
 
 
-def validate(parts, name, strict_catalog=True, verbose=True):
+def validate(parts, name, strict_catalog=True, verbose=True, allow_heavy=()):
     """-> (errors, warnings, counts). parts: the {1: root, ...} dict (after remap_uids)"""
     errors, warns = [], []
     counts = {k: 0 for k in LIMITS}
@@ -373,7 +373,7 @@ def validate(parts, name, strict_catalog=True, verbose=True):
         if limit is not None and n > limit:
             errors.append('%s: %d is over the limit %d' % (key, n, limit))
         elif heavy is not None and n > heavy:
-            errors.append('%s: %d is over the heavy threshold %d' % (key, n, heavy))
+            (warns if key in allow_heavy else errors).append('%s: %d is over the heavy threshold %d (hard limit %s)' % (key, n, heavy, limit))
     if verbose:
         print('--- %s: %d errors, %d warnings' % (name, len(errors), len(warns)))
         for e in errors:

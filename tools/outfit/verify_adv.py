@@ -18,6 +18,8 @@ import pac_write as pw
 stage = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stage_adv')
 out_dir = os.path.join(stage, 'outfits')
 obj_dir = os.path.join(stage, 'obj', 'adv')
+tex_dir = os.path.join(stage, 'tex', 'adv')
+used_tex = set()
 errors = []
 
 
@@ -66,6 +68,17 @@ for fn in sorted(os.listdir(out_dir)):
         if cls == 'proxy':
             for c in re.findall(r'command\("([^"]+)"\)', s.get('Expression', '')):
                 cmds.add(c)
+        if cls == 'material_3d':
+            bt = s.get('basetexture', '')
+            if bt.startswith('http'):
+                base = bt.rsplit('/', 1)[-1]
+                used_tex.add(base)
+                if not bt.startswith(ap.REPO_RAW + 'tex/adv/'):
+                    err('%s: unexpected texture url %s' % (fn, bt))
+                elif not os.path.exists(os.path.join(tex_dir, base)):
+                    err('%s: texture url %s has no staged file' % (fn, base))
+                elif os.path.getsize(os.path.join(tex_dir, base)) > 1024 * 1024:
+                    err('%s: texture %s is over 1 MB' % (fn, base))
     print('%-42s %6d bytes  parts %3d  commands %s' % (fn, len(raw), sum(classes.values()), sorted(cmds)))
 
 print('\nOBJ files: %d staged, %d referenced' % (len(os.listdir(obj_dir)), len(used_files)))
@@ -96,5 +109,18 @@ for fn in sorted(os.listdir(obj_dir)):
     ext = np.ptp(V, axis=0)
     if ext.max() > 120:
         err('%s: extent %s' % (fn, np.round(ext, 1)))
+    if os.path.getsize(os.path.join(obj_dir, fn)) > 1024 * 1024:
+        msg = '%s: %d bytes (over 1 MiB; a player with pac_webcontent_limit 1024 would not download it)' % (fn, os.path.getsize(os.path.join(obj_dir, fn)))
+        if fn.startswith('hd_'):
+            err(msg)
+        else:
+            print('  note:', msg)
+    if fn.startswith('hd_') and len(VT) and (np.array(VT).min() < 0 or np.array(VT).max() >= 1.0):          # the textured head assets; the other obj parts are flat coloured, their uvs are unused
+        err('%s: texture coordinates outside [0, 1) (pac wraps them per vertex)' % fn)
+
+if os.path.isdir(tex_dir):
+    print('\ntextures: %d staged, %d referenced' % (len(os.listdir(tex_dir)), len(used_tex)))
+    for fn in sorted(os.listdir(tex_dir)):
+        print('  %-18s %8d bytes%s' % (fn, os.path.getsize(os.path.join(tex_dir, fn)), '' if fn in used_tex else '   (not referenced by any outfit)'))
 print('\n%d errors' % len(errors))
 sys.exit(1 if errors else 0)

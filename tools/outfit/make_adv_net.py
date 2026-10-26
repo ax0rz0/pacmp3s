@@ -163,7 +163,7 @@ def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=
     title = title or ('Ethics Assistant - Netrunner' if variant == 'normal' else 'Ethics Assistant - Netrunner (custom head)')
     root = ap.group(title, parts, notes=ap.WM)
     text, tree = ap.finalize(root, 'ethics_adv_net_' + variant)
-    errs, warns, counts = ap.validate(tree, title)
+    errs, warns, counts = ap.validate(tree, title, allow_heavy=('URL models',) if variant == 'custom' else ())          # the donor head package adds 6 url models to the 12 of the netrunner (hard limit 32)
     errs += ap.check_text(text)
     file = file or ('ethics asst netrunner' if variant == 'normal' else 'ethics asst netrunner custom head')
     if write:
