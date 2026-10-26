@@ -82,18 +82,24 @@ Accent colours are blended by a proxy named like the console command (the old pa
 
 **Custom head package** (`adv_head_pkg.py` + `adv_head_obj.py` + `adv_neck.py`, Song So Mi from Cyberpunk 2077: Phantom Liberty, Workshop 3283215678): nothing needs the Workshop addon, pac downloads the head itself
 from this repo. The donor's compiled model is only read (never run), skinned into the Ethics Assistant's bind frame the way BoneMerge would, moved into the head bone's frame and written as static meshes
-(`obj/adv/hd_*.obj`, every file under 1 MiB) with their textures (`tex/adv/hd_*.png|jpg`, the VMT `$color2` tints baked in): `hd_head.obj` (skin cut under the skull + the eyeballs, texture
-`hd_head.jpg` 2048x1024), `hd_extras.obj` (lipstick, eye makeup, brows, cyberware lines, lashes and the nape port, one translucent atlas), `hd_hair_a|b|c.obj` (alpha tested hair cards, `hd_hair.png` palette
-png), `hd_neck_c.obj` (a skin neck on the neck bone whose uvs borrow a patch of the head texture; the donor has no neck below the jaw and the player's own neck goes with her head slot).
+(`obj/adv/hd_*_v2.obj`, every file under 1 MiB, the suffix changes whenever the geometry does because pac caches downloads by url) with their textures (`tex/adv/hd_*.png|jpg`, the VMT `$color2` tints
+baked in): `hd_head_v2.obj` (skin cut under the skull + the eyeballs, texture `hd_head.jpg` 2048x1024), `hd_extras_v2.obj` (lipstick, eye makeup, brows, cyberware lines, lashes and the nape port, one
+translucent atlas), `hd_hair_a|b|c_v2.obj` (alpha tested hair cards, `hd_hair.png` palette png), `hd_neck_v2.obj` (a skin column on the neck bone: her own neck profile at the collar, easing into the open
+end of the donor's neck stump and running up inside it, a little wider than the stump where they meet; its uvs are a plain window of the head texture - the donor has no neck below the jaw and the
+player's own neck goes with her head slot). All head meshes are shifted by `adv_head_obj.HEAD_SHIFT` so that the donor's face lines up with hers and her neck carries the head.
 Materials are `material_3d` parts with url basetextures used by name (`hd skin`, `hd extras`, `hd hair`). The outfit's entity2 hides the player's head slots (1 chau_facemap = head AND neck, 2 / 3 eyeballs,
-4 mouth). The head is rigid on the head bone (no lip sync / blinking). `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single entity2 by plain text edit (that outfit's
-other bytes stay identical) and writes the result as a new file.
+4 mouth). The head is rigid on the head bone (no lip sync / blinking), the neck is rigid on the neck bone and overlaps the head's neck stump, so nothing opens up when the head turns against the neck (`pacview.POSE['head'] = (pitch, yaw)`
+shows it). `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single entity2 by plain text edit (that outfit's other bytes stay identical) and writes the result as a new file.
+
+**Two pac urlobj facts the writer (`adv_head_obj.write_obj`) is built around:** tangents are computed per triangle with `r = 1 / (s1*t2 - s2*t1)` (urlobj.lua), so a triangle whose three uvs are collinear gets
+infinite / NaN tangents and rendered black in game (the first neck, with a 12 texel patch quantised to 3 decimals, had 91 % of its triangles like that: black with a grid of tan squares); the writer nudges such
+triangles by a uv quantum and `verify_adv.py` fails any `hd_*` file that still has one. And polygons are fanned from their first corner, so triangle pairs are written as quads (a third fewer face bytes, same triangles).
 
 **Colour ranges:** `trail2` `StartColor` / `EndColor` are 0..1 (`ProperColorRange`, multiplied by 255 when drawn), `sprite` and `particles` colours are 0..255, `model2` / `material_3d` colours are 0..1.
 `adv_parts.trail` takes 0..255 and writes 0..1; a proxy driving a trail colour uses `theme_expr(..., 1.0)`.
 
 Tools: `adv_geom.py` (loft / spike / solidify / Cyl / Radial, `write_obj_smooth` with shared normals and no degenerate faces), `adv_panels.py` (raised plates draped on a head / limb surface, ribbons, bolts, `WarpSurf`),
 `adv_parts.py` (part builders + the validator), `donor_tools.py` (skins another playermodel into the Ethics Assistant's frame the way BoneMerge does), `ax_render.py` (previews through the ax3d engine,
-optional), `verify_adv.py` (outfit / OBJ checks), `steam_details.py` (Workshop file details + thumbnails), `wait_assets_live_adv.py`, `pacview.py` (renders an outfit FILE the way pac places it: friendly bone names through `pac.BoneNameReplacements`, base_movable world matrices, proxies, entity2 `Materials`,
+optional), `verify_adv.py` (outfit / OBJ checks, incl. collinear-uv triangles), `section_plot.py` (mid-plane sections of the head package against her own head, in head-bone coordinates), `steam_details.py` (Workshop file details + thumbnails), `wait_assets_live_adv.py`, `pacview.py` (renders an outfit FILE the way pac places it: friendly bone names through `pac.BoneNameReplacements`, base_movable world matrices, proxies, entity2 `Materials`,
 bone-merged donors with `$color2` tints and clip planes, OBJs fetched from the live host or `PV_LOCAL=1` from `stage_adv`; checks the files rather than the generator). Run a builder, then `python verify_adv.py`; publish like the BNA outfits
 (copy `stage_adv/obj/adv/*` to `obj/adv/`, `stage_adv/outfits/*.txt` to `outfits/adv/`, push, `python wait_assets_live_adv.py`, then copy the txt into `garrysmod/data/pac3`).

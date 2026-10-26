@@ -2,12 +2,14 @@
 GitHub-hosted assets - nothing needs the Workshop addon, pac downloads the meshes and textures itself (see adv_head_obj.py for how they are made).
 
 head_parts(stage) -> (materials, parts): three `material_3d` parts (url textures) and the model parts
-  * `neck`          : a neck on the neck bone (adv_neck.py) that borrows a patch of the head texture.  The player's own neck lives in her head slot (1 chau_facemap) and goes with it; the donor head
-                      has no neck below the jaw.
-  * `head skin`     : hd_head.obj  (the donor's Head slot cut under the skull + the eyeballs)         material `hd skin`   (hd_head.jpg)
-  * `face extras`   : hd_extras.obj (lipstick, eye makeup, brows, cyberware, lashes, nape port)        material `hd extras` (hd_extras.png, translucent)
-  * `hair 1..3`     : hd_hair_a..c.obj (alpha tested cards, no culling)                                material `hd hair`   (hd_hair.png)
-All on the head bone in the head bone's own frame (rigid).  The entity2 of the outfit has to hide the player's head slots: HEAD_SLOTS_NULL (1 chau_facemap, 2 eyeball_l, 3 eyeball_r, 4 fmouth).
+  * `neck`          : hd_neck_v2.obj, a skin column on the neck bone (adv_neck.py): her own neck profile at the collar, easing into the open end of the donor's neck stump, a little wider than the
+                      stump where they meet and continuing up inside it; its uvs are a plain window of the head texture.  The player's own neck lives in her head slot (1 chau_facemap) and goes
+                      with it; the donor head has no neck below the jaw.
+  * `head skin`     : hd_head_v2.obj  (the donor's Head slot, flange cut away under the skull + the eyeballs)  material `hd skin`   (hd_head.jpg)
+  * `face extras`   : hd_extras_v2.obj (lipstick, eye makeup, brows, cyberware, lashes, nape port)            material `hd extras` (hd_extras.png, translucent)
+  * `hair 1..3`     : hd_hair_a..c_v2.obj (alpha tested cards, no culling)                                   material `hd hair`   (hd_hair.png)
+All head meshes are rigid on the head bone in the head bone's own frame, moved by adv_head_obj.HEAD_SHIFT so that the donor's face lines up with hers and her neck carries the head (v1 sat 1 unit
+behind her neck and 0.7 too high, which made the neck look long).  The entity2 of the outfit has to hide the player's head slots: HEAD_SLOTS_NULL (1 chau_facemap, 2 eyeball_l, 3 eyeball_r, 4 fmouth).
 """
 import os
 import sys
@@ -44,10 +46,15 @@ def head_parts(stage):
     r = ho.build(stage.root)
     for k, fn in r['obj'].items():
         stage.files[fn] = (r['stats'][k][0], r['stats'][k][1], r['stats'][k][2])
-    neck = adv_neck.build_neck()
-    u0, v0 = r['nape_uv']
-    neck.UV = np.column_stack([u0 + 0.006 * (neck.UV[:, 0] - 0.5), v0 + 0.012 * (neck.UV[:, 1] - 0.5)])       # a 12 texel patch of plain skin from the head texture (the atlas is twice as wide)
-    neck_url = stage.obj('neck_c', ap.to_bone_local(sc.rig, 'Neck1', neck), 'skin neck for the custom head (uvs: a patch of hd_head.jpg)', smooth_deg=60)          # neck_c: hd_neck.obj had no uvs, hd_neck_b.obj pointed into the eye half of the atlas
+    P, N, U = adv_neck.build_neck(r['ring_world'], r['ring_normal_world'], r['neck_patch'], canal_axis=r['canal_axis_world'])
+    W = sc.rig.world[sc.rig.bone('Neck1')]
+    Rn, on = W[:3, :3], W[:3, 3]
+    Pl = ((P.reshape(-1, 3) - on) @ Rn).reshape(P.shape)                                    # the neck bone's own frame
+    Nl = (N.reshape(-1, 3) @ Rn).reshape(N.shape)
+    neck_fn = 'hd_neck_%s.obj' % ho.VER
+    st = ho.write_obj(os.path.join(stage.root, 'obj', 'adv', neck_fn), 'hd_neck', Pl, Nl, U, 'skin neck for the custom head (uvs: a plain window of hd_head.jpg)', dec=[3, 3, 3, 2, 2, 2, 6, 6])
+    stage.files[neck_fn] = (st[0], st[1], st[2])
+    neck_url = OBJ_RAW + neck_fn
     tex = {k: TEX_RAW + fn for k, fn in r['tex'].items()}
     obj = {k: OBJ_RAW + fn for k, fn in r['obj'].items()}
     mats = [

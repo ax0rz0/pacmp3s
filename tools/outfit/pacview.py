@@ -82,6 +82,7 @@ def conv(v):
 MODEL_CLS = {'model2', 'model'}
 ENTITY_CLS = {'entity2', 'entity'}
 BONE_CLS = {'bone3', 'bone2', 'bone'}
+POSE = {}                       # friendly bone name -> (pitch, yaw) degrees, to see how parts bound to that bone move against the others (animation is not otherwise modelled): POSE['head'] = (30, 0)
 
 
 # ------------------------------------------------------------------------------------------------------------------------------ math
@@ -136,6 +137,13 @@ class Player:
             return M4()                      # pac.GetBonePosAng falls back to ent:GetPos(), view yaw (0 here)
         m = np.array(self.rig.world[i], float)
         m[:3, 3] += self.shift
+        pose = POSE.get(lua_friendly(self.rig.names[i]))
+        if pose:                                  # (pitch, yaw) degrees about the bone's own origin: pitch about the bone's lateral axis (+ = looking up), yaw about its long axis
+            c, s = math.cos(math.radians(pose[0])), math.sin(math.radians(pose[0]))
+            c2, s2 = math.cos(math.radians(pose[1])), math.sin(math.radians(pose[1]))
+            Rp = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+            Ry = np.array([[1, 0, 0], [0, c2, -s2], [0, s2, c2]])
+            m[:3, :3] = m[:3, :3] @ Rp @ Ry
         return m
 
 

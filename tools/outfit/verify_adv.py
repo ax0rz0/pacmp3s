@@ -82,6 +82,7 @@ for fn in sorted(os.listdir(out_dir)):
     print('%-42s %6d bytes  parts %3d  commands %s' % (fn, len(raw), sum(classes.values()), sorted(cmds)))
 
 print('\nOBJ files: %d staged, %d referenced' % (len(os.listdir(obj_dir)), len(used_files)))
+uv_info = []
 for fn in sorted(os.listdir(obj_dir)):
     if fn not in used_files:
         print('  note: %s is not referenced by any outfit' % fn)
@@ -94,7 +95,9 @@ for fn in sorted(os.listdir(obj_dir)):
         elif line.startswith('vn '):
             VN.append([float(x) for x in line.split()[1:4]])
         elif line.startswith('f '):
-            F.append([[int(i) for i in tok.split('/')] for tok in line.split()[1:4]])
+            corners = [[int(i) for i in tok.split('/')] for tok in line.split()[1:]]
+            for i in range(1, len(corners) - 1):                  # pac fans a polygon from its first corner
+                F.append([corners[0], corners[i], corners[i + 1]])
     V, VN = np.array(V), np.array(VN)
     if len(V) > 24000:
         err('%s: %d vertices' % (fn, len(V)))
@@ -117,10 +120,24 @@ for fn in sorted(os.listdir(obj_dir)):
             print('  note:', msg)
     if fn.startswith('hd_') and len(VT) and (np.array(VT).min() < 0 or np.array(VT).max() >= 1.0):          # the textured head assets; the other obj parts are flat coloured, their uvs are unused
         err('%s: texture coordinates outside [0, 1) (pac wraps them per vertex)' % fn)
+    if len(VT):
+        # urlobj builds tangents per triangle with r = 1 / (s1 t2 - s2 t1): a triangle whose uvs are collinear gets infinite / NaN tangents.  The textured head assets must have none
+        # (the first neck of the head package had 91 % of its triangles like that and rendered black with a grid of tan squares in game); the flat coloured parts are listed for information.
+        VTa = np.array(VT)
+        ui = Fa[:, :, 1] - 1
+        uu, vv = VTa[ui, 0] % 1.0, (1.0 - VTa[ui, 1]) % 1.0
+        det = (uu[:, 1] - uu[:, 0]) * (vv[:, 2] - vv[:, 0]) - (uu[:, 2] - uu[:, 0]) * (vv[:, 1] - vv[:, 0])
+        n_bad = int((np.abs(det) < 1e-10).sum())
+        if n_bad and fn.startswith('hd_'):
+            err('%s: %d of %d triangles have collinear uvs (NaN tangents in pac)' % (fn, n_bad, len(Fa)))
+        elif n_bad:
+            uv_info.append((fn, n_bad, len(Fa)))
 
 if os.path.isdir(tex_dir):
     print('\ntextures: %d staged, %d referenced' % (len(os.listdir(tex_dir)), len(used_tex)))
     for fn in sorted(os.listdir(tex_dir)):
         print('  %-18s %8d bytes%s' % (fn, os.path.getsize(os.path.join(tex_dir, fn)), '' if fn in used_tex else '   (not referenced by any outfit)'))
+if uv_info:
+    print('\nnote: flat coloured parts with collinear-uv triangles (harmless for untextured materials as far as known): %s' % ', '.join('%s %d/%d' % t for t in uv_info[:6]) + (' ...' if len(uv_info) > 6 else ''))
 print('\n%d errors' % len(errors))
 sys.exit(1 if errors else 0)

@@ -54,7 +54,8 @@ def build(variant='normal', stage_dir=STAGE_DIR, write=True, name=None, head_kw=
 
     url = {}
     for k in ('black', 'gray', 'gun', 'glow'):
-        url[k] = st.obj(k, loc(k), 'respirator / headset / implant: ' + k, smooth_deg=55 if k == 'glow' else 42)
+        # the custom variant's face gear is fitted to the head package (which sits on her neck since v2), new names because pac caches the files by url
+        url[k] = st.obj(k if variant == 'normal' else k + '_v2', loc(k), 'respirator / headset / implant: ' + k, smooth_deg=55 if k == 'glow' else 42)
     if with_hair:
         url['hair'] = st.obj('hair', loc('hair'), 'static hair', smooth_deg=60)
         url['pony'] = st.obj('pony', ap.to_bone_local(rig, 'Head1', meshes['pony'], pivot=tie), 'ponytail (origin = the tie)', smooth_deg=60)
