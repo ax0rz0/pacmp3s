@@ -592,7 +592,7 @@
 						["ForceObjUrl"] = true,
 						["Hide"] = false,
 						["Material"] = "hd skin",
-						["Model"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/adv/hd_neck_b.obj",
+						["Model"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/obj/adv/hd_neck_c.obj",
 						["Name"] = "neck",
 						["Size"] = 1,
 						["UniqueID"] = "e1ed2adb5a3cf1e802c3e6771ad8199db5cac4271a8f343fd9b47e876f2a0c3f",

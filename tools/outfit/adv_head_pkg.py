@@ -46,8 +46,8 @@ def head_parts(stage):
         stage.files[fn] = (r['stats'][k][0], r['stats'][k][1], r['stats'][k][2])
     neck = adv_neck.build_neck()
     u0, v0 = r['nape_uv']
-    neck.UV = np.column_stack([u0 + 0.012 * (neck.UV[:, 0] - 0.5), v0 + 0.012 * (neck.UV[:, 1] - 0.5)])       # a 12 texel patch of plain skin from the head texture
-    neck_url = stage.obj('neck_b', ap.to_bone_local(sc.rig, 'Neck1', neck), 'skin neck for the custom head (uvs: a patch of hd_head.jpg)', smooth_deg=60)          # neck_b: the first hd_neck.obj had no uvs
+    neck.UV = np.column_stack([u0 + 0.006 * (neck.UV[:, 0] - 0.5), v0 + 0.012 * (neck.UV[:, 1] - 0.5)])       # a 12 texel patch of plain skin from the head texture (the atlas is twice as wide)
+    neck_url = stage.obj('neck_c', ap.to_bone_local(sc.rig, 'Neck1', neck), 'skin neck for the custom head (uvs: a patch of hd_head.jpg)', smooth_deg=60)          # neck_c: hd_neck.obj had no uvs, hd_neck_b.obj pointed into the eye half of the atlas
     tex = {k: TEX_RAW + fn for k, fn in r['tex'].items()}
     obj = {k: OBJ_RAW + fn for k, fn in r['obj'].items()}
     mats = [

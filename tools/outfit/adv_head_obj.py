@@ -157,7 +157,8 @@ def build(stage_root, head_tex=1024):
     # the neck column borrows a small patch of the skin texture from the nape just above the cut, so that it shares the head's material and colour
     cen = p.mean(1)
     near = (cen[:, 0] > CLIP_X) & (cen[:, 0] < CLIP_X + 1.2) & (cen[:, 1] > 1.0)
-    out['nape_uv'] = tuple(float(x) for x in np.median(wrap_uv(u)[near].reshape(-1, 2), axis=0))
+    nu, nv = np.median(wrap_uv(u)[near].reshape(-1, 2), axis=0)
+    out['nape_uv'] = (float(nu) * 0.5, float(nv))                                         # in atlas coordinates: the head texture is the left half (u * 0.5, see below)
     p, n, u = clip_soup(p, n, wrap_uv(u), cn, cc)
     u = np.stack([u[..., 0] * 0.5, u[..., 1]], -1)                                       # the head texture is the left half of the 2048x1024 atlas
     Ps, Ns, Us = [p], [n], [u]

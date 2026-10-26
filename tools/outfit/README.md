@@ -84,7 +84,7 @@ Accent colours are blended by a proxy named like the console command (the old pa
 from this repo. The donor's compiled model is only read (never run), skinned into the Ethics Assistant's bind frame the way BoneMerge would, moved into the head bone's frame and written as static meshes
 (`obj/adv/hd_*.obj`, every file under 1 MiB) with their textures (`tex/adv/hd_*.png|jpg`, the VMT `$color2` tints baked in): `hd_head.obj` (skin cut under the skull + the eyeballs, texture
 `hd_head.jpg` 2048x1024), `hd_extras.obj` (lipstick, eye makeup, brows, cyberware lines, lashes and the nape port, one translucent atlas), `hd_hair_a|b|c.obj` (alpha tested hair cards, `hd_hair.png` palette
-png), `hd_neck_b.obj` (a skin neck on the neck bone whose uvs borrow a patch of the head texture; the donor has no neck below the jaw and the player's own neck goes with her head slot).
+png), `hd_neck_c.obj` (a skin neck on the neck bone whose uvs borrow a patch of the head texture; the donor has no neck below the jaw and the player's own neck goes with her head slot).
 Materials are `material_3d` parts with url basetextures used by name (`hd skin`, `hd extras`, `hd hair`). The outfit's entity2 hides the player's head slots (1 chau_facemap = head AND neck, 2 / 3 eyeballs,
 4 mouth). The head is rigid on the head bone (no lip sync / blinking). `make_adv_head_swap.py <outfit>` also adds the package to an editor-saved outfit with a single entity2 by plain text edit (that outfit's
 other bytes stay identical) and writes the result as a new file.
