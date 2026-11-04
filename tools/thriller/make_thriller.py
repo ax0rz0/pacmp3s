@@ -1,12 +1,15 @@
-"""Build the Thriller zombie-dance pack: animation JSONs (player families + HL2 zombie), the music loop, and the pac3 outfits.
+"""Build the Thriller zombie-dance pack: animation JSONs (player families + HL2 zombie), the music loop placement, and the pac3 outfits.
 
-  python make_thriller.py [--repo PATH] [--pac PATH] [--no-anim] [--no-audio]
+  python make_thriller.py [--bpm 117.9149] [--suffix _v2] [--music thriller_loop.mp3] [--plays 0] [--prefix thriller_test_]
+                          [--zombie-bone nobone] [--extra-zombie-bone pos_noang] [--repo PATH] [--pac PATH] [--no-anim] [--no-audio]
 
 Outputs
-  <repo>/anim/thriller/<family>/thriller_<family>.json     custom_animation data (families ethics, classd, isd, medic, zombie), 30 fps, 481 frames = one 16 s loop (32 beats at 120 BPM)
-  <repo>/thriller_dance.mp3                                the 16 s music loop (cut by make_audio.py)
-  <pac>/thriller_<family>.txt                              the big pac: 2 HL2 zombies + your dance + music, one toggle   (pac_event thriller 2)
-  <pac>/thriller_zombies.txt                               the two zombies + music only (for any playermodel)
+  <repo>/anim/thriller/<family>/thriller_<family><suffix>.json   custom_animation data (families ethics, classd, isd, medic, zombie): one dance loop = 32 beats at --bpm,
+                                                                 sampled at ~30 fps (frame count rounded, FrameRate set so that the loop is exactly 32 beats long)
+  <repo>/<music>                                                 copied from out/audio/<music> (cut by make_audio.py)
+  <pac>/<prefix><family>.txt                                     the big pac: 2 HL2 zombies + your dance + music, one toggle   (pac_event thriller 2)
+  <pac>/<prefix>zombies.txt                                      the two zombies + music only (for any playermodel)
+  <pac>/<prefix>zombies_<bone>.txt                               (with --extra-zombie-bone) the same zombies-only outfit bound to another bone
 and copies of the outfits in <repo>/outfits/thriller/.
 
 The outfit structure follows the emote pack (old pac3 build): command event (Operator equal, Invert, AffectChildrenOnly) -> children.
@@ -17,6 +20,14 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _arg(name, default=None):
+    return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
+
+
+if _arg('--bpm'):
+    os.environ['THRILLER_BPM'] = _arg('--bpm')              # must be set before thr_dance is imported
 sys.path.insert(0, HERE)
 EMOTE = r'C:\Users\poopy\OneDrive\Documents\GitHub\pacmp3s\tools\emote'
 sys.path.insert(0, EMOTE)
@@ -35,9 +46,13 @@ FAMILIES = {'ethics': ('ethics', 'player', 'Ethics Assistant (female_04)'), 'cla
             'isd': ('isd', 'player', 'ISD / GOC / tech expert'), 'medic': ('medic', 'player', 'combat medic'),
             'zombie': ('zombie', 'zombie', 'HL2 classic zombie')}
 COMMAND = 'thriller'
-MUSIC_FILE = 'thriller_dance.mp3'
-LOOP_SECONDS = td.LOOP_BEATS * td.BEAT                 # 16.0
-MUSIC_PLAYS = 38                                       # 38 x 16 s = about ten minutes (toggle the dance off any time; the sound stops with it)
+SUFFIX = _arg('--suffix', '')
+MUSIC_FILE = _arg('--music', 'thriller_dance.mp3')
+MUSIC_PLAYS = int(_arg('--plays', '38'))               # 0 = loop until the dance is toggled off (pac's web audio loops sample-accurately: position modulo the buffer length)
+PREFIX = _arg('--prefix', 'thriller_')
+ZOMBIE_BONE = _arg('--zombie-bone', 'pos_ang')
+EXTRA_BONE = _arg('--extra-zombie-bone')
+LOOP_SECONDS = td.LOOP_BEATS * td.BEAT                 # 32 beats
 ZOMBIE_Y = 78                                          # lateral spacing: closest bone-to-bone approach over the whole dance is about 14 units
 ZOMBIE_X = -14                                         # a little behind you
 RISE_SECONDS = 3.2
@@ -49,26 +64,28 @@ def build_anim(fam, tl):
     rigkey, style, _ = FAMILIES[fam]
     rig = tc.rig_for(rigkey)
     n = int(round(LOOP_SECONDS * FPS))
-    frames = tc.build_frames(rig, lambda t: tl.pose(t / td.BEAT), [i / FPS for i in range(n + 1)], td.style_for(style))
-    js = tc.to_json(rig, frames, FPS, name='thriller_%s' % fam)
+    fps = n / LOOP_SECONDS                              # frames are evenly spaced; n frames last exactly one 32-beat loop
+    frames = tc.build_frames(rig, lambda t: tl.pose(t / td.BEAT), [i / fps for i in range(n + 1)], td.style_for(style))
+    js = tc.to_json(rig, frames, round(fps, 4), name='thriller_%s%s' % (fam, SUFFIX))
     return rig, js, style
 
 
 def check_anim(fam, rig, js, tl, style):
-    """pac playback simulation (linear lerp of the Euler triples between 30 fps frames) against the exact solver pose, loop closure, pole proximity, feet"""
+    """pac playback simulation (linear lerp of the Euler triples between frames) against the exact solver pose, loop closure, pole proximity"""
     import run2
     s, top = run2.replay_detail(rig, tl, js, td, style, top=2)
     closure = run2.closure(js)
     gim = run2.gimbal(js, 75.0)
     fd = js['FrameData']
     nb = len(fd[0]['BoneInfo'])
-    ok = closure < 0.01 and not gim and s['p99'] < 8 and s['max'] < 30
-    print('  %-7s %3d bones %4d frames | replay vs exact: mean %.2f p99 %.1f max %.1f deg | closure %.2f | pitch>75: %s | %s' %
-          (fam, nb, len(fd), s['mean'], s['p99'], s['max'], closure, gim or 'none', 'OK' if ok else 'CHECK'))
+    dur = sum(1.0 / f['FrameRate'] for f in fd[1:])
+    ok = closure < 0.01 and not gim and s['p99'] < 8 and s['max'] < 30 and abs(dur - LOOP_SECONDS) < 0.002
+    print('  %-7s %3d bones %4d frames @ %.4f fps = %.4f s | replay vs exact: mean %.2f p99 %.1f max %.1f deg | closure %.2f | pitch>75: %s | %s' %
+          (fam, nb, len(fd), fd[1]['FrameRate'], dur, s['mean'], s['p99'], s['max'], closure, gim or 'none', 'OK' if ok else 'CHECK'))
     return ok
 
 
-def write_anims(tl, repo, only=None):
+def write_anims(tl, repo):
     t0 = time.time()
     allok = True
     for fam in FAMILIES:
@@ -76,7 +93,7 @@ def write_anims(tl, repo, only=None):
         allok &= check_anim(fam, rig, js, tl, style)
         d = os.path.join(repo, 'anim', 'thriller', fam)
         os.makedirs(d, exist_ok=True)
-        path = os.path.join(d, 'thriller_%s.json' % fam)
+        path = os.path.join(d, 'thriller_%s%s.json' % (fam, SUFFIX))
         with open(path, 'w', newline='\n') as f:
             json.dump(js, f, separators=(',', ':'))
         print('          wrote %s (%d bytes)' % (os.path.relpath(path, repo), os.path.getsize(path)))
@@ -86,11 +103,11 @@ def write_anims(tl, repo, only=None):
 
 # ---------------------------------------------------------------------------------------------------------------------------- outfits
 def anim_url(fam):
-    return RAW + 'anim/thriller/%s/thriller_%s.json' % (fam, fam)
+    return RAW + 'anim/thriller/%s/thriller_%s%s.json' % (fam, fam, SUFFIX)
 
 
 def player_anim(slug, fam):
-    return {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': 'your dance: thriller_%s.json' % fam,
+    return {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': 'your dance: thriller_%s%s.json' % (fam, SUFFIX),
             'StopOtherAnimations': True, 'URL': anim_url(fam), 'UniqueID': uid(slug, 'anim_player')}
 
 
@@ -99,23 +116,23 @@ def rise_expr():
     return '-%d * (1 - %s^2 * (3 - 2*%s))' % (RISE_DEPTH, u, u)
 
 
-def zombie_part(slug, side, y):
-    mdl = {'Bone': 'pos_ang', 'ClassName': 'model2', 'Model': 'models/zombie/classic.mdl', 'Name': 'zombie %s (HL2 classic zombie, dances with you)' % side,
+def zombie_part(slug, side, y, bone):
+    mdl = {'Bone': bone, 'ClassName': 'model2', 'Model': 'models/zombie/classic.mdl', 'Name': 'zombie %s (HL2 classic zombie, dances with you; bone "%s")' % (side, bone),
            'Position': vec(ZOMBIE_X, y, 0), 'UniqueID': uid(slug, 'zombie_' + side)}
-    anim = {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': 'zombie dance: thriller_zombie.json',
+    anim = {'AnimationType': 'sequence', 'ClassName': 'custom_animation', 'Interpolation': 'linear', 'Name': 'zombie dance: thriller_zombie%s.json' % SUFFIX,
             'StopOtherAnimations': False, 'URL': anim_url('zombie'), 'UniqueID': uid(slug, 'anim_zombie_' + side)}
     rise = {'Axis': 'z', 'ClassName': 'proxy', 'Expression': rise_expr(), 'Name': 'rises out of the ground (%g s)' % RISE_SECONDS, 'VariableName': 'Position',
             'UniqueID': uid(slug, 'rise_' + side)}
     return part(3, mdl, part(5, anim) + part(5, rise))
 
 
-def outfit(slug, title, fam=None):
+def outfit(slug, title, fam, bone):
     kids = ''
     if fam:
         kids += part(3, player_anim(slug, fam))
-    kids += zombie_part(slug, 'left', ZOMBIE_Y)
-    kids += zombie_part(slug, 'right', -ZOMBIE_Y)
-    kids += part(3, sound2(slug, 'sound_loop', MUSIC_FILE, MUSIC_PLAYS, 1.0, name='thriller loop (16 s = one dance loop)'))
+    kids += zombie_part(slug, 'left', ZOMBIE_Y, bone)
+    kids += zombie_part(slug, 'right', -ZOMBIE_Y, bone)
+    kids += part(3, sound2(slug, 'sound_loop', MUSIC_FILE, MUSIC_PLAYS, 1.0, name='thriller loop (%s)' % MUSIC_FILE))
     ev = {'AffectChildrenOnly': True, 'Arguments': COMMAND, 'ClassName': 'event', 'Event': 'command', 'Invert': True, 'Operator': 'equal',
           'Name': 'Thriller  (pac_event %s 2)' % COMMAND, 'UniqueID': uid(slug, 'event')}
     root = {'ClassName': 'group', 'EditorExpand': True, 'Name': title, 'Notes': WATERMARK, 'UniqueID': uid(slug, 'root')}
@@ -131,13 +148,9 @@ def check_outfit(path):
     probs, nids = verify(text)
     t = pp.parse(text)
     counts = {}
-    urls = []
     for depth, s, node in pp.walk(t):
         c = s['ClassName']
         counts[c] = counts.get(c, 0) + 1
-        for k in ('URL', 'Path', 'Model'):
-            if isinstance(s.get(k), str) and s[k].startswith('http'):
-                urls.append(s[k])
         if c in BANNED:
             probs.append('banned class ' + c)
         if c == 'event':
@@ -148,43 +161,46 @@ def check_outfit(path):
         probs.append('parts above the heavy threshold')
     if counts.get('model2', 0) > LIMITS['model2'][0]:
         probs.append('model2 above the heavy threshold')
-    return probs, counts, urls
+    return probs, counts
 
 
 def write_outfits(repo, pac_dir):
     os.makedirs(pac_dir, exist_ok=True)
     out2 = os.path.join(repo, 'outfits', 'thriller')
     os.makedirs(out2, exist_ok=True)
-    sets = [('thriller_zombies', 'thriller: 2 zombies + music (any playermodel; pac_event thriller 2)', None)]
+    sets = [(PREFIX + 'zombies', 'thriller: 2 zombies + music (any playermodel; bone "%s"; pac_event thriller 2)' % ZOMBIE_BONE, None, ZOMBIE_BONE)]
     for fam in ('ethics', 'classd', 'isd', 'medic'):
-        sets.append(('thriller_' + fam, 'thriller: 2 zombies + your dance + music (%s; pac_event thriller 2)' % FAMILIES[fam][2], fam))
+        sets.append((PREFIX + fam, 'thriller: 2 zombies + your dance + music (%s; bone "%s"; pac_event thriller 2)' % (FAMILIES[fam][2], ZOMBIE_BONE), fam, ZOMBIE_BONE))
+    if EXTRA_BONE:
+        sets.append((PREFIX + 'zombies_' + EXTRA_BONE.replace('pos_', ''), 'thriller: 2 zombies + music (any playermodel; bone "%s"; pac_event thriller 2)' % EXTRA_BONE, None, EXTRA_BONE))
     allok = True
-    for slug, title, fam in sets:
-        text = outfit(slug, title, fam)
+    for slug, title, fam, bone in sets:
+        text = outfit(slug, title, fam, bone)
         for d in (pac_dir, out2):
             with open(os.path.join(d, slug + '.txt'), 'w', encoding='utf-8', newline='') as f:
                 f.write(text)
-        probs, counts, urls = check_outfit(os.path.join(pac_dir, slug + '.txt'))
+        probs, counts = check_outfit(os.path.join(pac_dir, slug + '.txt'))
         allok &= not probs
-        print('  %-18s %5d bytes  parts %d (%s)  %s' % (slug + '.txt', len(text), sum(counts.values()), ', '.join('%s %d' % kv for kv in sorted(counts.items())), 'OK' if not probs else probs))
+        print('  %-28s %5d bytes  parts %d (%s)  %s' % (slug + '.txt', len(text), sum(counts.values()), ', '.join('%s %d' % kv for kv in sorted(counts.items())), 'OK' if not probs else probs))
     return allok, sets
 
 
 def write_audio(repo):
-    """the music loop is cut by make_audio.py (python make_audio.py SRC out/audio/thriller_dance.mp3 --downbeat 270.0708); this just places it in the repo root"""
+    """the music loop is cut by make_audio.py (python make_audio.py SRC out/audio/<music> --downbeat T --loop L); this places it in the repo root"""
     import shutil
     src = os.path.join(HERE, 'out', 'audio', MUSIC_FILE)
     if not os.path.exists(src):
-        print('  (no %s in out/audio: run make_audio.py first)' % MUSIC_FILE)
-        return False
+        print('  (no %s in out/audio: run make_audio.py first; the repo root file is left as it is)' % MUSIC_FILE)
+        return os.path.exists(os.path.join(repo, MUSIC_FILE))
     shutil.copyfile(src, os.path.join(repo, MUSIC_FILE))
     print('  copied %s (%d bytes) to the repo root' % (MUSIC_FILE, os.path.getsize(src)))
     return True
 
 
 def main():
-    repo = sys.argv[sys.argv.index('--repo') + 1] if '--repo' in sys.argv else REPO
-    pac_dir = sys.argv[sys.argv.index('--pac') + 1] if '--pac' in sys.argv else PAC_DIR
+    repo = _arg('--repo', REPO)
+    pac_dir = _arg('--pac', PAC_DIR)
+    print('tempo %.4f BPM (beat %.6f s), dance loop %.5f s, music %s (PlayCount %d), zombie bone "%s", suffix "%s"' % (td.BPM, td.BEAT, LOOP_SECONDS, MUSIC_FILE, MUSIC_PLAYS, ZOMBIE_BONE, SUFFIX))
     tl = td.Timeline()
     ok = True
     if '--no-anim' not in sys.argv:

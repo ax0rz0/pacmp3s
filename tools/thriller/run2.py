@@ -27,6 +27,7 @@ def build(kind, td, tl=None, write=True, tag='v2', **tojson):
 def replay_detail(rig, tl, js, td, style, top=12):
     sol = tc.Solver(rig, td.style_for(style))
     fd = js['FrameData']
+    FPS = float(fd[1]['FrameRate'])                       # the frames are evenly spaced; the first one is the ease-in
     rows = []
     for i in range(1, len(fd) - 1):
         t = (i - 0.5) / FPS

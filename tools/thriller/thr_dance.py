@@ -13,7 +13,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import thr_core as tc
 
-BPM = 120.0
+BPM = float(os.environ.get('THRILLER_BPM', '120'))      # tempo of the music the dance is built for (make_thriller.py --bpm sets it before the import)
 BEAT = 60.0 / BPM
 LOOP_BEATS = 32
 

@@ -1,0 +1,155 @@
+-- claude skill made by ax0rz0
+
+["self"] = {
+	["ClassName"] = "group",
+	["EditorExpand"] = true,
+	["Name"] = "thriller: 2 zombies + your dance + music (D-class; bone \"nobone\"; pac_event thriller 2)",
+	["Notes"] = "claude skill made by ax0rz0",
+	["UniqueID"] = "045774e866ae67e7a936de9b799878f91d77667db02b1acb788bd7bf84ba0c3f",
+},
+["children"] = {
+	{
+		["self"] = {
+			["AffectChildrenOnly"] = true,
+			["Arguments"] = "thriller",
+			["ClassName"] = "event",
+			["Event"] = "command",
+			["Invert"] = true,
+			["Name"] = "Thriller  (pac_event thriller 2)",
+			["Operator"] = "equal",
+			["UniqueID"] = "44f76c0596a7dfbe3439a6e0b877ee231ade7518c2dbeee125b7ceed297a0c3f",
+		},
+		["children"] = {
+			{
+				["self"] = {
+					["AnimationType"] = "sequence",
+					["ClassName"] = "custom_animation",
+					["Interpolation"] = "linear",
+					["Name"] = "your dance: thriller_classd_v2.json",
+					["StopOtherAnimations"] = true,
+					["URL"] = "https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/thriller/classd/thriller_classd_v2.json",
+					["UniqueID"] = "d8a95a218e958936e22a55d90dd5b763af86c95c5db8199efb7b6d59a04a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Model"] = "models/zombie/classic.mdl",
+					["Name"] = "zombie left (HL2 classic zombie, dances with you; bone \"nobone\")",
+					["Position"] = Vector(-14, 78, 0),
+					["UniqueID"] = "27cebd893d14bec8b5fe8aa7fad12ee12e2977395dd9073a1e944941d52a0c3f",
+				},
+				["children"] = {
+					{
+						["self"] = {
+							["AnimationType"] = "sequence",
+							["ClassName"] = "custom_animation",
+							["Interpolation"] = "linear",
+							["Name"] = "zombie dance: thriller_zombie_v2.json",
+							["StopOtherAnimations"] = false,
+							["URL"] = "https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/thriller/zombie/thriller_zombie_v2.json",
+							["UniqueID"] = "f4cdf5c87b54c9a7492930c8a6ff7cd9f0925aba0f7b4ca55a2bd4b38daa0c3f",
+						},
+						["children"] = {
+						},
+					},
+					{
+						["self"] = {
+							["Axis"] = "z",
+							["ClassName"] = "proxy",
+							["Expression"] = "-78 * (1 - clamp(timeex()/3.2, 0, 1)^2 * (3 - 2*clamp(timeex()/3.2, 0, 1)))",
+							["Name"] = "rises out of the ground (3.2 s)",
+							["UniqueID"] = "b281e3386b6b69280bba64ce0038a7a00db6fc808724e2e246e5bebbf01a0c3f",
+							["VariableName"] = "Position",
+						},
+						["children"] = {
+						},
+					},
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Model"] = "models/zombie/classic.mdl",
+					["Name"] = "zombie right (HL2 classic zombie, dances with you; bone \"nobone\")",
+					["Position"] = Vector(-14, -78, 0),
+					["UniqueID"] = "e5d4180fa803f7be9df49871e0aa24dc439fe7f338d1e68df58e5d0fb94a0c3f",
+				},
+				["children"] = {
+					{
+						["self"] = {
+							["AnimationType"] = "sequence",
+							["ClassName"] = "custom_animation",
+							["Interpolation"] = "linear",
+							["Name"] = "zombie dance: thriller_zombie_v2.json",
+							["StopOtherAnimations"] = false,
+							["URL"] = "https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/thriller/zombie/thriller_zombie_v2.json",
+							["UniqueID"] = "491e941015a8fc39b98093038ad28822618e0615b7246393deefabca635a0c3f",
+						},
+						["children"] = {
+						},
+					},
+					{
+						["self"] = {
+							["Axis"] = "z",
+							["ClassName"] = "proxy",
+							["Expression"] = "-78 * (1 - clamp(timeex()/3.2, 0, 1)^2 * (3 - 2*clamp(timeex()/3.2, 0, 1)))",
+							["Name"] = "rises out of the ground (3.2 s)",
+							["UniqueID"] = "36cc236b69a5c5433a76b58618b7401d5ad68bfff8653bc81385d551223a0c3f",
+							["VariableName"] = "Position",
+						},
+						["children"] = {
+						},
+					},
+				},
+			},
+			{
+				["self"] = {
+					["AimPartName"] = "",
+					["AimPartUID"] = "",
+					["AngleOffset"] = Angle(0, 0, 0),
+					["Angles"] = Angle(0, 0, 0),
+					["Bone"] = "head",
+					["ClassName"] = "sound2",
+					["Doppler"] = false,
+					["DrawOrder"] = 0,
+					["Echo"] = false,
+					["EchoDelay"] = 0.5,
+					["EchoFeedback"] = 0.75,
+					["EditorExpand"] = false,
+					["EyeAngles"] = false,
+					["FilterFraction"] = 1,
+					["FilterType"] = 0,
+					["Hide"] = false,
+					["IsDisturbing"] = false,
+					["MaxPitch"] = 0,
+					["MinPitch"] = 0,
+					["Name"] = "thriller loop (thriller_loop.mp3)",
+					["Overlapping"] = false,
+					["Path"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/thriller_loop.mp3",
+					["PauseOnHide"] = false,
+					["Pitch"] = 1,
+					["PitchLFOAmount"] = 0,
+					["PitchLFOTime"] = 0,
+					["PlayCount"] = 0,
+					["PlayOnFootstep"] = false,
+					["Position"] = Vector(0, 0, 0),
+					["PositionOffset"] = Vector(0, 0, 0),
+					["Radius"] = 500,
+					["StopOnHide"] = true,
+					["TargetEntityUID"] = "",
+					["UniqueID"] = "b501d2223ce3174bb02afd6ec40e100857322a4970514c012e4397bd4e3a0c3f",
+					["Volume"] = 1.0,
+					["VolumeLFOAmount"] = 0,
+					["VolumeLFOTime"] = 0,
+				},
+				["children"] = {
+				},
+			},
+		},
+	},
+},

@@ -5,10 +5,12 @@ The dance is an original approximation written from move descriptions (zombie ma
 
 ## Run
 ```
-python make_audio.py SRC.ogg out/audio/thriller_dance.mp3 --downbeat 270.0708      # 16 s loop, downbeat 0.25 s into the file, seam crossfade baked in
-python make_thriller.py                                                             # animations -> anim/thriller/<family>/, mp3 -> repo root, outfits -> data/pac3 + outfits/thriller/
-python prev.py thr_dance2 v2                                                        # pose sheets (matplotlib, CPU only); Prev(...).gif(...) for a looping preview
+python make_audio.py SRC.mp3 out/audio/thriller_loop.mp3 --downbeat 353.54 --loop 32.565868       # exact loop (a whole number of dance loops), downbeat 0.25 s into the file, seam crossfade baked in
+python make_thriller.py --bpm 117.914867 --suffix _v2 --music thriller_loop.mp3 --plays 0 --prefix thriller_test_ --zombie-bone nobone --extra-zombie-bone pos_noang
+python make_thriller.py                                                                           # the first (120 BPM stand-in music) pack
+python prev.py thr_dance2 v2                                                                      # pose sheets (matplotlib, CPU only); Prev(...).gif(...) for a looping preview
 ```
+`--bpm` is the tempo of the music (the dance is 32 beats = one loop; the frame rate is adjusted so the loop is exactly that long). `--plays 0` loops until the dance is toggled off.
 Families: ethics (Female_04), classd, isd (ISD / GOC / tech), medic, zombie. Outfits: `thriller_<family>.txt` (zombies + your dance + music) and `thriller_zombies.txt` (zombies + music).
 
 ## Files
@@ -22,3 +24,5 @@ Families: ethics (Female_04), classd, isd (ISD / GOC / tech), medic, zombie. Out
 - Arm solver: elbow bend plane = `b*cos(flex) - u*sin(flex)` continuation for the wrist (the old `b - fa(b.fa)` flipped sign at flex = 90 and made hands snap); the elbow bend reference is the forward axis swung along with the arm from hanging, singular only for straight-up arms.
 - `pole_guard` pushes an aimed arm direction away from the Euler pole of its parent frame; `margins.py` lists where a pose path still passes close.
 - Audio: pac decodes web sounds whole, so the music is a 16 s loop (one dance loop). To use your own track, cut a bar-aligned loop with `make_audio.py` (`--bpm`, `--downbeat`) and set `BPM` in `thr_dance.py` to the track's tempo.
+- Zombie binding: for a player, pac resolves a part's base frame by bone name; a bone that does not exist falls back to the player's position plus EyeAngles yaw (pitch 0), `pos_ang` is `GetPos()` / `GetAngles()`, `pos_noang` is the position with zero angles (world axes). All of them ignore the body, and every real bone descends from `Bip01_Pelvis`, which the dance animates, so a body-bound anchor needs a counter-animated helper bone.
+- Music: your own loop must repeat exactly; `make_audio.py --loop` takes the measured repeat period (autocorrelation peak of the 4-6 s after the downbeat, refined to sub-sample), not 64 * beat period from a tempo fit.
