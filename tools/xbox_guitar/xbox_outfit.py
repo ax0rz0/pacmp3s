@@ -23,12 +23,14 @@ SLUG = 'eca_xbox'
 COMMAND = 'xbox'
 BONE = 'nobone'                                   # an invalid bone: the part sits at your origin with your view yaw (the zombies' test showed this is what the user wants)
 ANIM_URL = ol.RAW + 'anim/xbox/ethics/xbox_ethics_v2.json'
-VTF_URL = ol.RAW + 'tex/xbox/xbox_boot_real.vtf'
+VTF_URL = ol.RAW + 'tex/xbox/xbox_screen_game.vtf'
 AUDIO_FILE = 'xbox_startup.mp3'
 VOLUME = 1.0
+GAME_AUDIO_FILE = 'xbox_game_loop.mp3'
+GAME_VOLUME = 1.0
 BOOT_START = xr.BOOT_START                         # seconds after the toggle: the press happens at about 1.45 s, the boot starts a beat later
 LED_AT = 1.5
-FRAMES = len(xr.TIMES)
+FRAMES = len(xr.TIMES) + 1 + xr.GAME_N             # boot frames, one black frame, the gameplay loop
 
 
 def friendly_bone(name):
@@ -67,25 +69,29 @@ def build_children(slug=SLUG, base=1):
     pitch, yaw, roll = ik.euler_for(scr['R'])
     assert np.allclose(angles_matrix((pitch, yaw, roll)), scr['R'], atol=1e-6), 'screen angles do not reproduce the rotation'
     sd = ol.model2(slug, 'screen', 'xbox: tv screen (a plate, uv 0..1, standing on edge)', scr['model'], BONE, scr['pos'], scale=scr['scale'], angles=(pitch, yaw, roll))
-    mat = {'ClassName': 'material_2d', 'Name': 'xbox boot screen (real Xbox One capture, %d frames, animated VTF)' % FRAMES, 'UniqueID': ol.uid(slug, 'mat'), 'basetexture': VTF_URL, 'frame': 0}
-    prox = {'ClassName': 'proxy', 'Name': 'boot animation: frames of the real capture from %.1f s on, the last one (the home screen) stays' % BOOT_START, 'UniqueID': ol.uid(slug, 'proxy'),
-            'VariableName': 'frame', 'Expression': xr.frame_expr()}
+    mat = {'ClassName': 'material_2d', 'Name': 'xbox screen (real captures: the Xbox One boot, then a gameplay loop; %d frames, animated VTF)' % FRAMES, 'UniqueID': ol.uid(slug, 'mat'), 'basetexture': VTF_URL, 'frame': 0}
+    prox = {'ClassName': 'proxy', 'Name': 'screen frames: boot from %.1f s, home screen, dark at %.1f s, then a %.2f s gameplay loop from %.1f s' % (BOOT_START, xr.T_BLACK, xr.GAME_LEN, xr.T_GAME),
+            'UniqueID': ol.uid(slug, 'proxy'), 'VariableName': 'frame', 'Expression': xr.frame_expr()}
     kids += ol.part(b2, sd, ol.part(b3, mat, ol.part(b3 + 2, prox)))
     snd = ol.sound2(slug, 'sound', AUDIO_FILE, 1, VOLUME, name='Xbox startup sound (the capture\'s audio behind %.1f s of silence = the moment the TV boots)' % BOOT_START)
     kids += ol.part(b2, snd)
+    gtimer = ol.timerx_event(slug, 'game_audio_timer', xr.T_GAME, 'gameplay sound loop starts %.1f s after the toggle (with the picture loop)' % xr.T_GAME)
+    gsnd = ol.sound2(slug, 'game_sound', GAME_AUDIO_FILE, 0, GAME_VOLUME, name='gameplay sound, %.2f s loop (Need for Speed Rivals capture)' % xr.GAME_LEN)
+    kids += ol.part(b2, gtimer, ol.part(b3, gsnd))
     ev = ol.command_event(slug, COMMAND, 'Xbox  (pac_event %s 2)' % COMMAND)
     return ol.part(base, ev, kids)
 
 
-def write_assets(repo=ol.REPO):
+def write_assets(repo=ol.REPO, rewrite_anim=False):
     rig, arms, K, js, misses, info = xa2.build('ethics')
     d = os.path.join(repo, 'anim', 'xbox', 'ethics')
     os.makedirs(d, exist_ok=True)
     jp = os.path.join(d, 'xbox_ethics_v2.json')
-    with open(jp, 'w', newline='\n') as f:
-        json.dump(js, f, separators=(',', ':'))
-    frames, vp, n, ap, mx, gain = xr.build_assets(repo)
-    return jp, vp, ap, js
+    if rewrite_anim or not os.path.exists(jp):               # the pushed gesture file is left alone (same data; renaming is the way to change a file clients may have cached)
+        with open(jp, 'w', newline='\n') as f:
+            json.dump(js, f, separators=(',', ':'))
+    frames, vp, n, ap, mx, gain, gp, g = xr.build_assets(repo)
+    return jp, vp, ap, gp, js
 
 
 def standalone_text():
@@ -94,8 +100,8 @@ def standalone_text():
 
 if __name__ == '__main__':
     repo = sys.argv[1] if len(sys.argv) > 1 else ol.REPO
-    jp, vp, ap, js = write_assets(repo)
-    print('wrote', jp, os.path.getsize(jp), 'bytes;', vp, os.path.getsize(vp), 'bytes;', ap, os.path.getsize(ap), 'bytes;', len(js['FrameData']), 'animation frames')
+    jp, vp, ap, gp, js = write_assets(repo)
+    print('wrote', jp, os.path.getsize(jp), 'bytes;', vp, os.path.getsize(vp), 'bytes;', ap, os.path.getsize(ap), 'bytes;', gp, os.path.getsize(gp), 'bytes;', len(js['FrameData']), 'animation frames')
     text = standalone_text()
     probs, n = ol.verify(text)
     print('standalone outfit', len(text), 'bytes', n, 'ids', 'OK' if not probs else probs)

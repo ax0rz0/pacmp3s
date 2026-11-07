@@ -4,6 +4,7 @@ Generators for two `pac_event` toggles that live in `eca main 4`:
 
 * `pac_event xbox 2` — a table, a TV and a console in front of you. You hold a pad (`models/maxofs2d/button_06.mdl`) in your left hand, lean in and press the console's power button, the LED
   lights up and the TV plays a real Xbox One boot (a few frames a second, with the startup sound) into the real home screen while you stand there holding the pad with both hands.
+  After four seconds on the home screen the TV goes dark and loops 6.25 s of real Xbox One gameplay (a Need for Speed Rivals capture) with its sound.
 * `pac_event guitar 2` — a Martin D-45 (`models/custom/guitar/m_d_45.mdl`, the velkon_guitar model) on your chest, playing Brain Damage (instrumental recording). The picking hand and body are scrubbed
   along the recording's real beats; the fretting hand follows the chords detected in the recording.
 
@@ -14,13 +15,14 @@ Both are built for the female_04 Ethics Assistant rig (`tc.rig_for('ethics')`, ~
 | file | what |
 |---|---|
 | `anim/xbox/ethics/xbox_ethics_v2.json` | the gesture (109 frames at 30 fps, holds the last pose) |
-| `tex/xbox/xbox_boot_real.vtf` | 23 frames of the real Xbox One boot capture, 512x256 DXT1, stepped by a proxy on `frame` |
-| `xbox_startup.mp3` | the capture's audio, mono, behind 2.0 s of silence (the TV boots 2.0 s after the toggle) |
+| `tex/xbox/xbox_screen_game.vtf` | 62 frames, 512x256 DXT1, stepped by a proxy on `frame`: 23 of the real Xbox One boot capture, 1 black, 38 of the gameplay loop (6.08 frames a second) |
+| `xbox_startup.mp3` | the boot capture's audio, mono, behind 2.0 s of silence (the TV boots 2.0 s after the toggle) |
+| `xbox_game_loop.mp3` | the gameplay loop's audio, mono, 6.25 s with a 0.2 s crossfade at the seam, about -20 LUFS; `sound2` `PlayCount 0` under a `timerx` event that fires 21 s after the toggle, when the picture loop starts |
 | `anim/guitar/ethics/guitar_play_ethics.json` | layer A: body sway, nod, foot tap, right (picking) hand; one 2-beat pattern, played with `Rate 0` and a proxy on `Offset` |
 | `anim/guitar/ethics/guitar_chords_ethics.json` | layer B: left (fretting) hand, 48 chord changes over the whole song, holds the last chord |
 | `brain_damage.mp3` | the recording, mono 96 kbps, 0.25 s of lead silence (the animations' ease-in) |
 
-`xbox_ethics.json` and `xbox_boot.vtf` are the first (drawn screen) version and are no longer used.
+`xbox_ethics.json`, `xbox_boot.vtf` (drawn screen) and `xbox_boot_real.vtf` (boot frames only) are earlier versions and are no longer used.
 
 ## How the guitar syncs
 
@@ -38,8 +40,11 @@ python assemble_eca4.py            # eca main 3 (untouched) + both roots -> data
 python write_standalones.py        # outfits/xbox_guitar/*.txt
 ```
 
-The Xbox screen needs the capture: Internet Archive item `2013-xbox-one-pal-gameplay-full-demostration-startup-sequence` (the `.mp4`), saved as
-`$XBOX_WORK/xbox_real/dl/xboxone2013/xboxone2013.mp4` (default `$XBOX_WORK` = the folder above this one), and `ffmpeg` on the PATH. `xbox_real.TIMES` lists the source-clip times of the frames.
+The Xbox screen needs two captures from the Internet Archive and `ffmpeg` on the PATH (default `$XBOX_WORK` = the folder above this one):
+`2013-xbox-one-pal-gameplay-full-demostration-startup-sequence` (the `.mp4`) saved as `$XBOX_WORK/xbox_real/dl/xboxone2013/xboxone2013.mp4`, and
+`youtube-c-9_lkuVW9c` (Need for Speed Rivals gameplay) saved as `$XBOX_WORK/xbox_real/dl/nfsrivals/nfsrivals.mp4`.
+`xbox_real.TIMES` lists the source-clip times of the boot frames, `GAME_START` / `GAME_LEN` / `GAME_N` pick the gameplay loop (`gameplay_loop.py` scans the clip for start / length pairs whose
+last frame looks most like the first; `T_BLACK` / `T_GAME` say when the TV goes dark and the loop starts).
 
 ## Known limits
 
