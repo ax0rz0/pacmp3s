@@ -1,0 +1,325 @@
+-- claude skill made by ax0rz0
+
+["self"] = {
+	["ClassName"] = "group",
+	["EditorExpand"] = true,
+	["Name"] = "xbox: turn on the console and watch it boot (pac_event xbox 2)",
+	["Notes"] = "claude skill made by ax0rz0",
+	["UniqueID"] = "c9beb8b6626512838b1b477dac3aac5810af6d8aa448d6013102ba671f3a0c3f",
+},
+["children"] = {
+	{
+		["self"] = {
+			["AffectChildrenOnly"] = true,
+			["Arguments"] = "xbox",
+			["ClassName"] = "event",
+			["Event"] = "command",
+			["Invert"] = true,
+			["Name"] = "Xbox  (pac_event xbox 2)",
+			["Operator"] = "equal",
+			["UniqueID"] = "62735c5da79b10b72121a46f86576b8e4e49542604edbf9d8270e8aac23a0c3f",
+		},
+		["children"] = {
+			{
+				["self"] = {
+					["AnimationType"] = "sequence",
+					["ClassName"] = "custom_animation",
+					["Interpolation"] = "linear",
+					["Name"] = "you: hold the pad, press the power button, then watch with both hands on it (xbox_ethics_v2.json)",
+					["StopOtherAnimations"] = true,
+					["URL"] = "https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/anim/xbox/ethics/xbox_ethics_v2.json",
+					["UniqueID"] = "a3c61e1deae62a7c25dd832dfb62b9ebfa55b2a7c8747bdeb7d0b2b563fa0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Angles"] = Angle(-0.0858, 48.6481, 90.0615),
+					["Bone"] = "spine 4",
+					["ClassName"] = "model2",
+					["Model"] = "models/maxofs2d/button_06.mdl",
+					["Name"] = "controller (maxofs2d button_06) in your hands",
+					["Position"] = Vector(-10.2604, 14.2007, 0.6059),
+					["Size"] = 0.45,
+					["UniqueID"] = "b6685e665e5984f79bf60432616ffa287c8fac4541d3ddee8291fcfa33ea0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.36, 0.22, 0.12),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: table top",
+					["Position"] = Vector(28, 0, 23.4),
+					["Scale"] = Vector(3.0457, 3.7225, 0.1015),
+					["UniqueID"] = "1d1d6db494e2ea985de3e3eb5c4661ba3fb23b1cecefcaaff59f0ad7909a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.3, 0.18, 0.1),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: table leg",
+					["Position"] = Vector(12, -20, 11.4),
+					["Scale"] = Vector(0.22, 0.22, 1.9289),
+					["UniqueID"] = "b0cec2a1a1a0fcf86c0241ee86fb01d40ffb81473e258404b5d346bf94ba0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.3, 0.18, 0.1),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: table leg",
+					["Position"] = Vector(12, 20, 11.4),
+					["Scale"] = Vector(0.22, 0.22, 1.9289),
+					["UniqueID"] = "5f4ea1bef02434369bab9c2052d6c1e1998b961169df46bbb645bf788dba0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.3, 0.18, 0.1),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: table leg",
+					["Position"] = Vector(44, -20, 11.4),
+					["Scale"] = Vector(0.22, 0.22, 1.9289),
+					["UniqueID"] = "f0069ea8c8dbff07532f31d444fb26f44c902ce476b23d6398ff9e4800ea0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.3, 0.18, 0.1),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: table leg",
+					["Position"] = Vector(44, 20, 11.4),
+					["Scale"] = Vector(0.22, 0.22, 1.9289),
+					["UniqueID"] = "7c76295de111b08d626cd952359ecae8ba1edb977ef93011c49856b2687a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.025, 0.025, 0.03),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: tv bezel",
+					["Position"] = Vector(36, 0, 35.15),
+					["Scale"] = Vector(0.1861, 2.3689, 1.4805),
+					["UniqueID"] = "40d1450bcdbf2d2e65732e3e64967e27895e4bc1b464313e754c593a47fa0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.04, 0.04, 0.045),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: tv neck",
+					["Position"] = Vector(36.3, 0, 25.2),
+					["Scale"] = Vector(0.203, 0.5076, 0.203),
+					["UniqueID"] = "1edcb9c33f31121f06b8fe45213a68756adaa93c72359c52ba407d73f88a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.05, 0.05, 0.055),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: tv foot",
+					["Position"] = Vector(36.3, 0, 24.3),
+					["Scale"] = Vector(0.5922, 1.0998, 0.0508),
+					["UniqueID"] = "0cfe845de1818163b39cee41bb38588467af5c0b82e408232a54ed4ebe7a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.07, 0.07, 0.075),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: console body",
+					["Position"] = Vector(20, -10, 25.4),
+					["Scale"] = Vector(0.7614, 0.9306, 0.2369),
+					["UniqueID"] = "c21b5e15ab4e13af7e64dfff9c2560d2bf40cd4fd5496b26549f7946caca0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.035, 0.035, 0.04),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/blocks/cube025x025x025.mdl",
+					["Name"] = "xbox: console top vent",
+					["Position"] = Vector(20.4, -10, 26.85),
+					["Scale"] = Vector(0.5939, 0.7445, 0.0102),
+					["UniqueID"] = "6d73992dbfbfef1ed49e223bebcba9ddc655e8f30481a275b06118c6ac9a0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Color"] = Vector(0.12, 0.13, 0.12),
+					["Material"] = "models/debug/debugwhite",
+					["Model"] = "models/hunter/misc/sphere025x025.mdl",
+					["Name"] = "xbox: power button",
+					["Position"] = Vector(15.3, -13.8, 25.7),
+					["Scale"] = Vector(0.1855, 0.1855, 0.0675),
+					["UniqueID"] = "c5e63b25e5c0e2e8dce3dfb43e4f8363d357ce9744112457902b32d121fa0c3f",
+				},
+				["children"] = {
+				},
+			},
+			{
+				["self"] = {
+					["AffectChildrenOnly"] = true,
+					["Arguments"] = "1.5@@1@@0",
+					["ClassName"] = "event",
+					["Event"] = "timerx",
+					["Invert"] = true,
+					["Name"] = "power LED (1.5 s after the toggle)",
+					["Operator"] = "above",
+					["UniqueID"] = "8b4269f6d1dc23516a02448656081b539cd8712571643443922a7ad63bfa0c3f",
+				},
+				["children"] = {
+					{
+						["self"] = {
+							["Bone"] = "nobone",
+							["ClassName"] = "sprite",
+							["Color"] = Vector(235, 255, 235),
+							["Name"] = "power LED glow",
+							["Position"] = Vector(14.7, -13.8, 25.7),
+							["SizeX"] = 3.4,
+							["SizeY"] = 3.4,
+							["SpritePath"] = "sprites/light_glow02_add",
+							["UniqueID"] = "d0a16c7953a57a4fe99d94a8fc1d1a1a5ca2a119065c268a9bb339dfff7a0c3f",
+						},
+						["children"] = {
+						},
+					},
+				},
+			},
+			{
+				["self"] = {
+					["Angles"] = Angle(90, -180, 0),
+					["Bone"] = "nobone",
+					["ClassName"] = "model2",
+					["Model"] = "models/hunter/plates/plate1x1.mdl",
+					["Name"] = "xbox: tv screen (a plate, uv 0..1, standing on edge)",
+					["Position"] = Vector(34.78, 0, 35.15),
+					["Scale"] = Vector(0.3034, 0.5394, 0.06),
+					["UniqueID"] = "b7b15b94d232e1d20f67eacda00a6d2575b05c540f501ed69c133809b75a0c3f",
+				},
+				["children"] = {
+					{
+						["self"] = {
+							["ClassName"] = "material_2d",
+							["Name"] = "xbox boot screen (real Xbox One capture, 23 frames, animated VTF)",
+							["UniqueID"] = "bcf30546e646eaae7ca25e31e77613457d1b856de6ced6ffc92509bb22fa0c3f",
+							["basetexture"] = "https://raw.githubusercontent.com/ax0rz0/pacmp3s/refs/heads/main/tex/xbox/xbox_boot_real.vtf",
+							["frame"] = 0,
+						},
+						["children"] = {
+							{
+								["self"] = {
+									["ClassName"] = "proxy",
+									["Expression"] = "floor(min(max((timeex() - 2.400) * 1000, 0), 1) + min(max((timeex() - 2.600) * 1000, 0), 1) + min(max((timeex() - 2.800) * 1000, 0), 1) + min(max((timeex() - 3.000) * 1000, 0), 1) + min(max((timeex() - 3.250) * 1000, 0), 1) + min(max((timeex() - 9.780) * 1000, 0), 1) + min(max((timeex() - 9.950) * 1000, 0), 1) + min(max((timeex() - 10.120) * 1000, 0), 1) + min(max((timeex() - 10.300) * 1000, 0), 1) + min(max((timeex() - 10.500) * 1000, 0), 1) + min(max((timeex() - 11.600) * 1000, 0), 1) + min(max((timeex() - 11.850) * 1000, 0), 1) + min(max((timeex() - 12.400) * 1000, 0), 1) + min(max((timeex() - 12.700) * 1000, 0), 1) + min(max((timeex() - 14.400) * 1000, 0), 1) + min(max((timeex() - 14.700) * 1000, 0), 1) + min(max((timeex() - 15.000) * 1000, 0), 1) + min(max((timeex() - 15.250) * 1000, 0), 1) + min(max((timeex() - 15.500) * 1000, 0), 1) + min(max((timeex() - 15.750) * 1000, 0), 1) + min(max((timeex() - 16.000) * 1000, 0), 1) + min(max((timeex() - 16.600) * 1000, 0), 1))",
+									["Name"] = "boot animation: frames of the real capture from 2.0 s on, the last one (the home screen) stays",
+									["UniqueID"] = "06f3f49857ba4ea05e5b5860314c56eb31828a69a5aae050e2859228e9da0c3f",
+									["VariableName"] = "frame",
+								},
+								["children"] = {
+								},
+							},
+						},
+					},
+				},
+			},
+			{
+				["self"] = {
+					["AimPartName"] = "",
+					["AimPartUID"] = "",
+					["AngleOffset"] = Angle(0, 0, 0),
+					["Angles"] = Angle(0, 0, 0),
+					["Bone"] = "head",
+					["ClassName"] = "sound2",
+					["Doppler"] = false,
+					["DrawOrder"] = 0,
+					["Echo"] = false,
+					["EchoDelay"] = 0.5,
+					["EchoFeedback"] = 0.75,
+					["EditorExpand"] = false,
+					["EyeAngles"] = false,
+					["FilterFraction"] = 1,
+					["FilterType"] = 0,
+					["Hide"] = false,
+					["IsDisturbing"] = false,
+					["MaxPitch"] = 0,
+					["MinPitch"] = 0,
+					["Name"] = "Xbox startup sound (the capture's audio behind 2.0 s of silence = the moment the TV boots)",
+					["Overlapping"] = false,
+					["Path"] = "https://github.com/ax0rz0/pacmp3s/raw/refs/heads/main/xbox_startup.mp3",
+					["PauseOnHide"] = false,
+					["Pitch"] = 1,
+					["PitchLFOAmount"] = 0,
+					["PitchLFOTime"] = 0,
+					["PlayCount"] = 1,
+					["PlayOnFootstep"] = false,
+					["Position"] = Vector(0, 0, 0),
+					["PositionOffset"] = Vector(0, 0, 0),
+					["Radius"] = 500,
+					["StopOnHide"] = true,
+					["TargetEntityUID"] = "",
+					["UniqueID"] = "f6bf71bdad87e1895b1742a99e6cd753a3d987070fc23cf531546543a45a0c3f",
+					["Volume"] = 1.0,
+					["VolumeLFOAmount"] = 0,
+					["VolumeLFOTime"] = 0,
+				},
+				["children"] = {
+				},
+			},
+		},
+	},
+},
