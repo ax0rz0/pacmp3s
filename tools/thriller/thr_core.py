@@ -390,7 +390,7 @@ class Solver:
             if nrm0 is None:
                 continue
             for fid, chain in chains.items():
-                total = claw * (45.0 if fid == 0 else 125.0)
+                total = claw * float(P.get(pre + 'fm%d' % fid, 1.0)) * (45.0 if fid == 0 else 125.0)       # r_fm0..4 / l_fm0..4: per finger curl multipliers (default 1)
                 for k, bidx in enumerate(chain):
                     child = chain[k + 1] if k + 1 < len(chain) else None
                     if child is not None:
